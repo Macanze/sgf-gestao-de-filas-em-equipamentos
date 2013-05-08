@@ -12,7 +12,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table (name = "EQUIPAMENTO")
-public class Equipamento implements Serializable {
+public class Recurso implements Serializable {
     @Id @Column (name = "ID")
     private long id;
     @Column(name = "NOME_EQUIPAMENTO")
