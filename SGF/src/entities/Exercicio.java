@@ -24,7 +24,7 @@ public class Exercicio {
     @Column (name = "TIPO_EXERCICIO")
     private int tipoExercicio;
     
-    private Collection<Equipamento> equipamentos;
+    private Collection<Recurso> equipamentos;
 
     public String getNomeExercicio() {
         return nomeExercicio;
@@ -42,11 +42,11 @@ public class Exercicio {
         this.tipoExercicio = tipoExercicio;
     }
 
-    public Collection<Equipamento> getEquipamentos() {
+    public Collection<Recurso> getEquipamentos() {
         return equipamentos;
     }
 
-    public void setEquipamentos(Collection<Equipamento> equipamentos) {
+    public void setEquipamentos(Collection<Recurso> equipamentos) {
         this.equipamentos = equipamentos;
     }
 
