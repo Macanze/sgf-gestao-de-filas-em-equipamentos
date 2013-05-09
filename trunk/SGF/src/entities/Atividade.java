@@ -16,7 +16,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table (name = "EXERCICIO")
-public class Exercicio {
+public class Atividade {
     @Id @Column (name = "ID") 
     private long id;
     @Column (name = "NOME_EXERCICIO")
