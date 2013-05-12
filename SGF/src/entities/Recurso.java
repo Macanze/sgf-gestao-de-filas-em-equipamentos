@@ -5,6 +5,7 @@
 package entities;
 
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.*;
 /**
  *
@@ -19,7 +20,9 @@ public class Recurso implements Serializable {
     private String nomeEquipamento;
     @Column (name = "MANUTENCAO")
     private boolean manutencao;
+    @Column
+    private Collection <ListaDeAtividades> listaAtividade;
     @Transient
-    private boolean ocupado;
+    private boolean semaforo;
     
 }
