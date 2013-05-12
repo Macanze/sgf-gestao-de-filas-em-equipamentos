@@ -1,4 +1,4 @@
-package testesDeAlgoritimos;
+package business;
 
 /*
  * To change this template, choose Tools | Templates
@@ -8,6 +8,8 @@ package testesDeAlgoritimos;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import testesDeAlgoritimos.Atividade;
+import testesDeAlgoritimos.Recurso;
 
 /**
  *

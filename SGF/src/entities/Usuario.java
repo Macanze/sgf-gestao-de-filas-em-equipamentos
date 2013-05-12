@@ -4,20 +4,29 @@
  */
 package entities;
 
-import enumerators.TipoUsuario;
 import enumerators.TipoDocumento;
+import enumerators.TipoUsuario;
 import java.io.Serializable;
-import javax.persistence.*;
+import java.util.Collection;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
 /**
  *
  * @author cicero
  */
 @Entity
-public class Usuario implements Serializable{
-    static final long serialVersionUID = 987698765456789L;   
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY) @Column (name = "ID")
+public class Usuario implements Serializable {
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Column (name = "NOME")
+
+        @Column (name = "NOME")
     private String nome;
     @Column (name = "DOCUMENTO")
     private String codigoDocumento;
@@ -31,6 +40,30 @@ public class Usuario implements Serializable{
     private String telefoneCelular;
     @Column (name = "TIPO_DOCUMENTO")
     private TipoDocumento tipoDocumento;
+
+    public TipoDocumento getTipoDocumento() {
+        return tipoDocumento;
+    }
+
+    public void setTipoDocumento(TipoDocumento tipoDocumento) {
+        this.tipoDocumento = tipoDocumento;
+    }
+
+    public TipoUsuario getTipoUsuario() {
+        return tipoUsuario;
+    }
+
+    public void setTipoUsuario(TipoUsuario tipoUsuario) {
+        this.tipoUsuario = tipoUsuario;
+    }
+
+    public Collection<ListaDeAtividades> getListasDeAtividades() {
+        return listasDeAtividades;
+    }
+
+    public void setListasDeAtividades(Collection<ListaDeAtividades> listasDeAtividades) {
+        this.listasDeAtividades = listasDeAtividades;
+    }
     @Column (name = "TIPO_USUARIO")
     private TipoUsuario tipoUsuario;
     @Column (name = "PESO_USUARIO")
@@ -38,31 +71,34 @@ public class Usuario implements Serializable{
     @Column (name = "ALTURA_USUARIO")
     private float altura;
     @Column (name="ENDERECO")
-    private String endereco;
-
-    public String getTelefoneResidencial() {
-        return telefoneResidencial;
-    }
-
-    public void setTelefoneResidencial(String telefoneResidencial) {
-        this.telefoneResidencial = telefoneResidencial;
-    }
-
-    public String getEndereco() {
-        return endereco;
-    }
-
-    public void setEndereco(String endereco) {
-        this.endereco = endereco;
-    }
+    private String endereco;   
+    @Column (name = "LISTA_ATIVIDADE")
+    @OneToMany
+    private Collection <ListaDeAtividades> listasDeAtividades;
     
+    
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getCodigoDocumento() {
+        return codigoDocumento;
+    }
+
+    public void setCodigoDocumento(String codigoDocumento) {
+        this.codigoDocumento = codigoDocumento;
+    }
+
     public String getEmail() {
         return email;
     }
-    
+
     public void setEmail(String email) {
         this.email = email;
-        
     }
 
     public String getTelefoneComercial() {
@@ -73,12 +109,12 @@ public class Usuario implements Serializable{
         this.telefoneComercial = telefoneComercial;
     }
 
-    public String getTelefonerResidencial() {
+    public String getTelefoneResidencial() {
         return telefoneResidencial;
     }
 
-    public void setTelefonerResidencial(String telefonerResidencial) {
-        this.telefoneResidencial = telefonerResidencial;
+    public void setTelefoneResidencial(String telefoneResidencial) {
+        this.telefoneResidencial = telefoneResidencial;
     }
 
     public String getTelefoneCelular() {
@@ -88,7 +124,7 @@ public class Usuario implements Serializable{
     public void setTelefoneCelular(String telefoneCelular) {
         this.telefoneCelular = telefoneCelular;
     }
-    
+
     public float getPeso() {
         return peso;
     }
@@ -104,40 +140,49 @@ public class Usuario implements Serializable{
     public void setAltura(float altura) {
         this.altura = altura;
     }
-    
-    public TipoUsuario getTipoUsuario() {
-        return tipoUsuario;
+
+    public String getEndereco() {
+        return endereco;
     }
 
-    public void setTipoUsuario(TipoUsuario tipoUsuario) {
-        this.tipoUsuario = tipoUsuario;
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
     }
 
-    public TipoDocumento getTipoDocumento() {
-        return tipoDocumento;
-    }
-
-    public void setTipoDocumento(TipoDocumento tipoDocumento) {
-        this.tipoDocumento = tipoDocumento;
-    }
-   
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getCodDocumento() {
-        return codigoDocumento;
-    }
-
-    public void setCodDocumento(String codDocumento) {
-        this.codigoDocumento = codDocumento;
-    }
+     
 
     public Long getId() {
         return id;
     }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (id != null ? id.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Usuario)) {
+            return false;
+        }
+        Usuario other = (Usuario) object;
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "entities.Usuario[ id=" + id + " ]";
+    }
+    
 }
+
