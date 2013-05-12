@@ -62,10 +62,7 @@ public class Agendador {
     /**
      * Processa a lista de atividades do usu�rio
      */
-    private void processarNaoAlocados() {
-
-
-        
+    private void processarNaoAlocados() {     
 
         for (int i = 0; i < listaAtividade.size(); i++) {
             Atividade atividade = listaAtividade.get(i);

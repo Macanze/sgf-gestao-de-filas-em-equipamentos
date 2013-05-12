@@ -7,7 +7,6 @@ package entities;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Column;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -25,17 +24,12 @@ public class ListaDeAtividades implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column (name="ID")
     private Long id;
-    @Column(name = "LISTA_DE_ATIVIDADES")@OneToMany
-    private Collection<Atividade> listaDeAtividades;
-
-    public Collection<Atividade> getListaDeAtividades() {
-        return listaDeAtividades;
-    }
-
-    public void setListaDeAtividades(Collection<Atividade> listaDeAtividades) {
-        this.listaDeAtividades = listaDeAtividades;
-    }
-
+    @Column (name="NOME_ATIVIDADE")
+    private String nomeAtividade;
+    @Column (name="EQUIPAMENTO")
+    @OneToMany
+    private Collection <Recurso> recursos;
+    
     public Long getId() {
         return id;
     }
