@@ -15,6 +15,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+
+
 /**
  *
  * @author cicero
@@ -25,8 +27,7 @@ public class Usuario implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
-        @Column (name = "NOME")
+    @Column (name = "NOME")
     private String nome;
     @Column (name = "DOCUMENTO")
     private String codigoDocumento;
@@ -40,7 +41,21 @@ public class Usuario implements Serializable {
     private String telefoneCelular;
     @Column (name = "TIPO_DOCUMENTO")
     private TipoDocumento tipoDocumento;
-
+    @Column (name = "TIPO_USUARIO")
+    private TipoUsuario tipoUsuario;
+    @Column (name = "PESO_USUARIO")
+    private float peso;
+    @Column (name = "ALTURA_USUARIO")
+    private float altura;
+    @Column (name="ENDERECO")
+    private String endereco;   
+    @Column (name = "LISTA_ATIVIDADE")
+    @OneToMany
+    private Collection <ListaDeAtividades> listasDeAtividades;
+    
+//    @ManyToMany
+//    private Collection<ListaDeAtividades> listasAtividade;
+    
     public TipoDocumento getTipoDocumento() {
         return tipoDocumento;
     }
@@ -64,17 +79,6 @@ public class Usuario implements Serializable {
     public void setListasDeAtividades(Collection<ListaDeAtividades> listasDeAtividades) {
         this.listasDeAtividades = listasDeAtividades;
     }
-    @Column (name = "TIPO_USUARIO")
-    private TipoUsuario tipoUsuario;
-    @Column (name = "PESO_USUARIO")
-    private float peso;
-    @Column (name = "ALTURA_USUARIO")
-    private float altura;
-    @Column (name="ENDERECO")
-    private String endereco;   
-    @Column (name = "LISTA_ATIVIDADE")
-    @OneToMany
-    private Collection <ListaDeAtividades> listasDeAtividades;
     
     
     public String getNome() {
