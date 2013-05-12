@@ -20,6 +20,8 @@ public class Recurso implements Serializable {
     private String nomeEquipamento;
     @Column (name = "MANUTENCAO")
     private boolean manutencao;
+    @ManyToOne
+    private Atividade atividade;   
     @Transient
     private boolean semaforo;
     

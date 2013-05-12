@@ -24,11 +24,28 @@ public class ListaDeAtividades implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column (name="ID")
     private Long id;
-    @Column (name="NOME_ATIVIDADE")
+    @Column (name="NOME_LISTA_ATIVIDADE")
     private String nomeAtividade;
-    @Column (name="EQUIPAMENTO")
+    @Column (name="ATIVIDADE")
     @OneToMany
-    private Collection <Recurso> recursos;
+    private Collection<Atividade> atividade;
+    
+    public String getNomeAtividade() {
+        return nomeAtividade;
+    }
+
+    public void setNomeAtividade(String nomeAtividade) {
+        this.nomeAtividade = nomeAtividade;
+    }
+
+    public Collection<Atividade> getAtividade() {
+        return atividade;
+    }
+
+    public void setAtividade(Atividade atividade) {
+        this.atividade = (Collection<Atividade>) atividade;
+    }
+    
     
     public Long getId() {
         return id;

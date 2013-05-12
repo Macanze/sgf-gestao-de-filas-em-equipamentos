@@ -20,7 +20,17 @@ public class Atividade implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @Column (name="NOME_ATIVIDADE")
+    private String nomeAtividade;
+    
+    
+    public String getNomeAtividade() {
+        return nomeAtividade;
+    }
 
+    public void setNomeAtividade(String nomeAtividade) {
+        this.nomeAtividade = nomeAtividade;
+    }
     public Long getId() {
         return id;
     }
