@@ -49,12 +49,10 @@ public class Usuario implements Serializable {
     private float altura;
     @Column (name="ENDERECO")
     private String endereco;   
-    @Column (name = "LISTA_ATIVIDADE")
-    @OneToMany
-    private Collection <ListaDeAtividades> listasDeAtividades;
-    
-//    @ManyToMany
-//    private Collection<ListaDeAtividades> listasAtividade;
+    @Column (name = "DESCRICAO")
+    private String descricao;
+    @Column(name = "STATUS",nullable=false,length=244)
+    private boolean status;
     
     public TipoDocumento getTipoDocumento() {
         return tipoDocumento;
@@ -71,16 +69,6 @@ public class Usuario implements Serializable {
     public void setTipoUsuario(TipoUsuario tipoUsuario) {
         this.tipoUsuario = tipoUsuario;
     }
-
-    public Collection<ListaDeAtividades> getListasDeAtividades() {
-        return listasDeAtividades;
-    }
-
-    public void setListasDeAtividades(Collection<ListaDeAtividades> listasDeAtividades) {
-        this.listasDeAtividades = listasDeAtividades;
-    }
-    
-    
     public String getNome() {
         return nome;
     }
