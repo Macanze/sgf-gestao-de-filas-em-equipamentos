@@ -249,18 +249,13 @@ acao();
     // End of variables declaration//GEN-END:variables
 
     private void acao() {
-        
-        
+     
         if(flag_alterar){
             alterar();
         }else{
             cadastrar();
         }
-        
-        
-      
-        
-        
+
     }
 
     private void setup() {
