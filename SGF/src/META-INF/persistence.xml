@@ -3,8 +3,13 @@
   <persistence-unit name="sgfpu" transaction-type="RESOURCE_LOCAL">
     <provider>org.hibernate.ejb.HibernatePersistence</provider>
     <class>entities.Atividade</class>
+    <class>entities.Equipamento</class>
+    <class>entities.Grupo</class>
+    <class>entities.GrupoAtividade</class>
     <class>entities.ListaDeAtividades</class>
     <class>entities.Recurso</class>
+    <class>entities.Treino</class>
+    <class>entities.TreinoAtividade</class>
     <class>entities.Usuario</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/sgfpu"/>
@@ -12,7 +17,6 @@
       <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
       <property name="javax.persistence.jdbc.user" value="root"/>
       <property name="hibernate.cache.provider_class" value="org.hibernate.cache.NoCacheProvider"/>
-      <property name="hibernate.hbm2ddl.auto" value="create-drop"/>
     </properties>
   </persistence-unit>
 </persistence>
