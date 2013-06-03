@@ -4,7 +4,8 @@
  */
 package br.com.usjt.sgf.model;
 
-import br.com.usjt.sgf.dao.util.HibernateDaoUtil;
+import br.com.usjt.sgf.dao.AtividadeDao;
+import br.com.usjt.sgf.dao.GrupoDao;
 import br.com.usjt.sgf.entity.Grupo;
 import br.com.usjt.sgf.entity.Grupoatv;
 import java.util.List;
@@ -14,65 +15,53 @@ import java.util.List;
  * @author Douglas
  */
 public class GrupoModel {
+    
+    
+    
+    private Grupo atividade;
+    private GrupoDao dao;
 
-    
-    private Grupo grupo;
-    private final HibernateDaoUtil dao;
-    
-    
-    public GrupoModel(Grupo atv) {
-        
-        this.dao = new HibernateDaoUtil();
-        this.grupo = atv;
+    public GrupoModel(Grupo atividade) {
+        this.atividade = atividade;
+        dao = new GrupoDao();
     }
+
+    public GrupoModel() {
+        dao = new GrupoDao();
+    }
+    
     
     
     public void persist(){
-        dao.persist(grupo);
+        dao.persist(atividade);
     }
     
-    public List<Grupo> listByName(){
+    public void update(){
+        dao.update(atividade);
+    }
+    
+    public List listAll(){
+        return dao.listAll();
+    }
+    
+    public List listByNome(){
         
-        //recurso.setNome("%"+recurso.getNome()+"%");
-        String parameter[][] = new String[1][2];
-        parameter[0][0] = "nome";
-        parameter[0][1] = "%"+grupo.getNome()+"%";
-        List<Grupo> listByQuery =(List<Grupo>) dao.listByQuery("Grupo.findByNome", parameter);
+        Object obj[][] = new Object[1][2];
+        obj[0][0] = "nome";
+        obj[0][1] = "%"+atividade.getNome()+"%";
+       
+        return dao.list("Grupo.findByNome", obj);
         
-        return listByQuery;
+        
     }
 
-    public void update() {
-        
-        Grupo temp = find();
-        temp.setDescricao(grupo.getDescricao());
-        temp.setStatus(grupo.getStatus());
-        temp.setNome(grupo.getNome());
-        temp.setGrupoatvCollection(grupo.getGrupoatvCollection());
-        dao.update(temp);
-    }
     
     public void remove() {
-        grupo = find();
-        dao.remove(grupo);
-    }
-    
-    public Grupo find(){
-        return (Grupo)dao.find(grupo,grupo.getId());
-        
-    }
-    private void persistGrupoatv(){
-        
+        dao.remove(atividade);
     }
 
-    public void commit() {
-        dao.commit();
+    public void persistAtividade(Grupoatv grpAtv) {
+        dao.persistAtividade(grpAtv);
     }
-
-    public void persistAtv(Grupoatv grpAtv) {
-        dao.persist(grpAtv);
-    }
-    
-    
     
 }

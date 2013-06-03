@@ -55,14 +55,14 @@ public class HibernateDaoUtil {
     }
 
    
-    public List listByQuery(String sqlQuery, String[][] parameters) {
+    public List listByQuery(String sqlQuery, Object[][] parameters) {
         
         
         Query query = manager.createNamedQuery(sqlQuery);
         
         
         for(int i = 0 ; i < parameters.length;i++){
-            query.setParameter(parameters[i][0], parameters[i][1]);
+            query.setParameter(parameters[i][0].toString(), parameters[i][1]);
         }
         
         
@@ -98,6 +98,17 @@ public class HibernateDaoUtil {
         
         
         
+    }
+
+    public int findNewId(String table, String field) {
+        
+        
+        
+        
+        
+        
+        
+        return 0;
     }
     
     

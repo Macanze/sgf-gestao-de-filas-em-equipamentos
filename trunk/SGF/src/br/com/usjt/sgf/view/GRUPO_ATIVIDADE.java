@@ -344,13 +344,8 @@ public class GRUPO_ATIVIDADE extends javax.swing.JInternalFrame {
 
     private void selecionarAtividade() {
 
-        
-        
-        GrupoModel model = new GrupoModel(grupo);
-        grupo  = model.find();
-        
         int size = jTable1.getRowCount();
-        
+        GrupoModel model = new GrupoModel(grupo);
         for(int i = 0 ; i <size;i++){
             
             boolean addLinha = (boolean) jTable1.getValueAt(i, 0);
@@ -358,13 +353,12 @@ public class GRUPO_ATIVIDADE extends javax.swing.JInternalFrame {
                
 
                 Grupoatv grpAtv = new Grupoatv();
-                grpAtv.setAtividadeId(lista.get(i));
+                grpAtv.setAtividade(lista.get(i));
                 System.out.println("\n\n\n\nATIVIDADE:"+lista.get(i).getNome());
                 int tempo = Integer.parseInt((jTable1.getValueAt(i, 2).toString()));
                 grpAtv.setTempo(tempo);
-                grpAtv.setGrupoId(grupo);
-                model.persistAtv(grpAtv);
-                this.grupo.getGrupoatvCollection().add(grpAtv);
+                grpAtv.setGrupo(grupo);
+                model.persistAtividade(grpAtv);
                 
                 
             }
@@ -372,8 +366,8 @@ public class GRUPO_ATIVIDADE extends javax.swing.JInternalFrame {
             
             
         }
-
-        model.commit();
+      
+        
 
         
     }

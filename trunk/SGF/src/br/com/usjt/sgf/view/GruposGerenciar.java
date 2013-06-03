@@ -456,7 +456,7 @@ private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 }//GEN-LAST:event_jButton9ActionPerformed
 
 private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-// TODO add your handling code here:
+removerGrupo();// TODO add your handling code here:
 }//GEN-LAST:event_jButton10ActionPerformed
 
 private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
@@ -555,7 +555,7 @@ selecionarGrupo();
         
         
         GrupoModel recurso = new GrupoModel(atv);
-        this.listByName = recurso.listByName();
+        this.listByName = recurso.listByNome();
         
        
         Object obj[] = new Object[listByName.size()];
@@ -590,8 +590,8 @@ selecionarGrupo();
         mdl.setNumRows(0);
         for(Grupoatv grp : listaAtividade){
            
-            mdl.addRow(new Object[]{grp.getAtividadeId().getNome(),
-                    grp.getAtividadeId().getDescr(),
+            mdl.addRow(new Object[]{grp.getAtividade().getNome(),
+                    grp.getAtividade().getDescr(),
                     grp.getTempo()
             });
             
@@ -622,14 +622,14 @@ selecionarGrupo();
 
     private void removerAtividade() {
         
-        int index = jTable1.getSelectedRow();
-        Grupoatv get = this.listaAtividade.get(index);
+        int indexAtv = jTable1.getSelectedRow();
+        Grupoatv get = this.listaAtividade.get(indexAtv);
         
         int opc = JOptionPane.showConfirmDialog(null, "Deseja realmente excluir "
-                +get.getAtividadeId().getNome()+" do grupo "+grupoSelecionado.getNome()+"?");
+                +get.getAtividade().getNome()+" do grupo "+grupoSelecionado.getNome()+"?");
         
         if(opc==JOptionPane.YES_OPTION){
-            this.listaAtividade.remove(index);
+            this.listaAtividade.remove(indexAtv);
        salvarAlteracoes();
        buscarGrupos();
        selecionarGrupo();
@@ -641,5 +641,10 @@ selecionarGrupo();
 
     private void incluirAtividade() {
   Principal.adicionarFrames(new GRUPO_ATIVIDADE(grupoSelecionado));
+    }
+
+    private void removerGrupo() {
+        new GrupoModel(grupoSelecionado).remove();
+        buscarGrupos();
     }
 }

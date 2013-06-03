@@ -4,7 +4,7 @@
  */
 package br.com.usjt.sgf.model;
 
-import br.com.usjt.sgf.dao.util.HibernateDaoUtil;
+import br.com.usjt.sgf.dao.UsuarioDao;
 import br.com.usjt.sgf.entity.Usuario;
 import java.util.List;
 
@@ -13,51 +13,45 @@ import java.util.List;
  * @author Douglas
  */
 public class UsuarioModel {
+    
+    
+    
+    private Usuario usuario;
+    private UsuarioDao dao;
 
-    
-    private Usuario recurso;
-    private final HibernateDaoUtil dao;
-    
-    
-    public UsuarioModel(Usuario atv) {
-        
-        this.dao = new HibernateDaoUtil();
-        this.recurso = atv;
+    public UsuarioModel(Usuario usuario) {
+        this.usuario = usuario;
+        dao = new UsuarioDao();
     }
+    
     
     
     public void persist(){
-        dao.persist(recurso);
+        dao.persist(usuario);
     }
     
-    public List<Usuario> listByName(){
+    public void update(){
+        dao.update(usuario);
+    }
+    
+    public List findAll(){
+        return dao.listAll();
+    }
+    
+    public List listByName(){
         
-        //recurso.setNome("%"+recurso.getNome()+"%");
-        String parameter[][] = new String[1][2];
-        parameter[0][0] = "nome";
-        parameter[0][1] = "%"+recurso.getNome()+"%";
-        List<Usuario> listByQuery =(List<Usuario>) dao.listByQuery("Usuario.findByNome", parameter);
+        Object obj[][] = new Object[1][2];
+        obj[0][0] = "nome";
+        obj[0][1] = "%"+usuario.getNome()+"%";
+       
+        return dao.list("Usuario.findByNome", obj);
         
-        return listByQuery;
+        
     }
 
-    public void update() {
-        
-     //   Usuario temp = find();
-    //    temp.setDescricao(recurso.getDescricao());
-   //     temp.setStatus(recurso.getStatus());
-   //     temp.setNome(recurso.getNome());
-     //   temp.setAtividadeRelacionada(recurso.getAtividadeRelacionada());
-  //      dao.update(temp);
-    }
     
     public void remove() {
-     //   recurso = find();
-        dao.remove(recurso);
+        dao.remove(usuario);
     }
-    
-  
-    
-    
     
 }

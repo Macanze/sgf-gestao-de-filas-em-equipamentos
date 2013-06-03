@@ -220,9 +220,6 @@ adicionarFrames(new UsuarioGerenciar());
                 frame = aux;
             }
         }
-    
-        
-        
         
         //caso o frame n�o exista no painel, este � adicionado
         if (!existeFrame) {
@@ -239,8 +236,9 @@ adicionarFrames(new UsuarioGerenciar());
          
             
         } catch (PropertyVetoException ex) {
-            ex.printStackTrace();
+            System.out.println(ex.getMessage());
         }
+        
     }
 
 

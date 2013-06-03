@@ -11,6 +11,7 @@
 package br.com.usjt.sgf.view;
 
 import br.com.usjt.sgf.entity.Treino;
+
 import br.com.usjt.sgf.entity.Usuario;
 import br.com.usjt.sgf.model.TreinoModel;
 
@@ -219,7 +220,12 @@ cadastrar();
         Treino treino = new Treino();
         
        treino.setUsuario(usuario);
-        
+       treino.setDescricao(txtDescricao.getText());
+
+       
+     
+       
+       
         new TreinoModel(treino).persist();
         dispose();
         
@@ -227,7 +233,7 @@ cadastrar();
 
     private void cancelar() {
         
-      
+      dispose();
     }
 
    

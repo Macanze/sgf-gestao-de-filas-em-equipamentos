@@ -11,8 +11,11 @@
 package br.com.usjt.sgf.view;
 
 import br.com.usjt.sgf.entity.Atividade;
+import br.com.usjt.sgf.entity.Grupo;
 import br.com.usjt.sgf.entity.Treino;
+import br.com.usjt.sgf.entity.Treinoatv;
 import br.com.usjt.sgf.entity.Usuario;
+import br.com.usjt.sgf.model.TreinoModel;
 import br.com.usjt.sgf.model.UsuarioModel;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +32,7 @@ public class UsuarioGerenciar extends javax.swing.JInternalFrame {
     private ArrayList<Atividade> listaAtividade;
     private int index;
     private ArrayList<Treino> listaTreino;
+    private Treino treinoSelecionado;
 
     /** Creates new form UsuariosGerenciar */
     public UsuarioGerenciar() {
@@ -75,14 +79,13 @@ public class UsuarioGerenciar extends javax.swing.JInternalFrame {
         jButton5 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblAtv = new javax.swing.JTable();
         jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
         jListTreino = new javax.swing.JList();
         jScrollPane5 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tblGrupo = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jButton11 = new javax.swing.JButton();
@@ -315,7 +318,7 @@ public class UsuarioGerenciar extends javax.swing.JInternalFrame {
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblAtv.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -323,25 +326,15 @@ public class UsuarioGerenciar extends javax.swing.JInternalFrame {
                 "Atividade", "Descricao", "Tempo"
             }
         ));
-        jScrollPane3.setViewportView(jTable1);
+        jScrollPane3.setViewportView(tblAtv);
 
         jButton7.setBackground(new java.awt.Color(255, 255, 255));
         jButton7.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/usjt/sgf/view/images/add_16.png"))); // NOI18N
-        jButton7.setText("Incluir");
+        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/usjt/sgf/view/images/user_edit16.png"))); // NOI18N
+        jButton7.setText("Editar");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton7ActionPerformed(evt);
-            }
-        });
-
-        jButton8.setBackground(new java.awt.Color(255, 255, 255));
-        jButton8.setFont(new java.awt.Font("Tahoma", 1, 11));
-        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/usjt/sgf/view/images/del_16.png"))); // NOI18N
-        jButton8.setText("Remover");
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
             }
         });
 
@@ -355,15 +348,15 @@ public class UsuarioGerenciar extends javax.swing.JInternalFrame {
         });
         jScrollPane4.setViewportView(jListTreino);
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tblGrupo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Atividade", "Descricao", "Tempo"
+                "Grupo", "Descricao"
             }
         ));
-        jScrollPane5.setViewportView(jTable2);
+        jScrollPane5.setViewportView(tblGrupo);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12));
         jLabel3.setText("Atividades");
@@ -398,12 +391,10 @@ public class UsuarioGerenciar extends javax.swing.JInternalFrame {
                             .addComponent(jLabel4)
                             .addComponent(jScrollPane5, 0, 0, Short.MAX_VALUE)
                             .addComponent(jLabel3)))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
                         .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 153, Short.MAX_VALUE)
-                        .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton8)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 264, Short.MAX_VALUE)
+                        .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
@@ -424,9 +415,8 @@ public class UsuarioGerenciar extends javax.swing.JInternalFrame {
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 305, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton8)
-                    .addComponent(jButton7)
-                    .addComponent(jButton11))
+                    .addComponent(jButton11)
+                    .addComponent(jButton7))
                 .addContainerGap())
         );
 
@@ -501,16 +491,12 @@ private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
 // TODO add your handling code here:
 }//GEN-LAST:event_jButton10ActionPerformed
 
-private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-removerAtividade();// TODO add your handling code here:
-}//GEN-LAST:event_jButton8ActionPerformed
-
 private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
 incluirAtividade();
 }//GEN-LAST:event_jButton7ActionPerformed
 
 private void jListTreinoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jListTreinoMouseClicked
-// TODO add your handling code here:
+selecinarTreino();
 }//GEN-LAST:event_jListTreinoMouseClicked
 
 private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
@@ -564,7 +550,6 @@ Principal.adicionarFrames(new TreinoCadastrar(usuarioLelecionado));
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -587,10 +572,10 @@ Principal.adicionarFrames(new TreinoCadastrar(usuarioLelecionado));
     private javax.swing.JToolBar.Separator jSeparator1;
     private javax.swing.JToolBar.Separator jSeparator2;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.ButtonGroup radio;
+    private javax.swing.JTable tblAtv;
+    private javax.swing.JTable tblGrupo;
     private javax.swing.JTextArea txtDescricao;
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtPesquisa;
@@ -633,13 +618,15 @@ Principal.adicionarFrames(new TreinoCadastrar(usuarioLelecionado));
             chkInativo.setSelected(true);
         }
         
-        
-        //this.listaTreino = new ArrayList<>(usuarioLelecionado.getListaTreino());
+        Treino temp = new Treino();
+        temp.setUsuario(usuarioLelecionado);
+        this.listaTreino = new ArrayList<>(new TreinoModel(temp).findById());
         
         
         Object obj[] = new Object[listaTreino.size()];
         for(int i = 0 ; i <listaTreino.size();i++){
-            obj[i] = listaTreino.get(i).getIdTreino();
+            Treino t = listaTreino.get(i);
+            obj[i] = (""+t.getTreinoPK().getIdtreino()+" - " +t.getDescricao());
             
         }
         jListTreino.setListData(obj);
@@ -672,7 +659,7 @@ Principal.adicionarFrames(new TreinoCadastrar(usuarioLelecionado));
         
         
         
-        index = jTable1.getSelectedRow();
+        index = tblAtv.getSelectedRow();
         Atividade atividade = listaAtividade.get(index);
         
         int opc =JOptionPane.showConfirmDialog(null, "Deseja excluir "+atividade.getNome()+" das atividades relacionadas?");
@@ -686,6 +673,42 @@ Principal.adicionarFrames(new TreinoCadastrar(usuarioLelecionado));
     }
 
     private void incluirAtividade() {
-       //Principal.adicionarFrames(new Usuario_ATIVIDADE(usuarioLelecionado));
+     
+         Principal.adicionarFrames(new TreinoAtvs(usuarioLelecionado, treinoSelecionado));
+        
+        
+        
+        
+        
+    }
+
+    private void selecinarTreino() {
+        int indexTreino = jListTreino.getSelectedIndex();
+        this.treinoSelecionado = listaTreino.get(indexTreino);
+        
+        
+        ArrayList<Grupo> listaGrupo = new ArrayList<>(treinoSelecionado.getGrupoCollection());
+        ArrayList<Treinoatv> listaAtv = new ArrayList<>(treinoSelecionado.getTreinoatvCollection());
+        
+        
+        
+        DefaultTableModel mdl = (DefaultTableModel) tblGrupo.getModel();
+        mdl.setNumRows(0);
+        for(int i = 0 ; i <listaGrupo.size();i++){
+            Grupo grp = listaGrupo.get(i);
+            mdl.addRow(new Object[]{grp.getNome(),grp.getDescricao()});
+        }
+        
+        
+         mdl = (DefaultTableModel) tblAtv.getModel();
+         mdl.setNumRows(0);
+        for(int i = 0 ; i <listaAtv.size();i++){
+            Treinoatv grp = listaAtv.get(i);
+            mdl.addRow(new Object[]{grp.getAtividade().getNome(),grp.getAtividade().getDescr(),grp.getTempo()});
+        }
+        
+        
+        
+        
     }
 }

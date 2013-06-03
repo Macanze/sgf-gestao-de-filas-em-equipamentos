@@ -7,16 +7,16 @@ package br.com.usjt.sgf.entity;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
-import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -29,40 +29,28 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Recurso.findAll", query = "SELECT r FROM Recurso r"),
     @NamedQuery(name = "Recurso.findById", query = "SELECT r FROM Recurso r WHERE r.id = :id"),
     @NamedQuery(name = "Recurso.findByDescricao", query = "SELECT r FROM Recurso r WHERE r.descricao = :descricao"),
-    @NamedQuery(name = "Recurso.findByNome", query = "SELECT r FROM Recurso r WHERE r.nome like :nome"),
+    @NamedQuery(name = "Recurso.findByNome", query = "SELECT r FROM Recurso r WHERE r.nome = :nome"),
     @NamedQuery(name = "Recurso.findByStatus", query = "SELECT r FROM Recurso r WHERE r.status = :status")})
 public class Recurso implements Serializable {
     private static final long serialVersionUID = 1L;
-    @Id @GeneratedValue
+    @Id
     @Basic(optional = false)
     @Column(name = "ID")
     private Integer id;
-    @Basic(optional = false)
     @Column(name = "DESCRICAO")
     private String descricao;
-    @Basic(optional = false)
-    @Column(name = "NOME", unique=true)
+    @Column(name = "NOME")
     private String nome;
-    @Basic(optional = false)
     @Column(name = "STATUS")
-    private boolean status;
-    
-    @CollectionTable
-    @OneToMany
-    private Collection<Atividade> atividadeRelacionada;
+    private Boolean status;
+    @ManyToMany(mappedBy = "recursoCollection", fetch = FetchType.EAGER)
+    private Collection<Atividade> atividadeCollection;
 
     public Recurso() {
     }
 
     public Recurso(Integer id) {
         this.id = id;
-    }
-
-    public Recurso(Integer id, String descricao, String nome, boolean status) {
-        this.id = id;
-        this.descricao = descricao;
-        this.nome = nome;
-        this.status = status;
     }
 
     public Integer getId() {
@@ -89,24 +77,23 @@ public class Recurso implements Serializable {
         this.nome = nome;
     }
 
-    public boolean getStatus() {
+    public Boolean getStatus() {
         return status;
     }
 
-    public void setStatus(boolean status) {
+    public void setStatus(Boolean status) {
         this.status = status;
     }
 
-    public Collection<Atividade> getAtividadeRelacionada() {
-        return atividadeRelacionada;
+    @XmlTransient
+    public Collection<Atividade> getAtividadeCollection() {
+        return atividadeCollection;
     }
 
-    public void setAtividadeRelacionada(Collection<Atividade> atividadeRelacionada) {
-        this.atividadeRelacionada = atividadeRelacionada;
+    public void setAtividadeCollection(Collection<Atividade> atividadeCollection) {
+        this.atividadeCollection = atividadeCollection;
     }
 
-    
-    
     @Override
     public int hashCode() {
         int hash = 0;
