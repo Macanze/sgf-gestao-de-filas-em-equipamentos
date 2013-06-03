@@ -4,7 +4,10 @@
  */
 package br.com.usjt.sgf.model;
 
-import br.com.usjt.sgf.dao.util.HibernateDaoUtil;
+import br.com.usjt.sgf.dao.AtividadeDao;
+import br.com.usjt.sgf.dao.RecursoDao;
+import br.com.usjt.sgf.dao.TreinoDao;
+import br.com.usjt.sgf.entity.Recurso;
 import br.com.usjt.sgf.entity.Treino;
 import java.util.List;
 
@@ -13,51 +16,47 @@ import java.util.List;
  * @author Douglas
  */
 public class TreinoModel {
-
+    
+    
     
     private Treino treino;
-    private final HibernateDaoUtil dao;
-    
-    
-    public TreinoModel(Treino atv) {
-        
-        this.dao = new HibernateDaoUtil();
-        this.treino = atv;
+    private TreinoDao dao;
+
+    public TreinoModel(Treino treino) {
+        this.treino = treino;
+        dao = new TreinoDao();
     }
+    
     
     
     public void persist(){
         dao.persist(treino);
     }
     
-    public List<Treino> listByName(){
+    public void update(){
         
-        //treino.setNome("%"+treino.getNome()+"%");
-        String parameter[][] = new String[1][2];
-        parameter[0][0] = "nome";
-       // parameter[0][1] = "%"+treino.getDescricao()+"%";
-        List<Treino> listByQuery =(List<Treino>) dao.listByQuery("Treino.findByNome", parameter);
+                
+        dao.update(treino);
+    }
+    
+    public List listAll(){
+        return dao.listAll();
+    }
+    
+    public List findById(){
         
-        return listByQuery;
+        Object obj[][] = new Object[1][2];
+        obj[0][0] = "usrTrn";
+        obj[0][1] = +treino.getUsuario().getId();
+       
+        return dao.list("Treino.findByUsrTrn", obj);
+        
+        
     }
 
-    public void update() {
-        
-     //   Treino temp = find();
-    //    temp.setDescricao(treino.getDescricao());
-   //     temp.setStatus(treino.getStatus());
-   //     temp.setNome(treino.getNome());
-     //   temp.setAtividadeRelacionada(treino.getAtividadeRelacionada());
-  //      dao.update(temp);
-    }
     
     public void remove() {
-     //   treino = find();
         dao.remove(treino);
     }
-    
-  
-    
-    
     
 }

@@ -9,8 +9,12 @@ import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -37,14 +41,19 @@ public class Grupo implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID")
     private Integer id;
-    @Basic(optional = false)
     @Column(name = "DESCRICAO")
     private String descricao;
     @Column(name = "NOME")
     private String nome;
     @Column(name = "STATUS")
     private Boolean status;
-    @OneToMany(mappedBy = "grupoId")
+    @JoinTable(name = "TREINO_GRUPO", joinColumns = {
+        @JoinColumn(name = "Grupo_ID", referencedColumnName = "ID")}, inverseJoinColumns = {
+        @JoinColumn(name = "Treino_UsrTrn", referencedColumnName = "usr_trn"),
+        @JoinColumn(name = "Treino_IDTREINO", referencedColumnName = "IDTREINO")})
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Collection<Treino> treinoCollection;
+    @OneToMany(mappedBy = "grupo", fetch = FetchType.EAGER)
     private Collection<Grupoatv> grupoatvCollection;
 
     public Grupo() {
@@ -52,11 +61,6 @@ public class Grupo implements Serializable {
 
     public Grupo(Integer id) {
         this.id = id;
-    }
-
-    public Grupo(Integer id, String descricao) {
-        this.id = id;
-        this.descricao = descricao;
     }
 
     public Integer getId() {
@@ -89,6 +93,15 @@ public class Grupo implements Serializable {
 
     public void setStatus(Boolean status) {
         this.status = status;
+    }
+
+    @XmlTransient
+    public Collection<Treino> getTreinoCollection() {
+        return treinoCollection;
+    }
+
+    public void setTreinoCollection(Collection<Treino> treinoCollection) {
+        this.treinoCollection = treinoCollection;
     }
 
     @XmlTransient

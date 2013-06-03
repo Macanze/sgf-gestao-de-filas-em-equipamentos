@@ -522,7 +522,7 @@ incluirAtividade();
         
         
         RecursoModel recurso = new RecursoModel(atv);
-        this.listByName = recurso.listByName();
+        this.listByName = recurso.listAll();
         
        
         Object obj[] = new Object[listByName.size()];
@@ -546,7 +546,7 @@ incluirAtividade();
             chkInativo.setSelected(true);
             
         }
-        this.listaAtividade = new ArrayList<Atividade>(recursoSelecionado.getAtividadeRelacionada());
+        this.listaAtividade = new ArrayList<>(recursoSelecionado.getAtividadeCollection());
         
         
         DefaultTableModel mdl = (DefaultTableModel) jTable1.getModel();
@@ -565,7 +565,7 @@ incluirAtividade();
         recursoSelecionado.setNome(recursoSelecionado.getNome());
         recursoSelecionado.setStatus(chkAtivo.isSelected());
         
-        recursoSelecionado.setAtividadeRelacionada(listaAtividade);
+        recursoSelecionado.setAtividadeCollection(listaAtividade);
         new RecursoModel(recursoSelecionado).update();
         
         

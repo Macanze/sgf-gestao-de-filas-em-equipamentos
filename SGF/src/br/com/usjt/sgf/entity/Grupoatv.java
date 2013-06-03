@@ -6,21 +6,17 @@ package br.com.usjt.sgf.entity;
 
 import java.io.Serializable;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.PersistenceContext;
-import javax.persistence.PersistenceProperty;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
-import org.hibernate.annotations.Cascade;
 
 /**
  *
@@ -28,7 +24,6 @@ import org.hibernate.annotations.Cascade;
  */
 @Entity
 @Table(name = "GRUPOATV")
-
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Grupoatv.findAll", query = "SELECT g FROM Grupoatv g"),
@@ -40,19 +35,14 @@ public class Grupoatv implements Serializable {
     @Basic(optional = false)
     @Column(name = "IDATIVIDADE")
     private Integer idatividade;
-    
     @Column(name = "TEMPO")
     private Integer tempo;
-    
-    
     @JoinColumn(name = "GRUPO_ID", referencedColumnName = "ID")
-    @ManyToOne
-    private Grupo grupoId;
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Grupo grupo;
     @JoinColumn(name = "ATIVIDADE_ID", referencedColumnName = "ID")
-    
-    
-    @ManyToOne
-    private Atividade atividadeId;
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Atividade atividade;
 
     public Grupoatv() {
     }
@@ -77,20 +67,20 @@ public class Grupoatv implements Serializable {
         this.tempo = tempo;
     }
 
-    public Grupo getGrupoId() {
-        return grupoId;
+    public Grupo getGrupo() {
+        return grupo;
     }
 
-    public void setGrupoId(Grupo grupoId) {
-        this.grupoId = grupoId;
+    public void setGrupo(Grupo grupo) {
+        this.grupo = grupo;
     }
 
-    public Atividade getAtividadeId() {
-        return atividadeId;
+    public Atividade getAtividade() {
+        return atividade;
     }
 
-    public void setAtividadeId(Atividade atividadeId) {
-        this.atividadeId = atividadeId;
+    public void setAtividade(Atividade atividade) {
+        this.atividade = atividade;
     }
 
     @Override
@@ -117,17 +107,5 @@ public class Grupoatv implements Serializable {
     public String toString() {
         return "br.com.usjt.sgf.entity.Grupoatv[ idatividade=" + idatividade + " ]";
     }
-    
-    public Object[] toArray(){
-        
-        
-        Object obj[] = new Object[5];
-        obj[0] = getAtividadeId().getNome();
-        obj[1] = getAtividadeId().getDescr();
-        obj[2] = getTempo();
-        
-        return obj;
-    }
-    
     
 }

@@ -22,6 +22,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 
 import javax.persistence.Persistence;
+import javax.persistence.PersistenceException;
 
  
 
@@ -64,7 +65,7 @@ public class HibernateUtil {
 
            this.factory = Persistence.createEntityManagerFactory("SGFPU", getConf());
 
-        } catch ( Throwable e ){ 
+        } catch ( PersistenceException e ){ 
 
             throw new ExceptionInInitializerError(e); 
 

@@ -304,7 +304,7 @@ public class Recurso_ATIVIDADE extends javax.swing.JInternalFrame {
     private void buscarAtividade() {
 
         
-        this.listaAtividade = new ArrayList<>(recurso.getAtividadeRelacionada());
+        this.listaAtividade = new ArrayList<>(recurso.getAtividadeCollection());
 
         DefaultTableModel mdl = (DefaultTableModel) jTable1.getModel();
         mdl.setNumRows(0);
@@ -372,7 +372,7 @@ public class Recurso_ATIVIDADE extends javax.swing.JInternalFrame {
         
         
         
-        recurso.setAtividadeRelacionada(listaAtividade);
+        recurso.setAtividadeCollection(listaAtividade);
         new RecursoModel(recurso).update();
         
         dispose();

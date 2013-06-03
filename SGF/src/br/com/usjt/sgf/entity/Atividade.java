@@ -9,8 +9,12 @@ import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -32,34 +36,32 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Atividade.findByNome", query = "SELECT a FROM Atividade a WHERE a.nome like :nome"),
     @NamedQuery(name = "Atividade.findByStatus", query = "SELECT a FROM Atividade a WHERE a.status = :status")})
 public class Atividade implements Serializable {
-    @Column(name = "STATUS")
-    private Boolean status;
-    @OneToMany(mappedBy = "atividadeId")
-    private Collection<Grupoatv> grupoatvCollection;
     private static final long serialVersionUID = 1L;
     @Id @GeneratedValue
     @Basic(optional = false)
     @Column(name = "ID")
     private Integer id;
-    @Basic(optional = false)
     @Column(name = "DESCR")
     private String descr;
-    @Basic(optional = false)
     @Column(name = "NOME")
     private String nome;
+    @Column(name = "STATUS")
+    private Boolean status;
+    @JoinTable(name = "Recurso_Atividade", joinColumns = {
+        @JoinColumn(name = "atividadeRelacionada_ID", referencedColumnName = "ID")}, inverseJoinColumns = {
+        @JoinColumn(name = "Recurso_ID", referencedColumnName = "ID")})
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Collection<Recurso> recursoCollection;
+    @OneToMany(mappedBy = "atividade", fetch = FetchType.EAGER)
+    private Collection<Treinoatv> treinoatvCollection;
+    @OneToMany(mappedBy = "atividade", fetch = FetchType.EAGER)
+    private Collection<Grupoatv> grupoatvCollection;
 
     public Atividade() {
     }
 
     public Atividade(Integer id) {
         this.id = id;
-    }
-
-    public Atividade(Integer id, String descr, String nome, boolean status) {
-        this.id = id;
-        this.descr = descr;
-        this.nome = nome;
-        this.status = status;
     }
 
     public Integer getId() {
@@ -86,6 +88,41 @@ public class Atividade implements Serializable {
         this.nome = nome;
     }
 
+    public Boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(Boolean status) {
+        this.status = status;
+    }
+
+    @XmlTransient
+    public Collection<Recurso> getRecursoCollection() {
+        return recursoCollection;
+    }
+
+    public void setRecursoCollection(Collection<Recurso> recursoCollection) {
+        this.recursoCollection = recursoCollection;
+    }
+
+    @XmlTransient
+    public Collection<Treinoatv> getTreinoatvCollection() {
+        return treinoatvCollection;
+    }
+
+    public void setTreinoatvCollection(Collection<Treinoatv> treinoatvCollection) {
+        this.treinoatvCollection = treinoatvCollection;
+    }
+
+    @XmlTransient
+    public Collection<Grupoatv> getGrupoatvCollection() {
+        return grupoatvCollection;
+    }
+
+    public void setGrupoatvCollection(Collection<Grupoatv> grupoatvCollection) {
+        this.grupoatvCollection = grupoatvCollection;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -109,23 +146,6 @@ public class Atividade implements Serializable {
     @Override
     public String toString() {
         return "br.com.usjt.sgf.entity.Atividade[ id=" + id + " ]";
-    }
-
-    public Boolean getStatus() {
-        return status;
-    }
-
-    public void setStatus(Boolean status) {
-        this.status = status;
-    }
-
-    @XmlTransient
-    public Collection<Grupoatv> getGrupoatvCollection() {
-        return grupoatvCollection;
-    }
-
-    public void setGrupoatvCollection(Collection<Grupoatv> grupoatvCollection) {
-        this.grupoatvCollection = grupoatvCollection;
     }
     
 }
