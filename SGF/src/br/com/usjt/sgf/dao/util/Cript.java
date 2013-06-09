@@ -1,4 +1,4 @@
-package br.com.usjt.sgf.dao;
+package br.com.usjt.sgf.dao.util;
 import java.io.IOException;
 import java.security.InvalidAlgorithmParameterException; // para Base-64.  
 import java.security.InvalidKeyException;

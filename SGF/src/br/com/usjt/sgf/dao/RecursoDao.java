@@ -41,14 +41,17 @@ public class RecursoDao {
     }
     
     
-    public void update(Recurso atividade){
+    public void update(Recurso recurso){
         
         manager.getTransaction().begin();
-        Recurso find = manager.find(atividade.getClass(), atividade.getId());
-        find.setDescricao(atividade.getDescricao());
-        find.setAtividadeCollection(atividade.getAtividadeCollection());
-        find.setNome(atividade.getNome());
-        find.setStatus(atividade.getStatus());
+        Recurso find = manager.find(recurso.getClass(), recurso.getId());
+        System.out.println(find.getNome());
+        find.setDescricao(recurso.getDescricao());
+        find.setNome(recurso.getNome());
+        find.setStatus(recurso.getStatus());
+        find.setAtividadeCollection(recurso.getAtividadeCollection());
+        
+        manager.persist(find);
         manager.getTransaction().commit();
         
         

@@ -6,33 +6,41 @@ package br.com.usjt.sgf.model;
 
 import br.com.usjt.sgf.dao.AtividadeDao;
 import br.com.usjt.sgf.dao.RecursoDao;
+import br.com.usjt.sgf.entity.Atividade;
 import br.com.usjt.sgf.entity.Recurso;
-import java.util.List;
+import java.util.*;
 
 /**
  *
  * @author Douglas
  */
 public class RecursoModel {
+
+   
     
     
     
-    private Recurso atividade;
+    private Recurso recurso;
     private RecursoDao dao;
 
     public RecursoModel(Recurso atividade) {
-        this.atividade = atividade;
+        this.recurso = atividade;
         dao = new RecursoDao();
+    }
+
+    RecursoModel() {
+        dao = new RecursoDao();
+        
     }
     
     
     
     public void persist(){
-        dao.persist(atividade);
+        dao.persist(recurso);
     }
     
     public void update(){
-        dao.update(atividade);
+        dao.update(recurso);
     }
     
     public List listAll(){
@@ -43,7 +51,7 @@ public class RecursoModel {
         
         Object obj[][] = new Object[1][2];
         obj[0][0] = "nome";
-        obj[0][1] = "%"+atividade.getNome()+"%";
+        obj[0][1] = "%"+recurso.getNome()+"%";
        
         return dao.list("Recurso.findByNome", obj);
         
@@ -52,7 +60,78 @@ public class RecursoModel {
 
     
     public void remove() {
-        dao.remove(atividade);
+        dao.remove(recurso);
     }
+    
+    
+    
+    public static boolean contains(Recurso rec,Atividade atv){
+        
+        ArrayList<Atividade> lista = new ArrayList<>(rec.getAtividadeCollection());
+        
+        for(Atividade temp: lista){
+              if(temp.getId()==atv.getId()){
+                return true;
+            }
+            
+            
+        }
+        
+        return false;
+    }
+    
+    
+     public static int tempoRestante(Recurso rec) {
+        
+       int count = 0;
+        ArrayList<Atividade> fila = (rec.filaAtendimento);
+       
+        Object obj[] = null ;
+        
+        
+        if(fila.isEmpty()){
+            return 0;
+           
+        }else{
+            obj = new Object[fila.size()];
+            Date data = Calendar.getInstance().getTime();
+            long horaAtual = Calendar.getInstance().getTimeInMillis();
+            
+            Atividade atividade1 = null;
+            for(int i = 0 ;i<fila.size();i++){
+                Atividade atividade2 = fila.get(i);
+                if(atividade1==null){
+                    atividade1 = atividade2;
+                    
+                    long time = atividade1.horaInicio.getTime() - horaAtual;
+                    int tempo = (int)(time/60)/1000;
+                    
+                    
+                    if(data.before(atividade1.horaInicio)){
+                        tempo = tempo*(-1);
+                    }
+                    
+                    obj[i] = tempo;
+                }else{
+                    
+                    long time1 = atividade2.horaInicio.getTime() - atividade1.horaFim.getTime();
+                    
+                    int tempo = (int)(time1/60)/1000;
+                    
+                    obj[i] = tempo;
+                }
+            }
+            
+            
+        }
+       System.out.println(Arrays.toString(obj));
+       
+         
+       
+         
+       return count;
+    }
+    
+    
     
 }

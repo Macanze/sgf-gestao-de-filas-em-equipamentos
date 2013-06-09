@@ -11,16 +11,16 @@ import javax.persistence.Embeddable;
 
 /**
  *
- * @author Douglas
+ * @author dgsantos
  */
 @Embeddable
 public class TreinoatvPK implements Serializable {
     @Basic(optional = false)
-    @Column(name = "TREINO_IDTREINO")
-    private int treinoIdtreino;
-    @Basic(optional = false)
     @Column(name = "ID")
     private int id;
+    @Basic(optional = false)
+    @Column(name = "TREINO_IDTREINO")
+    private int treinoIdtreino;
     @Basic(optional = false)
     @Column(name = "TREINO_IDUSER")
     private int treinoIduser;
@@ -28,18 +28,10 @@ public class TreinoatvPK implements Serializable {
     public TreinoatvPK() {
     }
 
-    public TreinoatvPK(int treinoIdtreino, int id, int treinoIduser) {
-        this.treinoIdtreino = treinoIdtreino;
+    public TreinoatvPK(int id, int treinoIdtreino, int treinoIduser) {
         this.id = id;
-        this.treinoIduser = treinoIduser;
-    }
-
-    public int getTreinoIdtreino() {
-        return treinoIdtreino;
-    }
-
-    public void setTreinoIdtreino(int treinoIdtreino) {
         this.treinoIdtreino = treinoIdtreino;
+        this.treinoIduser = treinoIduser;
     }
 
     public int getId() {
@@ -48,6 +40,14 @@ public class TreinoatvPK implements Serializable {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getTreinoIdtreino() {
+        return treinoIdtreino;
+    }
+
+    public void setTreinoIdtreino(int treinoIdtreino) {
+        this.treinoIdtreino = treinoIdtreino;
     }
 
     public int getTreinoIduser() {
@@ -61,8 +61,8 @@ public class TreinoatvPK implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (int) treinoIdtreino;
         hash += (int) id;
+        hash += (int) treinoIdtreino;
         hash += (int) treinoIduser;
         return hash;
     }
@@ -74,10 +74,10 @@ public class TreinoatvPK implements Serializable {
             return false;
         }
         TreinoatvPK other = (TreinoatvPK) object;
-        if (this.treinoIdtreino != other.treinoIdtreino) {
+        if (this.id != other.id) {
             return false;
         }
-        if (this.id != other.id) {
+        if (this.treinoIdtreino != other.treinoIdtreino) {
             return false;
         }
         if (this.treinoIduser != other.treinoIduser) {
@@ -88,7 +88,7 @@ public class TreinoatvPK implements Serializable {
 
     @Override
     public String toString() {
-        return "br.com.usjt.sgf.entity.TreinoatvPK[ treinoIdtreino=" + treinoIdtreino + ", id=" + id + ", treinoIduser=" + treinoIduser + " ]";
+        return "br.com.usjt.sgf.entity.TreinoatvPK[ id=" + id + ", treinoIdtreino=" + treinoIdtreino + ", treinoIduser=" + treinoIduser + " ]";
     }
     
 }

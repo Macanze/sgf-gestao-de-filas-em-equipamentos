@@ -6,23 +6,13 @@ package br.com.usjt.sgf.entity;
 
 import java.io.Serializable;
 import java.util.Collection;
-import javax.persistence.Basic;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Douglas
+ * @author dgsantos
  */
 @Entity
 @Table(name = "usuario")
@@ -35,7 +25,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Usuario.findByStatus", query = "SELECT u FROM Usuario u WHERE u.status = :status")})
 public class Usuario implements Serializable {
     private static final long serialVersionUID = 1L;
-    @Id @GeneratedValue
+    @Id
     @Basic(optional = false)
     @Column(name = "ID")
     private Integer id;
@@ -45,7 +35,7 @@ public class Usuario implements Serializable {
     private String nome;
     @Column(name = "STATUS")
     private Boolean status;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario", fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
     private Collection<Treino> treinoCollection;
 
     public Usuario() {

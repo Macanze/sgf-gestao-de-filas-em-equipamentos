@@ -7,10 +7,13 @@ package br.com.usjt.sgf.dao;
 import br.com.usjt.sgf.dao.util.HibernateUtil;
 import br.com.usjt.sgf.entity.Grupo;
 import br.com.usjt.sgf.entity.Grupoatv;
+import br.com.usjt.sgf.entity.GrupoatvPK;
+import br.com.usjt.sgf.entity.Treino;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -90,12 +93,38 @@ public class GrupoDao {
     }
 
     public void persistAtividade(Grupoatv grpAtv) {
+        GrupoatvPK grupoatvPK = new GrupoatvPK();
+        grupoatvPK.setGrupoId(grpAtv.getGrupo().getId());
+        grupoatvPK.setAtividadeId(grpAtv.getAtividade().getId());
+        grupoatvPK.setIdatividade(novoIdAtividade(grupoatvPK));
         
-        
+                
+        grpAtv.setGrupoatvPK(grupoatvPK);
         manager.getTransaction().begin();
         manager.persist(grpAtv);
         manager.getTransaction().commit();
         
+    }
+    
+    
+    /**
+     * 
+     * @param treino
+     * @return 
+     */
+    private int novoIdAtividade(GrupoatvPK treino) {
+        
+        String sql = "SELECT MAX(t.grupoatvPK.idatividade) FROM Grupoatv t WHERE t.grupoatvPK.grupoId = "+treino.getGrupoId()+" "
+                + "AND t.grupoatvPK.atividadeId = "+ treino.getAtividadeId();
+        
+        System.out.println(sql);
+        TypedQuery<Integer> query = manager.createQuery(sql, Integer.class);
+        Integer singleResult = query.getSingleResult();
+        if(singleResult!=null){
+            return (singleResult+1);
+        }else{
+            return 1;
+        }
     }
     
     

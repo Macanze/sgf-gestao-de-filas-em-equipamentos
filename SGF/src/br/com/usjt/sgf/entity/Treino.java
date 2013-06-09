@@ -6,24 +6,13 @@ package br.com.usjt.sgf.entity;
 
 import java.io.Serializable;
 import java.util.Collection;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Douglas
+ * @author dgsantos
  */
 @Entity
 @Table(name = "TREINO")
@@ -39,13 +28,14 @@ public class Treino implements Serializable {
     protected TreinoPK treinoPK;
     @Column(name = "DESCRICAO")
     private String descricao;
-    @ManyToMany(mappedBy = "treinoCollection", fetch = FetchType.EAGER)
-    private Collection<Grupo> grupoCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "treino", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "treino")
     private Collection<Treinoatv> treinoatvCollection;
     @JoinColumn(name = "usr_trn", referencedColumnName = "ID", insertable = false, updatable = false)
-    @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    @OneToOne(optional = false)
     private Usuario usuario;
+    
+    @OneToMany
+    private Collection<Grupo> grupoCollection;
 
     public Treino() {
     }
@@ -72,15 +62,6 @@ public class Treino implements Serializable {
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
-    }
-
-    @XmlTransient
-    public Collection<Grupo> getGrupoCollection() {
-        return grupoCollection;
-    }
-
-    public void setGrupoCollection(Collection<Grupo> grupoCollection) {
-        this.grupoCollection = grupoCollection;
     }
 
     @XmlTransient
@@ -124,5 +105,16 @@ public class Treino implements Serializable {
     public String toString() {
         return "br.com.usjt.sgf.entity.Treino[ treinoPK=" + treinoPK + " ]";
     }
+
+    public Collection<Grupo> getGrupoCollection() {
+        return grupoCollection;
+    }
+
+    public void setGrupoCollection(Collection<Grupo> grupoCollection) {
+        this.grupoCollection = grupoCollection;
+    }
+    
+    
+    
     
 }

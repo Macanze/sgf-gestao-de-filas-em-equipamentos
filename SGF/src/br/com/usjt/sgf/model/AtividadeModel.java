@@ -6,6 +6,7 @@ package br.com.usjt.sgf.model;
 
 import br.com.usjt.sgf.dao.AtividadeDao;
 import br.com.usjt.sgf.entity.Atividade;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -13,6 +14,8 @@ import java.util.List;
  * @author Douglas
  */
 public class AtividadeModel {
+
+    
     
     
     
@@ -52,6 +55,15 @@ public class AtividadeModel {
     
     public void remove() {
         dao.remove(atividade);
+    }
+    
+    
+    public static Date calcularHoraFim(Atividade atv) {
+        long time = atv.horaInicio.getTime();
+        long add = (atv.tempoNecessario*60 * 1000);
+        
+        Date horaFim = new Date(time+add);
+        return horaFim;
     }
     
 }
