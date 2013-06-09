@@ -5,26 +5,16 @@
 package br.com.usjt.sgf.entity;
 
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Collection;
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import java.util.Date;
+import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Douglas
+ * @author dgsantos
  */
 @Entity
 @Table(name = "Atividade")
@@ -37,7 +27,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Atividade.findByStatus", query = "SELECT a FROM Atividade a WHERE a.status = :status")})
 public class Atividade implements Serializable {
     private static final long serialVersionUID = 1L;
-    @Id @GeneratedValue
+    @Id
     @Basic(optional = false)
     @Column(name = "ID")
     private Integer id;
@@ -47,16 +37,25 @@ public class Atividade implements Serializable {
     private String nome;
     @Column(name = "STATUS")
     private Boolean status;
-    @JoinTable(name = "Recurso_Atividade", joinColumns = {
-        @JoinColumn(name = "atividadeRelacionada_ID", referencedColumnName = "ID")}, inverseJoinColumns = {
-        @JoinColumn(name = "Recurso_ID", referencedColumnName = "ID")})
-    @ManyToMany(fetch = FetchType.EAGER)
-    private Collection<Recurso> recursoCollection;
-    @OneToMany(mappedBy = "atividade", fetch = FetchType.EAGER)
+    
+    @OneToMany(mappedBy = "atividadeId")
     private Collection<Treinoatv> treinoatvCollection;
-    @OneToMany(mappedBy = "atividade", fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "atividade")
     private Collection<Grupoatv> grupoatvCollection;
 
+    @Transient
+    public  int tempoNecessario;
+    
+    @Transient
+    public Date horaInicio;
+    
+    
+    @Transient 
+    public Date horaFim;
+    
+    @Transient
+    public int semaforo;
+    
     public Atividade() {
     }
 
@@ -96,14 +95,9 @@ public class Atividade implements Serializable {
         this.status = status;
     }
 
-    @XmlTransient
-    public Collection<Recurso> getRecursoCollection() {
-        return recursoCollection;
-    }
+   
 
-    public void setRecursoCollection(Collection<Recurso> recursoCollection) {
-        this.recursoCollection = recursoCollection;
-    }
+  
 
     @XmlTransient
     public Collection<Treinoatv> getTreinoatvCollection() {
@@ -147,5 +141,32 @@ public class Atividade implements Serializable {
     public String toString() {
         return "br.com.usjt.sgf.entity.Atividade[ id=" + id + " ]";
     }
+
+    public int getTempoRestante() {
+        Date horaAtual = Calendar.getInstance().getTime();
+        
+        long timeInMillis = horaAtual.getTime();
+         
+        
+        //Se a hora de inicio for depois da hora atual retorna negativo
+         if(horaInicio.before(horaAtual)){
+             long time = horaInicio.getTime();
+              return (int)((-1)*(((time - timeInMillis)/60)/1000));
+         }else{
+             
+             long tempo = horaFim.getTime()-timeInMillis;
+             return (int) ((tempo/60)/1000);
+             
+             
+         }
+    
+     
+        
+    }
+    
+    
+    
+    
+    
     
 }

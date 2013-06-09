@@ -6,25 +6,13 @@ package br.com.usjt.sgf.entity;
 
 import java.io.Serializable;
 import java.util.Collection;
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Douglas
+ * @author dgsantos
  */
 @Entity
 @Table(name = "GRUPO")
@@ -37,7 +25,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Grupo.findByStatus", query = "SELECT g FROM Grupo g WHERE g.status = :status")})
 public class Grupo implements Serializable {
     private static final long serialVersionUID = 1L;
-    @Id @GeneratedValue
+    @Id
     @Basic(optional = false)
     @Column(name = "ID")
     private Integer id;
@@ -47,13 +35,7 @@ public class Grupo implements Serializable {
     private String nome;
     @Column(name = "STATUS")
     private Boolean status;
-    @JoinTable(name = "TREINO_GRUPO", joinColumns = {
-        @JoinColumn(name = "Grupo_ID", referencedColumnName = "ID")}, inverseJoinColumns = {
-        @JoinColumn(name = "Treino_UsrTrn", referencedColumnName = "usr_trn"),
-        @JoinColumn(name = "Treino_IDTREINO", referencedColumnName = "IDTREINO")})
-    @ManyToMany(fetch = FetchType.EAGER)
-    private Collection<Treino> treinoCollection;
-    @OneToMany(mappedBy = "grupo", fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "grupo")
     private Collection<Grupoatv> grupoatvCollection;
 
     public Grupo() {
@@ -93,15 +75,6 @@ public class Grupo implements Serializable {
 
     public void setStatus(Boolean status) {
         this.status = status;
-    }
-
-    @XmlTransient
-    public Collection<Treino> getTreinoCollection() {
-        return treinoCollection;
-    }
-
-    public void setTreinoCollection(Collection<Treino> treinoCollection) {
-        this.treinoCollection = treinoCollection;
     }
 
     @XmlTransient

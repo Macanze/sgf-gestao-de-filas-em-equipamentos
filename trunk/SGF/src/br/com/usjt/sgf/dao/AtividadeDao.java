@@ -47,7 +47,7 @@ public class AtividadeDao {
         manager.getTransaction().begin();
         Atividade find = manager.find(atividade.getClass(), atividade.getId());
         find.setDescr(atividade.getDescr());
-        find.setGrupoatvCollection(atividade.getGrupoatvCollection());
+        
         find.setNome(atividade.getNome());
         find.setStatus(atividade.getStatus());
         manager.getTransaction().commit();

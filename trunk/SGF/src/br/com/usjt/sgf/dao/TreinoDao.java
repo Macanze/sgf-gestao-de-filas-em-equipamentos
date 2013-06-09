@@ -5,18 +5,15 @@
 package br.com.usjt.sgf.dao;
 
 import br.com.usjt.sgf.dao.util.HibernateUtil;
-import br.com.usjt.sgf.entity.Treino;
-import br.com.usjt.sgf.entity.TreinoPK;
-import br.com.usjt.sgf.entity.Treinoatv;
-import br.com.usjt.sgf.entity.TreinoatvPK;
+import br.com.usjt.sgf.entity.*;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.swing.JOptionPane;
-import org.hibernate.service.jta.platform.internal.JOTMJtaPlatform;
+
+
 
 /**
  *
@@ -64,7 +61,8 @@ public class TreinoDao {
         find.setGrupoCollection(treino.getGrupoCollection());
         ArrayList<Treinoatv> listaIncluso = new ArrayList<>(find.getTreinoatvCollection());
         ArrayList<Treinoatv> listaAtualizado= new ArrayList<>(treino.getTreinoatvCollection());
-        
+        ArrayList<Grupo> arrayList = new ArrayList<>(treino.getGrupoCollection());
+        JOptionPane.showMessageDialog(null, arrayList.size());
         for(int i  = 0 ; i < listaIncluso.size();i++){
             Treinoatv trn = listaIncluso.get(i);
             

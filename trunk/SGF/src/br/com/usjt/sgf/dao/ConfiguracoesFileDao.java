@@ -4,6 +4,7 @@
  */
 package br.com.usjt.sgf.dao;
 
+import br.com.usjt.sgf.dao.util.Cript;
 import br.com.usjt.sgf.entity.Configuracao;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;

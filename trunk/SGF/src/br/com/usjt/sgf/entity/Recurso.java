@@ -5,22 +5,15 @@
 package br.com.usjt.sgf.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Douglas
+ * @author dgsantos
  */
 @Entity
 @Table(name = "Recurso")
@@ -43,8 +36,14 @@ public class Recurso implements Serializable {
     private String nome;
     @Column(name = "STATUS")
     private Boolean status;
-    @ManyToMany(mappedBy = "recursoCollection", fetch = FetchType.EAGER)
+    @OneToMany
     private Collection<Atividade> atividadeCollection;
+    
+    @Transient
+    public int semaforo;
+    
+    @Transient
+    public ArrayList<Atividade> filaAtendimento;
 
     public Recurso() {
     }

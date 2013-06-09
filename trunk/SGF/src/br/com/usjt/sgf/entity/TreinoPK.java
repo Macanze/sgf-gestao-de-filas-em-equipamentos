@@ -11,7 +11,7 @@ import javax.persistence.Embeddable;
 
 /**
  *
- * @author Douglas
+ * @author dgsantos
  */
 @Embeddable
 public class TreinoPK implements Serializable {
