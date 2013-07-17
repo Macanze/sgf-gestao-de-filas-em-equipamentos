@@ -5,7 +5,7 @@
 package br.com.usjt.sgf.dao;
 
 import br.com.usjt.sgf.dao.util.HibernateUtil;
-import br.com.usjt.sgf.entity.Recurso;
+import br.com.usjt.sgf.entity.Equipamento;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -27,17 +27,17 @@ public class EquipamentoDao {
     /**
      * 
      */
-    public void persist(Recurso atividade){
+    public void persist(Equipamento atividade){
         manager.getTransaction().begin();
         manager.persist(atividade);
         manager.getTransaction().commit();         
     }
     
     
-    public void update(Recurso recurso){
+    public void update(Equipamento recurso){
         
         manager.getTransaction().begin();
-        Recurso find = manager.find(recurso.getClass(), recurso.getId());
+        Equipamento find = manager.find(recurso.getClass(), recurso.getId());
         System.out.println(find.getNome());
         find.setDescricao(recurso.getDescricao());
         find.setNome(recurso.getNome());
@@ -49,9 +49,9 @@ public class EquipamentoDao {
            
     }
     
-    public void remove(Recurso atividade){
+    public void remove(Equipamento atividade){
         manager.getTransaction().begin();
-        Recurso find = manager.find(atividade.getClass(), atividade.getId());
+        Equipamento find = manager.find(atividade.getClass(), atividade.getId());
         manager.remove(find);
         manager.getTransaction().commit();                
     }

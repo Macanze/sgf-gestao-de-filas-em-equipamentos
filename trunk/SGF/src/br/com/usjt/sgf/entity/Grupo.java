@@ -36,7 +36,7 @@ public class Grupo implements Serializable {
     @Column(name = "STATUS")
     private Boolean status;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "grupo")
-    private Collection<Grupoatv> grupoatvCollection;
+    private Collection<GrupoAtividade> grupoatvCollection;
 
     public Grupo() {
     }
@@ -78,11 +78,11 @@ public class Grupo implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Grupoatv> getGrupoatvCollection() {
+    public Collection<GrupoAtividade> getGrupoatvCollection() {
         return grupoatvCollection;
     }
 
-    public void setGrupoatvCollection(Collection<Grupoatv> grupoatvCollection) {
+    public void setGrupoatvCollection(Collection<GrupoAtividade> grupoatvCollection) {
         this.grupoatvCollection = grupoatvCollection;
     }
 

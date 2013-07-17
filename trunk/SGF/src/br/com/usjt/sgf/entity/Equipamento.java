@@ -24,7 +24,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Recurso.findByDescricao", query = "SELECT r FROM Recurso r WHERE r.descricao = :descricao"),
     @NamedQuery(name = "Recurso.findByNome", query = "SELECT r FROM Recurso r WHERE r.nome = :nome"),
     @NamedQuery(name = "Recurso.findByStatus", query = "SELECT r FROM Recurso r WHERE r.status = :status")})
-public class Recurso implements Serializable {
+public class Equipamento implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -45,10 +45,10 @@ public class Recurso implements Serializable {
     @Transient
     public ArrayList<Atividade> filaAtendimento;
 
-    public Recurso() {
+    public Equipamento() {
     }
 
-    public Recurso(Integer id) {
+    public Equipamento(Integer id) {
         this.id = id;
     }
 
@@ -103,10 +103,10 @@ public class Recurso implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Recurso)) {
+        if (!(object instanceof Equipamento)) {
             return false;
         }
-        Recurso other = (Recurso) object;
+        Equipamento other = (Equipamento) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }

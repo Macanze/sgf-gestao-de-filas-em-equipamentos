@@ -65,11 +65,11 @@ public class Treino implements Serializable {
     }
 
     @XmlTransient
-    public Collection<TreinoAtividade> getTreinoatvCollection() {
+    public Collection<TreinoAtividade> getTreinoAtividadeCollection() {
         return treinoatvCollection;
     }
 
-    public void setTreinoatvCollection(Collection<TreinoAtividade> treinoatvCollection) {
+    public void setTreinoAtividadeCollection(Collection<TreinoAtividade> treinoatvCollection) {
         this.treinoatvCollection = treinoatvCollection;
     }
 
@@ -113,8 +113,5 @@ public class Treino implements Serializable {
     public void setGrupoCollection(Collection<Grupo> grupoCollection) {
         this.grupoCollection = grupoCollection;
     }
-    
-    
-    
-    
+
 }

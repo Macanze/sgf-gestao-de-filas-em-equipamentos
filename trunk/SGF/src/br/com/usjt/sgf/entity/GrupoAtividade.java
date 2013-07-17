@@ -13,7 +13,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author dgsantos
  */
 @Entity
-@Table(name = "GRUPOATV")
+@Table(name = "GRUPO_ATIVIDADE")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Grupoatv.findAll", query = "SELECT g FROM Grupoatv g"),
@@ -21,10 +21,10 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Grupoatv.findByTempo", query = "SELECT g FROM Grupoatv g WHERE g.tempo = :tempo"),
     @NamedQuery(name = "Grupoatv.findByAtividadeId", query = "SELECT g FROM Grupoatv g WHERE g.grupoatvPK.atividadeId = :atividadeId"),
     @NamedQuery(name = "Grupoatv.findByGrupoId", query = "SELECT g FROM Grupoatv g WHERE g.grupoatvPK.grupoId = :grupoId")})
-public class Grupoatv implements Serializable {
+public class GrupoAtividade implements Serializable {
     private static final long serialVersionUID = 1L;
     @EmbeddedId
-    protected GrupoAtividadePK grupoatvPK;
+    protected GrupoAtividadePK grupoAtividadePK;
     @Column(name = "TEMPO")
     private Integer tempo;
     @JoinColumn(name = "GRUPO_ID", referencedColumnName = "ID", insertable = false, updatable = false)
@@ -34,23 +34,23 @@ public class Grupoatv implements Serializable {
     @ManyToOne(optional = false)
     private Atividade atividade;
 
-    public Grupoatv() {
+    public GrupoAtividade() {
     }
 
-    public Grupoatv(GrupoAtividadePK grupoatvPK) {
-        this.grupoatvPK = grupoatvPK;
+    public GrupoAtividade(GrupoAtividadePK grupoAtividadePK) {
+        this.grupoAtividadePK = grupoAtividadePK;
     }
 
-    public Grupoatv(int idatividade, int atividadeId, int grupoId) {
-        this.grupoatvPK = new GrupoAtividadePK(idatividade, atividadeId, grupoId);
+    public GrupoAtividade(int idatividade, int atividadeId, int grupoId) {
+        this.grupoAtividadePK = new GrupoAtividadePK(idatividade, atividadeId, grupoId);
     }
 
     public GrupoAtividadePK getGrupoatvPK() {
-        return grupoatvPK;
+        return grupoAtividadePK;
     }
 
     public void setGrupoatvPK(GrupoAtividadePK grupoatvPK) {
-        this.grupoatvPK = grupoatvPK;
+        this.grupoAtividadePK = grupoatvPK;
     }
 
     public Integer getTempo() {
@@ -80,18 +80,18 @@ public class Grupoatv implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (grupoatvPK != null ? grupoatvPK.hashCode() : 0);
+        hash += (grupoAtividadePK != null ? grupoAtividadePK.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Grupoatv)) {
+        if (!(object instanceof GrupoAtividade)) {
             return false;
         }
-        Grupoatv other = (Grupoatv) object;
-        if ((this.grupoatvPK == null && other.grupoatvPK != null) || (this.grupoatvPK != null && !this.grupoatvPK.equals(other.grupoatvPK))) {
+        GrupoAtividade other = (GrupoAtividade) object;
+        if ((this.grupoAtividadePK == null && other.grupoAtividadePK != null) || (this.grupoAtividadePK != null && !this.grupoAtividadePK.equals(other.grupoAtividadePK))) {
             return false;
         }
         return true;
@@ -99,7 +99,7 @@ public class Grupoatv implements Serializable {
 
     @Override
     public String toString() {
-        return "br.com.usjt.sgf.entity.Grupoatv[ grupoatvPK=" + grupoatvPK + " ]";
+        return "br.com.usjt.sgf.entity.Grupoatv[ grupoAtividadePK=" + grupoAtividadePK + " ]";
     }
     
 }

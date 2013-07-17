@@ -5,7 +5,7 @@
 package br.com.usjt.sgf.view;
 
 import br.com.usjt.sgf.entity.Atividade;
-import br.com.usjt.sgf.entity.Recurso;
+import br.com.usjt.sgf.entity.Equipamento;
 import br.com.usjt.sgf.model.AtividadeModel;
 import br.com.usjt.sgf.model.RecursoModel;
 import java.util.ArrayList;
@@ -23,7 +23,7 @@ import javax.swing.table.TableRowSorter;
  */
 public class RecursoAtividade extends javax.swing.JInternalFrame {
 
-    private Recurso recurso;
+    private Equipamento recurso;
     private ArrayList<Atividade> listaAtividade;
     
 
@@ -35,7 +35,7 @@ public class RecursoAtividade extends javax.swing.JInternalFrame {
         setup();
     }
 
-    public RecursoAtividade(Recurso rec) {
+    public RecursoAtividade(Equipamento rec) {
         initComponents();
         this.recurso = rec;
         setup();
@@ -373,7 +373,7 @@ public class RecursoAtividade extends javax.swing.JInternalFrame {
         
         
         
-        Recurso temp;
+        Equipamento temp;
         temp = recurso;
         temp.setAtividadeCollection(listaTemp);
         recurso.setAtividadeCollection(listaTemp);

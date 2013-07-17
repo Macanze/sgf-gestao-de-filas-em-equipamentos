@@ -11,7 +11,7 @@
 package br.com.usjt.sgf.view;
 
 import br.com.usjt.sgf.entity.Atividade;
-import br.com.usjt.sgf.entity.Recurso;
+import br.com.usjt.sgf.entity.Equipamento;
 import br.com.usjt.sgf.model.RecursoModel;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,8 +23,8 @@ import javax.swing.table.DefaultTableModel;
  * @author Douglas
  */
 public class ManterEquipamento extends javax.swing.JInternalFrame {
-    private List<Recurso> listByName;
-    private Recurso recursoSelecionado;
+    private List<Equipamento> listByName;
+    private Equipamento recursoSelecionado;
     private ArrayList<Atividade> listaAtividade;
 
     /** Creates new form RecursosGerenciar */
@@ -533,7 +533,7 @@ incluirAtividade();
 
     private void buscarRecursos() {
         
-        Recurso atv = new Recurso();
+        Equipamento atv = new Equipamento();
         
         if(txtPesquisa.getText()==null){
             txtPesquisa.setText("");
@@ -548,7 +548,7 @@ incluirAtividade();
        
         Object obj[] = new Object[listByName.size()];
         int i = 0;
-        for(Recurso temp : listByName){
+        for(Equipamento temp : listByName){
             obj[i] = temp.getNome();
             i++;
         }                

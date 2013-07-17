@@ -7,7 +7,7 @@ package br.com.usjt.sgf.model;
 import br.com.usjt.sgf.dao.AtividadeDao;
 import br.com.usjt.sgf.dao.EquipamentoDao;
 import br.com.usjt.sgf.entity.Atividade;
-import br.com.usjt.sgf.entity.Recurso;
+import br.com.usjt.sgf.entity.Equipamento;
 import java.util.*;
 
 /**
@@ -20,10 +20,10 @@ public class RecursoModel {
     
     
     
-    private Recurso recurso;
+    private Equipamento recurso;
     private EquipamentoDao dao;
 
-    public RecursoModel(Recurso atividade) {
+    public RecursoModel(Equipamento atividade) {
         this.recurso = atividade;
         dao = new EquipamentoDao();
     }
@@ -65,7 +65,7 @@ public class RecursoModel {
     
     
     
-    public static boolean contains(Recurso rec,Atividade atv){
+    public static boolean contains(Equipamento rec,Atividade atv){
         
         ArrayList<Atividade> lista = new ArrayList<>(rec.getAtividadeCollection());
         
@@ -81,7 +81,7 @@ public class RecursoModel {
     }
     
     
-     public static int tempoRestante(Recurso rec) {
+     public static int tempoRestante(Equipamento rec) {
         
        int count = 0;
         ArrayList<Atividade> fila = (rec.filaAtendimento);

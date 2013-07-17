@@ -6,7 +6,7 @@ package br.com.usjt.sgf.dao;
 
 import br.com.usjt.sgf.dao.util.HibernateUtil;
 import br.com.usjt.sgf.entity.Grupo;
-import br.com.usjt.sgf.entity.Grupoatv;
+import br.com.usjt.sgf.entity.GrupoAtividade;
 import br.com.usjt.sgf.entity.GrupoAtividadePK;
 import br.com.usjt.sgf.entity.Treino;
 import java.util.List;
@@ -80,7 +80,7 @@ public class GrupoDao {
         
     }
 
-    public void persistAtividade(Grupoatv grpAtv) {
+    public void persistAtividade(GrupoAtividade grpAtv) {
         GrupoAtividadePK grupoatvPK = new GrupoAtividadePK();
         grupoatvPK.setGrupoId(grpAtv.getGrupo().getId());
         grupoatvPK.setAtividadeId(grpAtv.getAtividade().getId());
