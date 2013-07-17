@@ -21,21 +21,21 @@ import javax.swing.table.TableRowSorter;
  *
  * @author dgsantos
  */
-public class Recurso_ATIVIDADE extends javax.swing.JInternalFrame {
+public class RecursoAtividade extends javax.swing.JInternalFrame {
 
     private Recurso recurso;
     private ArrayList<Atividade> listaAtividade;
     
 
     /**
-     * Creates new form Recurso_ATIVIDADE
+     * Creates new form RecursoAtividade
      */
-    public Recurso_ATIVIDADE() {
+    public RecursoAtividade() {
         initComponents();
         setup();
     }
 
-    public Recurso_ATIVIDADE(Recurso rec) {
+    public RecursoAtividade(Recurso rec) {
         initComponents();
         this.recurso = rec;
         setup();
@@ -104,7 +104,7 @@ public class Recurso_ATIVIDADE extends javax.swing.JInternalFrame {
         jTable1.getColumnModel().getColumn(2).setPreferredWidth(200);
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 11));
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton1.setText("Cancelar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -113,7 +113,7 @@ public class Recurso_ATIVIDADE extends javax.swing.JInternalFrame {
         });
 
         jButton2.setBackground(new java.awt.Color(255, 255, 255));
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 11));
+        jButton2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton2.setText("Confirmar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -121,7 +121,7 @@ public class Recurso_ATIVIDADE extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11));
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel1.setText("Nome:");
 
         txtId.setEditable(false);
@@ -151,7 +151,7 @@ public class Recurso_ATIVIDADE extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11));
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel2.setText("Filtro:");
 
         filterText.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -209,8 +209,7 @@ public class Recurso_ATIVIDADE extends javax.swing.JInternalFrame {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-        setBounds((screenSize.width-600)/2, (screenSize.height-400)/2, 600, 400);
+        setBounds(0, 0, 600, 400);
     }// </editor-fold>//GEN-END:initComponents
 
     private void filterTextKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_filterTextKeyReleased
@@ -266,7 +265,7 @@ public class Recurso_ATIVIDADE extends javax.swing.JInternalFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                new Recurso_ATIVIDADE().setVisible(true);
+                new RecursoAtividade().setVisible(true);
             }
         });
     }

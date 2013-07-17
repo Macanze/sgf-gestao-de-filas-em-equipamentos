@@ -14,45 +14,25 @@ import javax.persistence.Query;
  *
  * @author Douglas
  */
-public class AtividadeDao {
-    
-    
-    
+public class AtividadeDao { 
     private EntityManager manager;
-
-    
-    
-       
     public AtividadeDao() {
-        
         this.manager = new HibernateUtil().getManager();
-        
     }
-    
-    
-    
-    
-    /**
-     * 
-     */
+
     public void persist(Atividade atividade){
         manager.getTransaction().begin();
         manager.persist(atividade);
         manager.getTransaction().commit();         
     }
-    
-    
+       
     public void update(Atividade atividade){
-        
         manager.getTransaction().begin();
         Atividade find = manager.find(atividade.getClass(), atividade.getId());
-        find.setDescr(atividade.getDescr());
-        
+        find.setDescr(atividade.getDescr());     
         find.setNome(atividade.getNome());
         find.setStatus(atividade.getStatus());
-        manager.getTransaction().commit();
-        
-        
+        manager.getTransaction().commit();   
     }
     
     public void remove(Atividade atividade){
@@ -63,7 +43,7 @@ public class AtividadeDao {
     }
     
     /**
-     * Realiza um consulta de acordo com os parametros
+     * Realiza uma consulta de acordo com os parametros
      * @param queryNamed - NamedQuery associada a entidade
      * @param parameters - vetor com os parametros
      * @return lista com os resultdos da consulta
@@ -79,17 +59,7 @@ public class AtividadeDao {
     }
     
     public List listAll(){
-        
          Query createQuery = manager.createNamedQuery("Atividade.findAll");
-        
          return createQuery.getResultList();
-        
     }
-    
-    
-    
-    
-    
-    
-    
 }

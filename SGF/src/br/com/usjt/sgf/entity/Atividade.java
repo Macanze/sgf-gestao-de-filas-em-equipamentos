@@ -39,7 +39,7 @@ public class Atividade implements Serializable {
     private Boolean status;
     
     @OneToMany(mappedBy = "atividadeId")
-    private Collection<Treinoatv> treinoatvCollection;
+    private Collection<TreinoAtividade> treinoatvCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "atividade")
     private Collection<Grupoatv> grupoatvCollection;
 
@@ -100,11 +100,11 @@ public class Atividade implements Serializable {
   
 
     @XmlTransient
-    public Collection<Treinoatv> getTreinoatvCollection() {
+    public Collection<TreinoAtividade> getTreinoatvCollection() {
         return treinoatvCollection;
     }
 
-    public void setTreinoatvCollection(Collection<Treinoatv> treinoatvCollection) {
+    public void setTreinoatvCollection(Collection<TreinoAtividade> treinoatvCollection) {
         this.treinoatvCollection = treinoatvCollection;
     }
 

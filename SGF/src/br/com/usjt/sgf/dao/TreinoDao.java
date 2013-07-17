@@ -14,26 +14,18 @@ import javax.persistence.TypedQuery;
 import javax.swing.JOptionPane;
 
 
-
 /**
  *
  * @author Douglas
  */
 public class TreinoDao {
     
-      private EntityManager manager;
-
-    
-    
-       
+      private EntityManager manager;       
     public TreinoDao() {
         
         this.manager = new HibernateUtil().getManager();
         
     }
-    
-    
-    
     
     /**
      * 
@@ -41,30 +33,26 @@ public class TreinoDao {
     public void persist(Treino treino){
         manager.getTransaction().begin();
         
-        TreinoPK trnPk = new TreinoPK();
-        trnPk.setUsrTrn(treino.getUsuario().getId());
-        trnPk.setIdtreino((novoIdTreino(treino)));
-        treino.setTreinoPK(trnPk);
-        
-        
-        
+        TreinoPK treinoPK = new TreinoPK();
+        treinoPK.setUsrTrn(treino.getUsuario().getId());
+        treinoPK.setIdtreino((novoIdTreino(treino)));
+        treino.setTreinoPK(treinoPK);
+    
         manager.persist(treino);
         manager.getTransaction().commit();         
     }
     
-    
-    public void update(Treino treino){
-        
+    public void update(Treino treino){    
         manager.getTransaction().begin();
         Treino find = manager.find(treino.getClass(), treino.getTreinoPK());
         find.setDescricao(treino.getDescricao());
         find.setGrupoCollection(treino.getGrupoCollection());
-        ArrayList<Treinoatv> listaIncluso = new ArrayList<>(find.getTreinoatvCollection());
-        ArrayList<Treinoatv> listaAtualizado= new ArrayList<>(treino.getTreinoatvCollection());
+        ArrayList<TreinoAtividade> listaIncluso = new ArrayList<>(find.getTreinoatvCollection());
+        ArrayList<TreinoAtividade> listaAtualizado= new ArrayList<>(treino.getTreinoatvCollection());
         ArrayList<Grupo> arrayList = new ArrayList<>(treino.getGrupoCollection());
         JOptionPane.showMessageDialog(null, arrayList.size());
         for(int i  = 0 ; i < listaIncluso.size();i++){
-            Treinoatv trn = listaIncluso.get(i);
+            TreinoAtividade trn = listaIncluso.get(i);
             
             if(!listaAtualizado.contains(trn)){
               
@@ -72,13 +60,13 @@ public class TreinoDao {
             }
           }
         
-        for(Treinoatv trn: listaAtualizado){
+        for(TreinoAtividade trn: listaAtualizado){
             
             
             if(!listaIncluso.contains(trn)){ 
                 
                int id= novoIdTreinoAtividade(treino);
-               TreinoatvPK trnAtv = new TreinoatvPK(treino.getTreinoPK().getIdtreino(), id, treino.getTreinoPK().getUsrTrn());
+               TreinoAtividadePK trnAtv = new TreinoAtividadePK(treino.getTreinoPK().getIdtreino(), id, treino.getTreinoPK().getUsrTrn());
                 
                 trn.setTreinoatvPK(trnAtv);
                 manager.persist(trn);

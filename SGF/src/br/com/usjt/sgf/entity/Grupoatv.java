@@ -24,7 +24,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Grupoatv implements Serializable {
     private static final long serialVersionUID = 1L;
     @EmbeddedId
-    protected GrupoatvPK grupoatvPK;
+    protected GrupoAtividadePK grupoatvPK;
     @Column(name = "TEMPO")
     private Integer tempo;
     @JoinColumn(name = "GRUPO_ID", referencedColumnName = "ID", insertable = false, updatable = false)
@@ -37,19 +37,19 @@ public class Grupoatv implements Serializable {
     public Grupoatv() {
     }
 
-    public Grupoatv(GrupoatvPK grupoatvPK) {
+    public Grupoatv(GrupoAtividadePK grupoatvPK) {
         this.grupoatvPK = grupoatvPK;
     }
 
     public Grupoatv(int idatividade, int atividadeId, int grupoId) {
-        this.grupoatvPK = new GrupoatvPK(idatividade, atividadeId, grupoId);
+        this.grupoatvPK = new GrupoAtividadePK(idatividade, atividadeId, grupoId);
     }
 
-    public GrupoatvPK getGrupoatvPK() {
+    public GrupoAtividadePK getGrupoatvPK() {
         return grupoatvPK;
     }
 
-    public void setGrupoatvPK(GrupoatvPK grupoatvPK) {
+    public void setGrupoatvPK(GrupoAtividadePK grupoatvPK) {
         this.grupoatvPK = grupoatvPK;
     }
 

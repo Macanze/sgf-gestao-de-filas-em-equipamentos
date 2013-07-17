@@ -40,8 +40,10 @@ public class Configuracao implements Serializable{
     switch(db_server){
         
         case 0:
-            db_url = "jdbc:sqlserver://"+db_hostname+":"+db_portnumb+";databaseName="+db_dbname;
-            drive ="com.microsoft.sqlserver.jdbc.SQLServerDriver" ;
+            db_url = "jdbc:mysql://localhost:3306/sgfpu";
+            drive ="com.mysql.jdbc.Driver" ;
+            //db_url = "jdbc:sqlserver://"+db_hostname+":"+db_portnumb+";databaseName="+db_dbname;
+            //drive ="com.microsoft.sqlserver.jdbc.SQLServerDriver" ;
             break;
         case 1: 
             db_url = "";
