@@ -8,7 +8,6 @@ package br.com.usjt.sgf.view;
 import br.com.usjt.sgf.entity.Atividade;
 import br.com.usjt.sgf.entity.Grupo;
 
-import br.com.usjt.sgf.entity.Grupoatv;
 import br.com.usjt.sgf.model.AtividadeModel;
 import br.com.usjt.sgf.model.GrupoModel;
 import java.util.ArrayList;
@@ -27,7 +26,7 @@ import javax.swing.table.TableRowSorter;
 public class GrupoAtividade extends javax.swing.JInternalFrame {
 
     private Grupo grupo;
-    private ArrayList<Grupoatv> listaAtividade;
+    private ArrayList<br.com.usjt.sgf.entity.GrupoAtividade> listaAtividade;
   
     private ArrayList<Atividade> lista;
 
@@ -306,7 +305,7 @@ public class GrupoAtividade extends javax.swing.JInternalFrame {
             DefaultTableModel mdl = (DefaultTableModel) jTable1.getModel();
             mdl.setNumRows(0);
 
-            /*      for(Grupoatv  grp :listaAtividade){
+            /*      for(GrupoAtividade  grp :listaAtividade){
                 Atividade a = grp.getAtividadeId();
                 mdl.addRow(new Object[]{true, a.getId(), grp.getTempo()});
             }*/
@@ -350,7 +349,7 @@ public class GrupoAtividade extends javax.swing.JInternalFrame {
             boolean addLinha = (boolean) jTable1.getValueAt(i, 0);
             if(addLinha){
                 Atividade atv = lista.get(i);
-                Grupoatv grpAtv = new Grupoatv();
+                br.com.usjt.sgf.entity.GrupoAtividade grpAtv = new br.com.usjt.sgf.entity.GrupoAtividade();
                 
                 System.out.println("\n\n\n\nATIVIDADE:"+lista.get(i).getNome());
                 int tempo = Integer.parseInt((jTable1.getValueAt(i, 2).toString()));

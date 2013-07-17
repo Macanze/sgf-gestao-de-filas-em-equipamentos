@@ -15,23 +15,15 @@ import javax.persistence.Query;
  * @author Douglas
  */
 public class UsuarioDao {
-    
-    
-    
-    private EntityManager manager;
 
-    
-    
-       
+    private EntityManager manager;
+ 
     public UsuarioDao() {
         
         this.manager = new HibernateUtil().getManager();
         
     }
-    
-    
-    
-    
+
     /**
      * 
      */
@@ -41,7 +33,6 @@ public class UsuarioDao {
         manager.getTransaction().commit();         
     }
     
-    
     public void update(Usuario usuario){
         
         manager.getTransaction().begin();
@@ -50,9 +41,7 @@ public class UsuarioDao {
         find.setTreinoCollection(usuario.getTreinoCollection());
         find.setNome(usuario.getNome());
         find.setStatus(usuario.getStatus());
-        manager.getTransaction().commit();
-        
-        
+        manager.getTransaction().commit();    
     }
     
     public void remove(Usuario usuario){
@@ -85,11 +74,4 @@ public class UsuarioDao {
          return createQuery.getResultList();
         
     }
-    
-    
-    
-    
-    
-    
-    
 }

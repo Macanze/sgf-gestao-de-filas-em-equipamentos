@@ -5,7 +5,7 @@
 package br.com.usjt.sgf.view;
 
 import br.com.usjt.sgf.entity.Atividade;
-import br.com.usjt.sgf.entity.Recurso;
+import br.com.usjt.sgf.entity.Equipamento;
 import br.com.usjt.sgf.entity.Treino;
 import br.com.usjt.sgf.entity.Usuario;
 import br.com.usjt.sgf.model.Scheduler;
@@ -285,11 +285,11 @@ public class Processar extends javax.swing.JFrame {
 
     private void processar() {
         ArrayList<Treino> arrayList = new ArrayList<>(usuarioSelecionado.getTreinoCollection());
-        ArrayList<Recurso> processar = schd.processar(arrayList.get(0));
+        ArrayList<Equipamento> processar = schd.processar(arrayList.get(0));
                
         DefaultTableModel mdl = (DefaultTableModel) jTable1.getModel();
         mdl.setNumRows(0);
-        for(Recurso rec: processar){
+        for(Equipamento rec: processar){
             
             
             if(rec.filaAtendimento!=null){

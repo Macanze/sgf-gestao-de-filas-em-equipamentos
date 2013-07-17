@@ -7,7 +7,7 @@ package br.com.usjt.sgf.model;
 import br.com.usjt.sgf.dao.AtividadeDao;
 import br.com.usjt.sgf.dao.EquipamentoDao;
 import br.com.usjt.sgf.dao.TreinoDao;
-import br.com.usjt.sgf.entity.Recurso;
+import br.com.usjt.sgf.entity.Equipamento;
 import br.com.usjt.sgf.entity.Treino;
 import java.util.List;
 

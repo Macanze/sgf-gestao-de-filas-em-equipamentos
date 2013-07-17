@@ -31,7 +31,7 @@ public class Atividade implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID")
     private Integer id;
-    @Column(name = "DESCR")
+    @Column(name = "DESCRICAO")
     private String descr;
     @Column(name = "NOME")
     private String nome;
@@ -41,7 +41,7 @@ public class Atividade implements Serializable {
     @OneToMany(mappedBy = "atividadeId")
     private Collection<TreinoAtividade> treinoatvCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "atividade")
-    private Collection<Grupoatv> grupoatvCollection;
+    private Collection<GrupoAtividade> grupoatvCollection;
 
     @Transient
     public  int tempoNecessario;
@@ -109,11 +109,11 @@ public class Atividade implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Grupoatv> getGrupoatvCollection() {
+    public Collection<GrupoAtividade> getGrupoatvCollection() {
         return grupoatvCollection;
     }
 
-    public void setGrupoatvCollection(Collection<Grupoatv> grupoatvCollection) {
+    public void setGrupoatvCollection(Collection<GrupoAtividade> grupoatvCollection) {
         this.grupoatvCollection = grupoatvCollection;
     }
 

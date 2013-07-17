@@ -47,8 +47,8 @@ public class TreinoDao {
         Treino find = manager.find(treino.getClass(), treino.getTreinoPK());
         find.setDescricao(treino.getDescricao());
         find.setGrupoCollection(treino.getGrupoCollection());
-        ArrayList<TreinoAtividade> listaIncluso = new ArrayList<>(find.getTreinoatvCollection());
-        ArrayList<TreinoAtividade> listaAtualizado= new ArrayList<>(treino.getTreinoatvCollection());
+        ArrayList<TreinoAtividade> listaIncluso = new ArrayList<>(find.getTreinoAtividadeCollection());
+        ArrayList<TreinoAtividade> listaAtualizado= new ArrayList<>(treino.getTreinoAtividadeCollection());
         ArrayList<Grupo> arrayList = new ArrayList<>(treino.getGrupoCollection());
         JOptionPane.showMessageDialog(null, arrayList.size());
         for(int i  = 0 ; i < listaIncluso.size();i++){

@@ -10,7 +10,7 @@
  */
 package br.com.usjt.sgf.view;
 
-import br.com.usjt.sgf.entity.Recurso;
+import br.com.usjt.sgf.entity.Equipamento;
 import br.com.usjt.sgf.model.RecursoModel;
 
 /**
@@ -221,7 +221,7 @@ cadastrar();
 
     private void cadastrar() {
         
-        Recurso atv = new Recurso();
+        Equipamento atv = new Equipamento();
         atv.setDescricao(txtDescricao.getText());
         atv.setNome(txtNome.getText());
         atv.setStatus(chkAtivo.isSelected());

@@ -7,7 +7,7 @@ package br.com.usjt.sgf.model;
 import br.com.usjt.sgf.dao.AtividadeDao;
 import br.com.usjt.sgf.dao.GrupoDao;
 import br.com.usjt.sgf.entity.Grupo;
-import br.com.usjt.sgf.entity.Grupoatv;
+import br.com.usjt.sgf.entity.GrupoAtividade;
 import java.util.List;
 
 /**
@@ -60,7 +60,7 @@ public class GrupoModel {
         dao.remove(atividade);
     }
 
-    public void persistAtividade(Grupoatv grpAtv) {
+    public void persistAtividade(GrupoAtividade grpAtv) {
         dao.persistAtividade(grpAtv);
     }
     

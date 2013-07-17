@@ -13,7 +13,7 @@ import java.util.*;
  * @author Douglas
  */
 public class Scheduler {
-    private  ArrayList<Recurso> recursos;
+    private  ArrayList<Equipamento> recursos;
     private ArrayList<Atividade> filaAtividade;
     private Usuario usuario;
     private Date horaInicio;
@@ -25,14 +25,14 @@ public class Scheduler {
     
     
     
-   public ArrayList<Recurso> processar(Treino treino){
+   public ArrayList<Equipamento> processar(Treino treino){
        
 
        this.usuario = treino.getUsuario();
        
        ArrayList<Atividade> listaAtividades = new ArrayList<>();
        
-       ArrayList<TreinoAtividade> listaAtividadesTreino = new ArrayList<>(treino.getTreinoatvCollection());
+       ArrayList<TreinoAtividade> listaAtividadesTreino = new ArrayList<>(treino.getTreinoAtividadeCollection());
         ArrayList<Grupo> listaGrupo = new ArrayList<>(treino.getGrupoCollection());
        for(TreinoAtividade temp: listaAtividadesTreino){
             Atividade atividade = temp.getAtividadeId();
@@ -40,8 +40,8 @@ public class Scheduler {
            listaAtividades.add(atividade);
        }
        for(Grupo grp : listaGrupo){
-            ArrayList<Grupoatv> listaAtvTemp = new ArrayList<>(grp.getGrupoatvCollection());
-            for(Grupoatv grpAtv: listaAtvTemp){
+            ArrayList<GrupoAtividade> listaAtvTemp = new ArrayList<>(grp.getGrupoatvCollection());
+            for(GrupoAtividade grpAtv: listaAtvTemp){
                 Atividade atividade = grpAtv.getAtividade();
                 atividade.tempoNecessario = grpAtv.getTempo();
                 listaAtividades.add(atividade);
@@ -75,7 +75,7 @@ public class Scheduler {
             System.out.println("Atividade:"+atv.getId()+"-"+ atv.getNome()+" tempo: "+atv.tempoNecessario);
             
 
-            Recurso recursoSelecionado = processarAtividade(atv);
+            Equipamento recursoSelecionado = processarAtividade(atv);
             
             if(recursoSelecionado!=null){
                 atv.horaInicio = horaInicio;            
@@ -103,12 +103,12 @@ public class Scheduler {
         
     }
 
-    private Recurso processarAtividade(Atividade atv) {
+    private Equipamento processarAtividade(Atividade atv) {
         
-        Recurso selecionado = null;
+        Equipamento selecionado = null;
         for(int i =0; i <recursos.size();i++){
             
-            Recurso rec = recursos.get(i);
+            Equipamento rec = recursos.get(i);
             //ArrayList<Atividade> lista = new ArrayList<>(rec.getAtividadeCollection());
             boolean contains = RecursoModel.contains(rec, atv);
             
