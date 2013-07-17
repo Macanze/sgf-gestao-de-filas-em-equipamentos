@@ -10,9 +10,9 @@
  */
 package br.com.usjt.sgf.view;
 
-import br.com.usjt.sgf.entity.Atividade;
+import br.com.usjt.sgf.entity.Exercicio;
 import br.com.usjt.sgf.entity.Usuario;
-import br.com.usjt.sgf.model.AtividadeModel;
+import br.com.usjt.sgf.model.ExercicioModel;
 import br.com.usjt.sgf.model.UsuarioModel;
 
 /**

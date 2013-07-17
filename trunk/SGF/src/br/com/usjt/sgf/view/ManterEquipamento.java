@@ -10,9 +10,9 @@
  */
 package br.com.usjt.sgf.view;
 
-import br.com.usjt.sgf.entity.Atividade;
+import br.com.usjt.sgf.entity.Exercicio;
 import br.com.usjt.sgf.entity.Equipamento;
-import br.com.usjt.sgf.model.RecursoModel;
+import br.com.usjt.sgf.model.EquipamentoModel;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -25,7 +25,7 @@ import javax.swing.table.DefaultTableModel;
 public class ManterEquipamento extends javax.swing.JInternalFrame {
     private List<Equipamento> listByName;
     private Equipamento recursoSelecionado;
-    private ArrayList<Atividade> listaAtividade;
+    private ArrayList<Exercicio> listaAtividade;
 
     /** Creates new form RecursosGerenciar */
     public ManterEquipamento() {
@@ -542,7 +542,7 @@ incluirAtividade();
         atv.setNome(txtPesquisa.getText());
         
         
-        RecursoModel recurso = new RecursoModel(atv);
+        EquipamentoModel recurso = new EquipamentoModel(atv);
         this.listByName = recurso.listAll();
         
        
@@ -572,7 +572,7 @@ incluirAtividade();
         
         DefaultTableModel mdl = (DefaultTableModel) jTable1.getModel();
         mdl.setNumRows(0);
-        for(Atividade temp: listaAtividade){
+        for(Exercicio temp: listaAtividade){
             mdl.addRow(new Object[]{temp.getNome(),temp.getDescr()});
         }
         
@@ -582,7 +582,7 @@ incluirAtividade();
 
     private void excluirRecurso() {
         
-        new RecursoModel(recursoSelecionado).remove();
+        new EquipamentoModel(recursoSelecionado).remove();
         buscarRecursos();
         
         
@@ -591,7 +591,7 @@ incluirAtividade();
     private void removerAtividade() {
         
         int index = jTable1.getSelectedRow();
-        Atividade atividade = listaAtividade.get(index);
+        Exercicio atividade = listaAtividade.get(index);
         
         int opc =JOptionPane.showConfirmDialog(null, "Deseja excluir "+atividade.getNome()+" das atividades relacionadas?");
         
@@ -600,7 +600,7 @@ incluirAtividade();
 //            salvarAlteracoes();
         }
         recursoSelecionado.setAtividadeCollection(listaAtividade);
-        new RecursoModel(recursoSelecionado).update();
+        new EquipamentoModel(recursoSelecionado).update();
         
     }
 

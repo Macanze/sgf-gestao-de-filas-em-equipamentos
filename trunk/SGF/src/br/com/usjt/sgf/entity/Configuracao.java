@@ -11,14 +11,8 @@ import java.io.Serializable;
  * @author Douglas
  */
 public class Configuracao implements Serializable{
-    
-    
     public final String DRIVE_ORACLE = "jdbc:sqlserver://localhost:1433;databaseName=SGFPU";
-    
-    
-    
-    
-    
+
     //Configurações de banco de dados;
     public String db_hostname;
     public String db_instance;
@@ -51,11 +45,5 @@ public class Configuracao implements Serializable{
         }
         
     }
-    
-    
-    
-    
-    
-    
-    
+  
 }

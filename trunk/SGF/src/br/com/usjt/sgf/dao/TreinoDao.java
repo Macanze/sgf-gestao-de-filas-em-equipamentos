@@ -50,7 +50,7 @@ public class TreinoDao {
         ArrayList<TreinoAtividade> listaIncluso = new ArrayList<>(find.getTreinoAtividadeCollection());
         ArrayList<TreinoAtividade> listaAtualizado= new ArrayList<>(treino.getTreinoAtividadeCollection());
         ArrayList<Grupo> arrayList = new ArrayList<>(treino.getGrupoCollection());
-        JOptionPane.showMessageDialog(null, arrayList.size());
+       
         for(int i  = 0 ; i < listaIncluso.size();i++){
             TreinoAtividade trn = listaIncluso.get(i);
             
@@ -61,8 +61,7 @@ public class TreinoDao {
           }
         
         for(TreinoAtividade trn: listaAtualizado){
-            
-            
+                  
             if(!listaIncluso.contains(trn)){ 
                 
                int id= novoIdTreinoAtividade(treino);
@@ -73,14 +72,8 @@ public class TreinoDao {
             
             }
             
-        }
-        
-        
-        
-        
+        }        
         manager.getTransaction().commit();
-        
-        
     }
     
     public void remove(Treino treino){

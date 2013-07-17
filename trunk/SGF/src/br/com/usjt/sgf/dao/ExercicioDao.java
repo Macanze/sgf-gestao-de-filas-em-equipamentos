@@ -5,7 +5,7 @@
 package br.com.usjt.sgf.dao;
 
 import br.com.usjt.sgf.dao.util.HibernateUtil;
-import br.com.usjt.sgf.entity.Atividade;
+import br.com.usjt.sgf.entity.Exercicio;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -14,30 +14,30 @@ import javax.persistence.Query;
  *
  * @author Douglas
  */
-public class AtividadeDao { 
+public class ExercicioDao { 
     private EntityManager manager;
-    public AtividadeDao() {
+    public ExercicioDao() {
         this.manager = new HibernateUtil().getManager();
     }
 
-    public void persist(Atividade atividade){
+    public void persist(Exercicio atividade){
         manager.getTransaction().begin();
         manager.persist(atividade);
         manager.getTransaction().commit();         
     }
        
-    public void update(Atividade atividade){
+    public void update(Exercicio atividade){
         manager.getTransaction().begin();
-        Atividade find = manager.find(atividade.getClass(), atividade.getId());
+        Exercicio find = manager.find(atividade.getClass(), atividade.getId());
         find.setDescr(atividade.getDescr());     
         find.setNome(atividade.getNome());
         find.setStatus(atividade.getStatus());
         manager.getTransaction().commit();   
     }
     
-    public void remove(Atividade atividade){
+    public void remove(Exercicio atividade){
         manager.getTransaction().begin();
-        Atividade find = manager.find(atividade.getClass(), atividade.getId());
+        Exercicio find = manager.find(atividade.getClass(), atividade.getId());
         manager.remove(find);
         manager.getTransaction().commit();                
     }

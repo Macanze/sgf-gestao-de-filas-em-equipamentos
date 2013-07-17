@@ -32,7 +32,7 @@ public class GrupoAtividade implements Serializable {
     private Grupo grupo;
     @JoinColumn(name = "ATIVIDADE_ID", referencedColumnName = "ID", insertable = false, updatable = false)
     @ManyToOne(optional = false)
-    private Atividade atividade;
+    private Exercicio atividade;
 
     public GrupoAtividade() {
     }
@@ -69,11 +69,11 @@ public class GrupoAtividade implements Serializable {
         this.grupo = grupo;
     }
 
-    public Atividade getAtividade() {
+    public Exercicio getAtividade() {
         return atividade;
     }
 
-    public void setAtividade(Atividade atividade) {
+    public void setAtividade(Exercicio atividade) {
         this.atividade = atividade;
     }
 

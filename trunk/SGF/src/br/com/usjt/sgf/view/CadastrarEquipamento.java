@@ -11,7 +11,7 @@
 package br.com.usjt.sgf.view;
 
 import br.com.usjt.sgf.entity.Equipamento;
-import br.com.usjt.sgf.model.RecursoModel;
+import br.com.usjt.sgf.model.EquipamentoModel;
 
 /**
  *
@@ -226,7 +226,7 @@ cadastrar();
         atv.setNome(txtNome.getText());
         atv.setStatus(chkAtivo.isSelected());
         
-        new RecursoModel(atv).persist();
+        new EquipamentoModel(atv).persist();
         dispose();
         
     }

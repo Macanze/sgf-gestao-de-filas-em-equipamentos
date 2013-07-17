@@ -4,8 +4,8 @@
  */
 package br.com.usjt.sgf.model;
 
-import br.com.usjt.sgf.dao.AtividadeDao;
-import br.com.usjt.sgf.entity.Atividade;
+import br.com.usjt.sgf.dao.ExercicioDao;
+import br.com.usjt.sgf.entity.Exercicio;
 import java.util.Date;
 import java.util.List;
 
@@ -13,18 +13,18 @@ import java.util.List;
  *
  * @author Douglas
  */
-public class AtividadeModel {
+public class ExercicioModel {
 
     
     
     
     
-    private Atividade atividade;
-    private AtividadeDao dao;
+    private Exercicio atividade;
+    private ExercicioDao dao;
 
-    public AtividadeModel(Atividade atividade) {
+    public ExercicioModel(Exercicio atividade) {
         this.atividade = atividade;
-        dao = new AtividadeDao();
+        dao = new ExercicioDao();
     }
     
     
@@ -58,7 +58,7 @@ public class AtividadeModel {
     }
     
     
-    public static Date calcularHoraFim(Atividade atv) {
+    public static Date calcularHoraFim(Exercicio atv) {
         long time = atv.horaInicio.getTime();
         long add = (atv.tempoNecessario*60 * 1000);
         

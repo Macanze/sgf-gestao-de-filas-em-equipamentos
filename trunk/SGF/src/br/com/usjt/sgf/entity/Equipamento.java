@@ -37,13 +37,13 @@ public class Equipamento implements Serializable {
     @Column(name = "STATUS")
     private Boolean status;
     @OneToMany
-    private Collection<Atividade> atividadeCollection;
+    private Collection<Exercicio> atividadeCollection;
     
     @Transient
     public int semaforo;
     
     @Transient
-    public ArrayList<Atividade> filaAtendimento;
+    public ArrayList<Exercicio> filaAtendimento;
 
     public Equipamento() {
     }
@@ -85,11 +85,11 @@ public class Equipamento implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Atividade> getAtividadeCollection() {
+    public Collection<Exercicio> getAtividadeCollection() {
         return atividadeCollection;
     }
 
-    public void setAtividadeCollection(Collection<Atividade> atividadeCollection) {
+    public void setAtividadeCollection(Collection<Exercicio> atividadeCollection) {
         this.atividadeCollection = atividadeCollection;
     }
 

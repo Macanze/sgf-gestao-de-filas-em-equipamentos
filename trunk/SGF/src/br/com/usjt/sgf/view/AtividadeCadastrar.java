@@ -10,8 +10,8 @@
  */
 package br.com.usjt.sgf.view;
 
-import br.com.usjt.sgf.entity.Atividade;
-import br.com.usjt.sgf.model.AtividadeModel;
+import br.com.usjt.sgf.entity.Exercicio;
+import br.com.usjt.sgf.model.ExercicioModel;
 
 /**
  *
@@ -221,12 +221,12 @@ cadastrar();
 
     private void cadastrar() {
         
-        Atividade atv = new Atividade();
+        Exercicio atv = new Exercicio();
         atv.setDescr(txtDescricao.getText());
         atv.setNome(txtNome.getText());
         atv.setStatus(chkAtivo.isSelected());
         
-        new AtividadeModel(atv).persist();
+        new ExercicioModel(atv).persist();
         dispose();
         
     }

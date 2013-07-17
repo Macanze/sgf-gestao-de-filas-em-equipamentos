@@ -4,9 +4,9 @@
  */
 package br.com.usjt.sgf.model;
 
-import br.com.usjt.sgf.dao.AtividadeDao;
+import br.com.usjt.sgf.dao.ExercicioDao;
 import br.com.usjt.sgf.dao.EquipamentoDao;
-import br.com.usjt.sgf.entity.Atividade;
+import br.com.usjt.sgf.entity.Exercicio;
 import br.com.usjt.sgf.entity.Equipamento;
 import java.util.*;
 
@@ -14,26 +14,18 @@ import java.util.*;
  *
  * @author Douglas
  */
-public class RecursoModel {
-
-   
-    
-    
-    
+public class EquipamentoModel {
     private Equipamento recurso;
     private EquipamentoDao dao;
 
-    public RecursoModel(Equipamento atividade) {
+    public EquipamentoModel(Equipamento atividade) {
         this.recurso = atividade;
         dao = new EquipamentoDao();
     }
 
-    RecursoModel() {
-        dao = new EquipamentoDao();
-        
+    EquipamentoModel() {
+        dao = new EquipamentoDao();    
     }
-    
-    
     
     public void persist(){
         dao.persist(recurso);
@@ -48,65 +40,50 @@ public class RecursoModel {
     }
     
     public List findByName(){
-        
         Object obj[][] = new Object[1][2];
         obj[0][0] = "nome";
         obj[0][1] = "%"+recurso.getNome()+"%";
        
-        return dao.list("Recurso.findByNome", obj);
-        
-        
+        return dao.list("Recurso.findByNome", obj);  
     }
 
-    
     public void remove() {
         dao.remove(recurso);
     }
-    
-    
-    
-    public static boolean contains(Equipamento rec,Atividade atv){
         
-        ArrayList<Atividade> lista = new ArrayList<>(rec.getAtividadeCollection());
+    public static boolean contains(Equipamento equipamento, Exercicio atividade){
         
-        for(Atividade temp: lista){
-              if(temp.getId()==atv.getId()){
+        ArrayList<Exercicio> lista = new ArrayList<>(equipamento.getAtividadeCollection());
+        
+        for(Exercicio temp: lista){
+              if(temp.getId()==atividade.getId()){
                 return true;
             }
-            
-            
         }
         
         return false;
     }
     
-    
-     public static int tempoRestante(Equipamento rec) {
-        
+     public static int tempoRestante(Equipamento equipamento) {    
        int count = 0;
-        ArrayList<Atividade> fila = (rec.filaAtendimento);
-       
-        Object obj[] = null ;
-        
-        
+        ArrayList<Exercicio> fila = (equipamento.filaAtendimento);
+        Object obj[] = null ;  
         if(fila.isEmpty()){
             return 0;
-           
         }else{
             obj = new Object[fila.size()];
             Date data = Calendar.getInstance().getTime();
             long horaAtual = Calendar.getInstance().getTimeInMillis();
             
-            Atividade atividade1 = null;
+            Exercicio atividade1 = null;
             for(int i = 0 ;i<fila.size();i++){
-                Atividade atividade2 = fila.get(i);
+                Exercicio atividade2 = fila.get(i);
                 if(atividade1==null){
                     atividade1 = atividade2;
                     
                     long time = atividade1.horaInicio.getTime() - horaAtual;
                     int tempo = (int)(time/60)/1000;
-                    
-                    
+              
                     if(data.before(atividade1.horaInicio)){
                         tempo = tempo*(-1);
                     }
@@ -124,14 +101,7 @@ public class RecursoModel {
             
             
         }
-       System.out.println(Arrays.toString(obj));
-       
-         
-       
-         
+       System.out.println(Arrays.toString(obj));         
        return count;
     }
-    
-    
-    
 }

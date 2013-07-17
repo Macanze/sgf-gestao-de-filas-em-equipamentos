@@ -10,7 +10,7 @@
  */
 package br.com.usjt.sgf.view;
 
-import br.com.usjt.sgf.entity.Atividade;
+import br.com.usjt.sgf.entity.Exercicio;
 
 /**
  *

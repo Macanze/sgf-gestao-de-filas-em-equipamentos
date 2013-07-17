@@ -4,7 +4,7 @@
  */
 package br.com.usjt.sgf.view;
 
-import br.com.usjt.sgf.entity.Atividade;
+import br.com.usjt.sgf.entity.Exercicio;
 import br.com.usjt.sgf.entity.Equipamento;
 import br.com.usjt.sgf.entity.Treino;
 import br.com.usjt.sgf.entity.Usuario;
@@ -295,9 +295,9 @@ public class Processar extends javax.swing.JFrame {
             if(rec.filaAtendimento!=null){
                 
                 
-                ArrayList<Atividade> listaAtv = new ArrayList<>(rec.filaAtendimento);
+                ArrayList<Exercicio> listaAtv = new ArrayList<>(rec.filaAtendimento);
             
-                for(Atividade atv: listaAtv){
+                for(Exercicio atv: listaAtv){
                 
                     Object obj[] = {usuarioSelecionado.getNome(),atv.getNome(),rec.getNome(),sf.format(atv.horaInicio),sf.format(atv.horaFim)};
                     mdl.addRow(obj);
