@@ -13,7 +13,7 @@ package br.com.usjt.sgf.view;
 import br.com.usjt.sgf.entity.Atividade;
 import br.com.usjt.sgf.entity.Grupo;
 import br.com.usjt.sgf.entity.Treino;
-import br.com.usjt.sgf.entity.Treinoatv;
+import br.com.usjt.sgf.entity.TreinoAtividade;
 import br.com.usjt.sgf.entity.Usuario;
 import br.com.usjt.sgf.model.TreinoModel;
 import br.com.usjt.sgf.model.UsuarioModel;
@@ -674,7 +674,7 @@ Principal.adicionarFrames(new TreinoCadastrar(usuarioLelecionado));
 
     private void incluirAtividade() {
      
-         Principal.adicionarFrames(new TreinoAtvs(usuarioLelecionado, treinoSelecionado));
+         Principal.adicionarFrames(new TreinoAtividade(usuarioLelecionado, treinoSelecionado));
         
         
         
@@ -688,7 +688,7 @@ Principal.adicionarFrames(new TreinoCadastrar(usuarioLelecionado));
         
         
         ArrayList<Grupo> listaGrupo = new ArrayList<>(treinoSelecionado.getGrupoCollection());
-        ArrayList<Treinoatv> listaAtv = new ArrayList<>(treinoSelecionado.getTreinoatvCollection());
+        ArrayList<TreinoAtividade> listaAtv = new ArrayList<>(treinoSelecionado.getTreinoatvCollection());
         
         
         
@@ -703,7 +703,7 @@ Principal.adicionarFrames(new TreinoCadastrar(usuarioLelecionado));
          mdl = (DefaultTableModel) tblAtv.getModel();
          mdl.setNumRows(0);
         for(int i = 0 ; i <listaAtv.size();i++){
-            Treinoatv grp = listaAtv.get(i);
+            TreinoAtividade grp = listaAtv.get(i);
             mdl.addRow(new Object[]{grp.getAtividadeId().getNome(),grp.getAtividadeId().getDescr(),grp.getTempo()});
         }
         

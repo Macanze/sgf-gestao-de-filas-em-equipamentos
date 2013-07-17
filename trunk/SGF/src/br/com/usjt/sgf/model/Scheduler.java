@@ -32,9 +32,9 @@ public class Scheduler {
        
        ArrayList<Atividade> listaAtividades = new ArrayList<>();
        
-       ArrayList<Treinoatv> listaAtividadesTreino = new ArrayList<>(treino.getTreinoatvCollection());
+       ArrayList<TreinoAtividade> listaAtividadesTreino = new ArrayList<>(treino.getTreinoatvCollection());
         ArrayList<Grupo> listaGrupo = new ArrayList<>(treino.getGrupoCollection());
-       for(Treinoatv temp: listaAtividadesTreino){
+       for(TreinoAtividade temp: listaAtividadesTreino){
             Atividade atividade = temp.getAtividadeId();
             atividade.tempoNecessario = temp.getTempo();
            listaAtividades.add(atividade);

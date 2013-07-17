@@ -15,22 +15,15 @@ import javax.persistence.Query;
  *
  * @author Douglas
  */
-public class RecursoDao {
+public class EquipamentoDao {
     
-      private EntityManager manager;
+    private EntityManager manager;
 
-    
-    
-       
-    public RecursoDao() {
+    public EquipamentoDao() {
         
         this.manager = new HibernateUtil().getManager();
         
-    }
-    
-    
-    
-    
+    }   
     /**
      * 
      */
@@ -53,8 +46,7 @@ public class RecursoDao {
         
         manager.persist(find);
         manager.getTransaction().commit();
-        
-        
+           
     }
     
     public void remove(Recurso atividade){

@@ -135,7 +135,7 @@ private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
 }//GEN-LAST:event_jMenuItem3ActionPerformed
 
 private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-adicionarFrames(new RecursoGerenciar());
+adicionarFrames(new ManterEquipamento());
 }//GEN-LAST:event_jMenuItem4ActionPerformed
 
 private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed

@@ -4,7 +4,7 @@
  */
 
 /*
- * TreinoAtvs.java
+ * TreinoAtividade.java
  *
  * Created on 01/06/2013, 23:47:21
  */
@@ -13,7 +13,6 @@ package br.com.usjt.sgf.view;
 import br.com.usjt.sgf.entity.Atividade;
 import br.com.usjt.sgf.entity.Grupo;
 import br.com.usjt.sgf.entity.Treino;
-import br.com.usjt.sgf.entity.Treinoatv;
 import br.com.usjt.sgf.entity.Usuario;
 import br.com.usjt.sgf.model.AtividadeModel;
 import br.com.usjt.sgf.model.GrupoModel;
@@ -27,20 +26,20 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Douglas
  */
-public class TreinoAtvs extends javax.swing.JInternalFrame {
+public class TreinoAtividade extends javax.swing.JInternalFrame {
     private  Usuario usuario;
     private  Treino treino;
     private ArrayList<Grupo> listaGrupo;
-    private ArrayList<Treinoatv> listaTreino;
+    private ArrayList<br.com.usjt.sgf.entity.TreinoAtividade> listaTreino;
     private List<Grupo> listaGrupoDisponivel;
     private ArrayList<Atividade> listaAtividade;
 
-    /** Creates new form TreinoAtvs */
-    public TreinoAtvs() {
+    /** Creates new form TreinoAtividade */
+    public TreinoAtividade() {
         initComponents();
     }
     
-    public TreinoAtvs(Usuario usuario, Treino treino){
+    public TreinoAtividade(Usuario usuario, Treino treino){
         
         initComponents();
            this.usuario = usuario;
@@ -94,7 +93,7 @@ public class TreinoAtvs extends javax.swing.JInternalFrame {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11));
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel1.setText("Usuário:");
 
         txtUsuario.setEditable(false);
@@ -107,7 +106,7 @@ public class TreinoAtvs extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(txtUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 624, Short.MAX_VALUE)
+                .addComponent(txtUsuario)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -123,7 +122,7 @@ public class TreinoAtvs extends javax.swing.JInternalFrame {
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11));
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel2.setText("Descrição:");
 
         txtDescrTreino.setEditable(false);
@@ -180,7 +179,7 @@ public class TreinoAtvs extends javax.swing.JInternalFrame {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 309, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 313, Short.MAX_VALUE)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 309, Short.MAX_VALUE))))
                 .addContainerGap())
         );
@@ -247,7 +246,7 @@ public class TreinoAtvs extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 222, Short.MAX_VALUE)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jLabel3)
                         .addGroup(jPanel5Layout.createSequentialGroup()
@@ -257,7 +256,7 @@ public class TreinoAtvs extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE))
+                    .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -277,7 +276,7 @@ public class TreinoAtvs extends javax.swing.JInternalFrame {
                                     .addComponent(jButton4, 0, 0, Short.MAX_VALUE)
                                     .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 262, Short.MAX_VALUE))))
+                                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 266, Short.MAX_VALUE))))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGap(77, 77, 77)
                         .addComponent(jButton7)
@@ -295,11 +294,11 @@ public class TreinoAtvs extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 688, Short.MAX_VALUE)
+                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addGap(18, 18, 18)
-                        .addComponent(txtDescrTreino, javax.swing.GroupLayout.DEFAULT_SIZE, 612, Short.MAX_VALUE)))
+                        .addComponent(txtDescrTreino)))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -310,7 +309,7 @@ public class TreinoAtvs extends javax.swing.JInternalFrame {
                     .addComponent(jLabel2)
                     .addComponent(txtDescrTreino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 361, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 365, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -413,13 +412,13 @@ private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TreinoAtvs.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TreinoAtividade.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TreinoAtvs.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TreinoAtividade.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TreinoAtvs.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TreinoAtividade.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TreinoAtvs.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TreinoAtividade.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -427,7 +426,7 @@ private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                new TreinoAtvs().setVisible(true);
+                new TreinoAtividade().setVisible(true);
             }
         });
     }
@@ -515,7 +514,7 @@ private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
              DefaultTableModel mdl = (DefaultTableModel) jTable1.getModel();
              mdl.setNumRows(0);
              for(int i = 0 ; i  < listaTreino.size();i++){
-                 Treinoatv trn = listaTreino.get(i);
+                 br.com.usjt.sgf.entity.TreinoAtividade trn = listaTreino.get(i);
                  
                  mdl.addRow(new Object[]{trn.getAtividadeId().getNome(), trn.getAtividadeId().getDescr(), trn.getTempo()});
                 
@@ -587,7 +586,7 @@ private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         int tempo = Integer.parseInt(JOptionPane.showInputDialog("Informe um tempo padrao:"));
         
         if(tempo>0){
-            Treinoatv trnAtv= new Treinoatv();
+            br.com.usjt.sgf.entity.TreinoAtividade trnAtv= new br.com.usjt.sgf.entity.TreinoAtividade();
         trnAtv.setTreino(treino);
         trnAtv.setAtividadeId(atv);
         trnAtv.setTempo(tempo);

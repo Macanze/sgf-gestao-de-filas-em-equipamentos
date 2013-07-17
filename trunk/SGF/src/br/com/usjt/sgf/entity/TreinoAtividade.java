@@ -16,15 +16,15 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "TREINOATV")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Treinoatv.findAll", query = "SELECT t FROM Treinoatv t"),
-    @NamedQuery(name = "Treinoatv.findByTempo", query = "SELECT t FROM Treinoatv t WHERE t.tempo = :tempo"),
-    @NamedQuery(name = "Treinoatv.findById", query = "SELECT t FROM Treinoatv t WHERE t.treinoatvPK.id = :id"),
-    @NamedQuery(name = "Treinoatv.findByTreinoIdtreino", query = "SELECT t FROM Treinoatv t WHERE t.treinoatvPK.treinoIdtreino = :treinoIdtreino"),
-    @NamedQuery(name = "Treinoatv.findByTreinoIduser", query = "SELECT t FROM Treinoatv t WHERE t.treinoatvPK.treinoIduser = :treinoIduser")})
-public class Treinoatv implements Serializable {
+    @NamedQuery(name = "TreinoAtividade.findAll", query = "SELECT t FROM TreinoAtividade t"),
+    @NamedQuery(name = "TreinoAtividade.findByTempo", query = "SELECT t FROM TreinoAtividade t WHERE t.tempo = :tempo"),
+    @NamedQuery(name = "TreinoAtividade.findById", query = "SELECT t FROM TreinoAtividade t WHERE t.treinoatvPK.id = :id"),
+    @NamedQuery(name = "TreinoAtividade.findByTreinoIdtreino", query = "SELECT t FROM TreinoAtividade t WHERE t.treinoatvPK.treinoIdtreino = :treinoIdtreino"),
+    @NamedQuery(name = "TreinoAtividade.findByTreinoIduser", query = "SELECT t FROM TreinoAtividade t WHERE t.treinoatvPK.treinoIduser = :treinoIduser")})
+public class TreinoAtividade implements Serializable {
     private static final long serialVersionUID = 1L;
     @EmbeddedId
-    protected TreinoatvPK treinoatvPK;
+    protected TreinoAtividadePK treinoatvPK;
     @Column(name = "TEMPO")
     private Integer tempo;
     @JoinColumns({
@@ -36,22 +36,22 @@ public class Treinoatv implements Serializable {
     @ManyToOne
     private Atividade atividadeId;
 
-    public Treinoatv() {
+    public TreinoAtividade() {
     }
 
-    public Treinoatv(TreinoatvPK treinoatvPK) {
+    public TreinoAtividade(TreinoAtividadePK treinoatvPK) {
         this.treinoatvPK = treinoatvPK;
     }
 
-    public Treinoatv(int id, int treinoIdtreino, int treinoIduser) {
-        this.treinoatvPK = new TreinoatvPK(id, treinoIdtreino, treinoIduser);
+    public TreinoAtividade(int id, int treinoIdtreino, int treinoIduser) {
+        this.treinoatvPK = new TreinoAtividadePK(id, treinoIdtreino, treinoIduser);
     }
 
-    public TreinoatvPK getTreinoatvPK() {
+    public TreinoAtividadePK getTreinoatvPK() {
         return treinoatvPK;
     }
 
-    public void setTreinoatvPK(TreinoatvPK treinoatvPK) {
+    public void setTreinoatvPK(TreinoAtividadePK treinoatvPK) {
         this.treinoatvPK = treinoatvPK;
     }
 
@@ -89,10 +89,10 @@ public class Treinoatv implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Treinoatv)) {
+        if (!(object instanceof TreinoAtividade)) {
             return false;
         }
-        Treinoatv other = (Treinoatv) object;
+        TreinoAtividade other = (TreinoAtividade) object;
         if ((this.treinoatvPK == null && other.treinoatvPK != null) || (this.treinoatvPK != null && !this.treinoatvPK.equals(other.treinoatvPK))) {
             return false;
         }

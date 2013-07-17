@@ -5,7 +5,7 @@
 package br.com.usjt.sgf.model;
 
 import br.com.usjt.sgf.dao.AtividadeDao;
-import br.com.usjt.sgf.dao.RecursoDao;
+import br.com.usjt.sgf.dao.EquipamentoDao;
 import br.com.usjt.sgf.entity.Atividade;
 import br.com.usjt.sgf.entity.Recurso;
 import java.util.*;
@@ -21,15 +21,15 @@ public class RecursoModel {
     
     
     private Recurso recurso;
-    private RecursoDao dao;
+    private EquipamentoDao dao;
 
     public RecursoModel(Recurso atividade) {
         this.recurso = atividade;
-        dao = new RecursoDao();
+        dao = new EquipamentoDao();
     }
 
     RecursoModel() {
-        dao = new RecursoDao();
+        dao = new EquipamentoDao();
         
     }
     

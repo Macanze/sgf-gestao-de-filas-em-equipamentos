@@ -29,7 +29,7 @@ public class Treino implements Serializable {
     @Column(name = "DESCRICAO")
     private String descricao;
     @OneToMany(mappedBy = "treino")
-    private Collection<Treinoatv> treinoatvCollection;
+    private Collection<TreinoAtividade> treinoatvCollection;
     @JoinColumn(name = "usr_trn", referencedColumnName = "ID", insertable = false, updatable = false)
     @OneToOne(optional = false)
     private Usuario usuario;
@@ -65,11 +65,11 @@ public class Treino implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Treinoatv> getTreinoatvCollection() {
+    public Collection<TreinoAtividade> getTreinoatvCollection() {
         return treinoatvCollection;
     }
 
-    public void setTreinoatvCollection(Collection<Treinoatv> treinoatvCollection) {
+    public void setTreinoatvCollection(Collection<TreinoAtividade> treinoatvCollection) {
         this.treinoatvCollection = treinoatvCollection;
     }
 

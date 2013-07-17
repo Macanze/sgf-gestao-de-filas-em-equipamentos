@@ -640,7 +640,7 @@ selecionarGrupo();
     }
 
     private void incluirAtividade() {
-        Principal.adicionarFrames(new GRUPO_ATIVIDADE(grupoSelecionado));
+        Principal.adicionarFrames(new GrupoAtividade(grupoSelecionado));
     }
 
     private void removerGrupo() {

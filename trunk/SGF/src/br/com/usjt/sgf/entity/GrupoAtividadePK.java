@@ -14,10 +14,10 @@ import javax.persistence.Embeddable;
  * @author dgsantos
  */
 @Embeddable
-public class GrupoatvPK implements Serializable {
+public class GrupoAtividadePK implements Serializable {
     @Basic(optional = false)
-    @Column(name = "IDATIVIDADE")
-    private int idatividade;
+    @Column(name = "ID")
+    private int id;
     @Basic(optional = false)
     @Column(name = "ATIVIDADE_ID")
     private int atividadeId;
@@ -25,21 +25,21 @@ public class GrupoatvPK implements Serializable {
     @Column(name = "GRUPO_ID")
     private int grupoId;
 
-    public GrupoatvPK() {
+    public GrupoAtividadePK() {
     }
 
-    public GrupoatvPK(int idatividade, int atividadeId, int grupoId) {
-        this.idatividade = idatividade;
+    public GrupoAtividadePK(int id, int atividadeId, int grupoId) {
+        this.id = id;
         this.atividadeId = atividadeId;
         this.grupoId = grupoId;
     }
 
     public int getIdatividade() {
-        return idatividade;
+        return id;
     }
 
-    public void setIdatividade(int idatividade) {
-        this.idatividade = idatividade;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getAtividadeId() {
@@ -61,7 +61,7 @@ public class GrupoatvPK implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (int) idatividade;
+        hash += (int) id;
         hash += (int) atividadeId;
         hash += (int) grupoId;
         return hash;
@@ -70,11 +70,11 @@ public class GrupoatvPK implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof GrupoatvPK)) {
+        if (!(object instanceof GrupoAtividadePK)) {
             return false;
         }
-        GrupoatvPK other = (GrupoatvPK) object;
-        if (this.idatividade != other.idatividade) {
+        GrupoAtividadePK other = (GrupoAtividadePK) object;
+        if (this.id != other.id) {
             return false;
         }
         if (this.atividadeId != other.atividadeId) {
@@ -88,7 +88,7 @@ public class GrupoatvPK implements Serializable {
 
     @Override
     public String toString() {
-        return "br.com.usjt.sgf.entity.GrupoatvPK[ idatividade=" + idatividade + ", atividadeId=" + atividadeId + ", grupoId=" + grupoId + " ]";
+        return "br.com.usjt.sgf.entity.GrupoAtividadePK[ id=" + id + ", atividadeId=" + atividadeId + ", grupoId=" + grupoId + " ]";
     }
     
 }

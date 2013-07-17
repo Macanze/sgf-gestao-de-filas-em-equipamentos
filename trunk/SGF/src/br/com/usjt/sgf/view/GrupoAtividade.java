@@ -2,44 +2,46 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package view;
+package br.com.usjt.sgf.view;
 
+
+import br.com.usjt.sgf.entity.Atividade;
+import br.com.usjt.sgf.entity.Grupo;
+
+import br.com.usjt.sgf.entity.Grupoatv;
+import br.com.usjt.sgf.model.AtividadeModel;
+import br.com.usjt.sgf.model.GrupoModel;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
-import dao.DaoService;
 
-import entities.Atividade;
-import entities.Equipamento;
 
 /**
  *
  * @author dgsantos
  */
-public class Recurso_ATIVIDADE extends javax.swing.JInternalFrame {
+public class GrupoAtividade extends javax.swing.JInternalFrame {
 
-    private Equipamento recurso;
-    private ArrayList<Atividade> listaAtividade;
-    private DaoService daoService;
+    private Grupo grupo;
+    private ArrayList<Grupoatv> listaAtividade;
+  
+    private ArrayList<Atividade> lista;
 
     /**
      * Creates new form Recurso_ATIVIDADE
      */
-    public Recurso_ATIVIDADE() {
+    public GrupoAtividade() {
         initComponents();
         setup();
     }
 
-    public Recurso_ATIVIDADE(Equipamento rec) {
+    public GrupoAtividade(Grupo rec) {
         initComponents();
-        this.recurso = rec;
+        this.grupo = rec;
         setup();
     }
 
@@ -65,7 +67,7 @@ public class Recurso_ATIVIDADE extends javax.swing.JInternalFrame {
         filterText = new javax.swing.JTextField();
 
         setClosable(true);
-        setTitle("Associar Atividades ao Recurso");
+        setTitle("Associar Atividade ao Grupo");
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -74,7 +76,7 @@ public class Recurso_ATIVIDADE extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Selecionar", "ID", "Atividade"
+                "Selecionar", "Atividade", "Tempo Padrão"
             }
         ) {
             Class[] types = new Class [] {
@@ -94,9 +96,7 @@ public class Recurso_ATIVIDADE extends javax.swing.JInternalFrame {
         jTable1.getColumnModel().getColumn(0).setResizable(false);
         jTable1.getColumnModel().getColumn(0).setPreferredWidth(60);
         jTable1.getColumnModel().getColumn(1).setResizable(false);
-        jTable1.getColumnModel().getColumn(1).setPreferredWidth(60);
-        jTable1.getColumnModel().getColumn(2).setResizable(false);
-        jTable1.getColumnModel().getColumn(2).setPreferredWidth(200);
+        jTable1.getColumnModel().getColumn(1).setPreferredWidth(200);
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -132,7 +132,7 @@ public class Recurso_ATIVIDADE extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtNome)
+                .addComponent(txtNome, javax.swing.GroupLayout.DEFAULT_SIZE, 438, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -164,7 +164,7 @@ public class Recurso_ATIVIDADE extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(0, 388, Short.MAX_VALUE)
                         .addComponent(jButton2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton1))
@@ -172,7 +172,7 @@ public class Recurso_ATIVIDADE extends javax.swing.JInternalFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addGap(18, 18, 18)
-                        .addComponent(filterText)))
+                        .addComponent(filterText, javax.swing.GroupLayout.DEFAULT_SIZE, 514, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -212,7 +212,7 @@ public class Recurso_ATIVIDADE extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_filterTextKeyReleased
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        selecionarRecurso();
+       
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -244,13 +244,13 @@ public class Recurso_ATIVIDADE extends javax.swing.JInternalFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Recurso_ATIVIDADE.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GrupoAtividade.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Recurso_ATIVIDADE.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GrupoAtividade.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Recurso_ATIVIDADE.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GrupoAtividade.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Recurso_ATIVIDADE.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GrupoAtividade.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -260,7 +260,7 @@ public class Recurso_ATIVIDADE extends javax.swing.JInternalFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                new Recurso_ATIVIDADE().setVisible(true);
+                new GrupoAtividade().setVisible(true);
             }
         });
     }
@@ -281,38 +281,51 @@ public class Recurso_ATIVIDADE extends javax.swing.JInternalFrame {
     private void setup() {
 
 
-        daoService = new DaoService();
-        this.recurso = (Equipamento) daoService.find(recurso, recurso.getId());
-
-        if (recurso != null) {
-            this.txtId.setText("" + recurso.getId());
-            txtNome.setText(recurso.getNome());
-
-            buscarAtividade();
-        }
-
+        this.txtId.setText("" + grupo.getId());
+        txtNome.setText(grupo.getNome());
+        
+        
+        
+       buscarAtividade();
 
 
 
     }
 
     private void buscarAtividade() {
+                 
+            Atividade atv = new Atividade();
+           atv.setNome("");
+           grupo.getGrupoatvCollection();
+            listaAtividade = new ArrayList<>(grupo.getGrupoatvCollection());
+            
+            
+            
+            
+            
+            DefaultTableModel mdl = (DefaultTableModel) jTable1.getModel();
+            mdl.setNumRows(0);
 
-        Atividade temp = new Atividade();
-        this.listaAtividade = (ArrayList) daoService.select(temp);
+            /*      for(Grupoatv  grp :listaAtividade){
+                Atividade a = grp.getAtividadeId();
+                mdl.addRow(new Object[]{true, a.getId(), grp.getTempo()});
+            }*/
+            this.lista = new ArrayList<>(new AtividadeModel(atv).listByName());
+            for(int i = 0 ; i < lista.size();i++){
+            Atividade a = lista.get(i);
+                
+                mdl.addRow(new Object[]{false, a.getNome(), ""});
+            }
+         
 
-        DefaultTableModel mdl = (DefaultTableModel) jTable1.getModel();
-        mdl.setNumRows(0);
 
-        for (Atividade atv : listaAtividade) {
-            mdl.addRow(new Object[]{false, atv.getId(), atv.getNome()});
 
-        }
-
+            
 
     }
 
     private void filtrarTabela() {
+
         TableRowSorter<TableModel> sorter = new TableRowSorter<>(jTable1.getModel());
 
         String text = filterText.getText().toUpperCase();
@@ -324,29 +337,44 @@ public class Recurso_ATIVIDADE extends javax.swing.JInternalFrame {
         jTable1.setRowSorter(sorter);
 
 
+
+
     }
 
-    private void selecionarRecurso() {
+    private void selecionarAtividade() {
 
-        int col = jTable1.getSelectedColumn();
-        if (col == 0) {
-            int row = jTable1.getSelectedRow();
-
-            if (row != -1) {
-                Atividade get = (Atividade) listaAtividade.get(row);
-                get.setStatus((boolean) jTable1.getValueAt(row, col));
-                listaAtividade.set(row, get);
+        int size = jTable1.getRowCount();
+        GrupoModel model = new GrupoModel(grupo);
+        for(int i = 0 ; i <size;i++){
+            
+            boolean addLinha = (boolean) jTable1.getValueAt(i, 0);
+            if(addLinha){
+                Atividade atv = lista.get(i);
+                Grupoatv grpAtv = new Grupoatv();
+                
+                System.out.println("\n\n\n\nATIVIDADE:"+lista.get(i).getNome());
+                int tempo = Integer.parseInt((jTable1.getValueAt(i, 2).toString()));
+                grpAtv.setTempo(tempo);
+                grpAtv.setGrupo(grupo);
+                grpAtv.setAtividade(lista.get(i));
+                model.persistAtividade(grpAtv);
+                
+                
             }
+            
+            
+            
         }
+      
+        
 
-
+        
     }
 
     private void associarRecursos() {
-        daoService = new DaoService();
-        recurso = (Equipamento) daoService.find(recurso, recurso.getId());
-        recurso.setListaAtividades(listaAtividade);
+            selecionarAtividade();
+            new GrupoModel(grupo).update();
+            dispose();
         
-        dispose();
     }
 }

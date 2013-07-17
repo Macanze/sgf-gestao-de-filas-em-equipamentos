@@ -7,7 +7,7 @@ package br.com.usjt.sgf.dao;
 import br.com.usjt.sgf.dao.util.HibernateUtil;
 import br.com.usjt.sgf.entity.Grupo;
 import br.com.usjt.sgf.entity.Grupoatv;
-import br.com.usjt.sgf.entity.GrupoatvPK;
+import br.com.usjt.sgf.entity.GrupoAtividadePK;
 import br.com.usjt.sgf.entity.Treino;
 import java.util.List;
 
@@ -20,23 +20,15 @@ import javax.persistence.TypedQuery;
  * @author Douglas
  */
 public class GrupoDao {
-    
       private EntityManager manager;
-
-    
-    
-       
+ 
     /**
        * 
        */
-    public GrupoDao() {
-        
+      public GrupoDao() {
         this.manager = new HibernateUtil().getManager();
         
     }
-    
-    
-    
     
     /**
      * 
@@ -47,9 +39,7 @@ public class GrupoDao {
         manager.getTransaction().commit();         
     }
     
-    
-    public void update(Grupo atividade){
-        
+    public void update(Grupo atividade){    
         manager.getTransaction().begin();
         Grupo find = manager.find(atividade.getClass(), atividade.getId());
         find.setDescricao(atividade.getDescricao());
@@ -57,8 +47,6 @@ public class GrupoDao {
         find.setNome(atividade.getNome());
         find.setStatus(atividade.getStatus());
         manager.getTransaction().commit();
-        
-        
     }
     
     public void remove(Grupo atividade){
@@ -76,7 +64,7 @@ public class GrupoDao {
      */
     public List list(String queryNamed, Object[][] parameters){
         Query createQuery = manager.createNamedQuery(queryNamed);
-        
+   
         for(int i = 0 ; i<parameters.length;i++){
             createQuery.setParameter(parameters[i][0].toString(), parameters[i][1]);
         }
@@ -93,10 +81,10 @@ public class GrupoDao {
     }
 
     public void persistAtividade(Grupoatv grpAtv) {
-        GrupoatvPK grupoatvPK = new GrupoatvPK();
+        GrupoAtividadePK grupoatvPK = new GrupoAtividadePK();
         grupoatvPK.setGrupoId(grpAtv.getGrupo().getId());
         grupoatvPK.setAtividadeId(grpAtv.getAtividade().getId());
-        grupoatvPK.setIdatividade(novoIdAtividade(grupoatvPK));
+        grupoatvPK.setId(novoIdAtividade(grupoatvPK));
         
                 
         grpAtv.setGrupoatvPK(grupoatvPK);
@@ -112,7 +100,7 @@ public class GrupoDao {
      * @param treino
      * @return 
      */
-    private int novoIdAtividade(GrupoatvPK treino) {
+    private int novoIdAtividade(GrupoAtividadePK treino) {
         
         String sql = "SELECT MAX(t.grupoatvPK.idatividade) FROM Grupoatv t WHERE t.grupoatvPK.grupoId = "+treino.getGrupoId()+" "
                 + "AND t.grupoatvPK.atividadeId = "+ treino.getAtividadeId();
