@@ -10,7 +10,7 @@
  */
 package br.com.usjt.sgf.view;
 
-import br.com.usjt.sgf.entity.Atividade;
+import br.com.usjt.sgf.entity.Exercicio;
 import br.com.usjt.sgf.entity.Grupo;
 import br.com.usjt.sgf.entity.Treino;
 import br.com.usjt.sgf.entity.TreinoAtividade;
@@ -29,7 +29,7 @@ import javax.swing.table.DefaultTableModel;
 public class UsuarioGerenciar extends javax.swing.JInternalFrame {
     private List<Usuario> listByName;
     private Usuario usuarioLelecionado;
-    private ArrayList<Atividade> listaAtividade;
+    private ArrayList<Exercicio> listaAtividade;
     private int index;
     private ArrayList<Treino> listaTreino;
     private Treino treinoSelecionado;
@@ -660,7 +660,7 @@ Principal.adicionarFrames(new TreinoCadastrar(usuarioLelecionado));
         
         
         index = tblAtv.getSelectedRow();
-        Atividade atividade = listaAtividade.get(index);
+        Exercicio atividade = listaAtividade.get(index);
         
         int opc =JOptionPane.showConfirmDialog(null, "Deseja excluir "+atividade.getNome()+" das atividades relacionadas?");
         

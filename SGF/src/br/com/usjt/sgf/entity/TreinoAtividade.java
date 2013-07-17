@@ -13,7 +13,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author dgsantos
  */
 @Entity
-@Table(name = "TREINOATV")
+@Table(name = "TREINOATIVIDADE")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "TreinoAtividade.findAll", query = "SELECT t FROM TreinoAtividade t"),
@@ -24,7 +24,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class TreinoAtividade implements Serializable {
     private static final long serialVersionUID = 1L;
     @EmbeddedId
-    protected TreinoAtividadePK treinoatvPK;
+    protected TreinoAtividadePK treinoAtividadePK;
     @Column(name = "TEMPO")
     private Integer tempo;
     @JoinColumns({
@@ -34,25 +34,25 @@ public class TreinoAtividade implements Serializable {
     private Treino treino;
     @JoinColumn(name = "ATIVIDADE_ID", referencedColumnName = "ID")
     @ManyToOne
-    private Atividade atividadeId;
+    private Exercicio atividadeId;
 
     public TreinoAtividade() {
     }
 
     public TreinoAtividade(TreinoAtividadePK treinoatvPK) {
-        this.treinoatvPK = treinoatvPK;
+        this.treinoAtividadePK = treinoatvPK;
     }
 
     public TreinoAtividade(int id, int treinoIdtreino, int treinoIduser) {
-        this.treinoatvPK = new TreinoAtividadePK(id, treinoIdtreino, treinoIduser);
+        this.treinoAtividadePK = new TreinoAtividadePK(id, treinoIdtreino, treinoIduser);
     }
 
     public TreinoAtividadePK getTreinoatvPK() {
-        return treinoatvPK;
+        return treinoAtividadePK;
     }
 
     public void setTreinoatvPK(TreinoAtividadePK treinoatvPK) {
-        this.treinoatvPK = treinoatvPK;
+        this.treinoAtividadePK = treinoatvPK;
     }
 
     public Integer getTempo() {
@@ -71,18 +71,18 @@ public class TreinoAtividade implements Serializable {
         this.treino = treino;
     }
 
-    public Atividade getAtividadeId() {
+    public Exercicio getAtividadeId() {
         return atividadeId;
     }
 
-    public void setAtividadeId(Atividade atividadeId) {
+    public void setAtividadeId(Exercicio atividadeId) {
         this.atividadeId = atividadeId;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (treinoatvPK != null ? treinoatvPK.hashCode() : 0);
+        hash += (treinoAtividadePK != null ? treinoAtividadePK.hashCode() : 0);
         return hash;
     }
 
@@ -93,7 +93,7 @@ public class TreinoAtividade implements Serializable {
             return false;
         }
         TreinoAtividade other = (TreinoAtividade) object;
-        if ((this.treinoatvPK == null && other.treinoatvPK != null) || (this.treinoatvPK != null && !this.treinoatvPK.equals(other.treinoatvPK))) {
+        if ((this.treinoAtividadePK == null && other.treinoAtividadePK != null) || (this.treinoAtividadePK != null && !this.treinoAtividadePK.equals(other.treinoAtividadePK))) {
             return false;
         }
         return true;
@@ -101,7 +101,7 @@ public class TreinoAtividade implements Serializable {
 
     @Override
     public String toString() {
-        return "br.com.usjt.sgf.entity.Treinoatv[ treinoatvPK=" + treinoatvPK + " ]";
+        return "br.com.usjt.sgf.entity.Treinoatv[ treinoatvPK=" + treinoAtividadePK + " ]";
     }
     
 }

@@ -10,8 +10,8 @@
  */
 package br.com.usjt.sgf.view;
 
-import br.com.usjt.sgf.entity.Atividade;
-import br.com.usjt.sgf.model.AtividadeModel;
+import br.com.usjt.sgf.entity.Exercicio;
+import br.com.usjt.sgf.model.ExercicioModel;
 import java.util.List;
 
 /**
@@ -19,8 +19,8 @@ import java.util.List;
  * @author Douglas
  */
 public class AtividadesGerenciar extends javax.swing.JInternalFrame {
-    private List<Atividade> listByName;
-    private Atividade atividadeSelecionada;
+    private List<Exercicio> listByName;
+    private Exercicio atividadeSelecionada;
 
     /** Creates new form AtividadesGerenciar */
     public AtividadesGerenciar() {
@@ -358,7 +358,7 @@ Principal.adicionarFrames(new AtividadeCadastrar());
 
     private void buscarAtividades() {
         
-        Atividade atv = new Atividade();
+        Exercicio atv = new Exercicio();
         
         if(txtPesquisa.getText()==null){
             txtPesquisa.setText("");
@@ -367,13 +367,13 @@ Principal.adicionarFrames(new AtividadeCadastrar());
         atv.setNome(txtPesquisa.getText());
         
         
-        AtividadeModel atividade = new AtividadeModel(atv);
+        ExercicioModel atividade = new ExercicioModel(atv);
         this.listByName = atividade.listByName();
         
        
         Object obj[] = new Object[listByName.size()];
         int i = 0;
-        for(Atividade temp : listByName){
+        for(Exercicio temp : listByName){
             obj[i] = temp.getNome();
             i++;
         }                
@@ -404,7 +404,7 @@ Principal.adicionarFrames(new AtividadeCadastrar());
         atividadeSelecionada.setNome(atividadeSelecionada.getNome());
         atividadeSelecionada.setStatus(chkAtivo.isSelected());
         
-        new AtividadeModel(atividadeSelecionada).update();
+        new ExercicioModel(atividadeSelecionada).update();
         
         
         txtPesquisa.requestFocus();
@@ -417,7 +417,7 @@ Principal.adicionarFrames(new AtividadeCadastrar());
 
     private void excluirAtividade() {
         
-        new AtividadeModel(atividadeSelecionada).remove();
+        new ExercicioModel(atividadeSelecionada).remove();
         buscarAtividades();
         
         

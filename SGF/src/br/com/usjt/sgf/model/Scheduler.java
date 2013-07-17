@@ -13,13 +13,13 @@ import java.util.*;
  * @author Douglas
  */
 public class Scheduler {
-    private  ArrayList<Equipamento> recursos;
-    private ArrayList<Atividade> filaAtividade;
+    private  ArrayList<Equipamento> equipamentos;
+    private ArrayList<Exercicio> filaAtividade;
     private Usuario usuario;
     private Date horaInicio;
 
     public Scheduler() {
-        this.recursos = new ArrayList<>(new RecursoModel().listAll());
+        this.equipamentos = new ArrayList<>(new EquipamentoModel().listAll());
         filaAtividade = new ArrayList<>();
     }
     
@@ -30,19 +30,19 @@ public class Scheduler {
 
        this.usuario = treino.getUsuario();
        
-       ArrayList<Atividade> listaAtividades = new ArrayList<>();
+       ArrayList<Exercicio> listaAtividades = new ArrayList<>();
        
        ArrayList<TreinoAtividade> listaAtividadesTreino = new ArrayList<>(treino.getTreinoAtividadeCollection());
         ArrayList<Grupo> listaGrupo = new ArrayList<>(treino.getGrupoCollection());
        for(TreinoAtividade temp: listaAtividadesTreino){
-            Atividade atividade = temp.getAtividadeId();
+            Exercicio atividade = temp.getAtividadeId();
             atividade.tempoNecessario = temp.getTempo();
            listaAtividades.add(atividade);
        }
        for(Grupo grp : listaGrupo){
             ArrayList<GrupoAtividade> listaAtvTemp = new ArrayList<>(grp.getGrupoatvCollection());
             for(GrupoAtividade grpAtv: listaAtvTemp){
-                Atividade atividade = grpAtv.getAtividade();
+                Exercicio atividade = grpAtv.getAtividade();
                 atividade.tempoNecessario = grpAtv.getTempo();
                 listaAtividades.add(atividade);
             }
@@ -54,17 +54,17 @@ public class Scheduler {
        
        processarList(listaAtividades);
        
-       return recursos;
+       return equipamentos;
        
    }
 
     
-    private void processarList(ArrayList<Atividade> listaAtividades) {
+    private void processarList(ArrayList<Exercicio> listaAtividades) {
     
        // Collections.sort(listaAtividades, new CompareTo());
         
         this.horaInicio = null;
-        for(Atividade atv: listaAtividades){
+        for(Exercicio atv: listaAtividades){
             
             
             if(horaInicio==null){
@@ -79,7 +79,7 @@ public class Scheduler {
             
             if(recursoSelecionado!=null){
                 atv.horaInicio = horaInicio;            
-                atv.horaFim = AtividadeModel.calcularHoraFim(atv);
+                atv.horaFim = ExercicioModel.calcularHoraFim(atv);
                 recursoSelecionado.filaAtendimento.add(atv);
         
                 System.out.println("Atividade agendada em:"+ recursoSelecionado.getNome());
@@ -103,14 +103,14 @@ public class Scheduler {
         
     }
 
-    private Equipamento processarAtividade(Atividade atv) {
+    private Equipamento processarAtividade(Exercicio atv) {
         
         Equipamento selecionado = null;
-        for(int i =0; i <recursos.size();i++){
+        for(int i =0; i <equipamentos.size();i++){
             
-            Equipamento rec = recursos.get(i);
+            Equipamento rec = equipamentos.get(i);
             //ArrayList<Atividade> lista = new ArrayList<>(rec.getAtividadeCollection());
-            boolean contains = RecursoModel.contains(rec, atv);
+            boolean contains = EquipamentoModel.contains(rec, atv);
             
             if(contains){
                 
@@ -129,8 +129,8 @@ public class Scheduler {
                     if(selecionado==null){
                         selecionado = rec;
                     }else{
-                        int tempo = RecursoModel.tempoRestante(rec);
-                        int tempoSelecionado = RecursoModel.tempoRestante(selecionado);
+                        int tempo = EquipamentoModel.tempoRestante(rec);
+                        int tempoSelecionado = EquipamentoModel.tempoRestante(selecionado);
                         
                         
                         
@@ -157,19 +157,19 @@ public class Scheduler {
     
     
     
-      public class CompareTo implements Comparator<Atividade> {  
+      public class CompareTo implements Comparator<Exercicio> {  
        
      
       
 
         @Override
-        public int compare(Atividade o1, Atividade o2) {
+        public int compare(Exercicio o1, Exercicio o2) {
              int retorno = 0;    
             if(o1 == null || o2 == null)    
                 return retorno;    
                 
-            Atividade atv1 = (Atividade) o1;    
-            Atividade atv2 = (Atividade) o2;    
+            Exercicio atv1 = (Exercicio) o1;    
+            Exercicio atv2 = (Exercicio) o2;    
             
             if(atv1.tempoNecessario<(atv2.tempoNecessario)) {    
                 retorno = 1;    

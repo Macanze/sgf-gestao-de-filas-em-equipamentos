@@ -10,11 +10,11 @@
  */
 package br.com.usjt.sgf.view;
 
-import br.com.usjt.sgf.entity.Atividade;
+import br.com.usjt.sgf.entity.Exercicio;
 import br.com.usjt.sgf.entity.Grupo;
 import br.com.usjt.sgf.entity.Treino;
 import br.com.usjt.sgf.entity.Usuario;
-import br.com.usjt.sgf.model.AtividadeModel;
+import br.com.usjt.sgf.model.ExercicioModel;
 import br.com.usjt.sgf.model.GrupoModel;
 import br.com.usjt.sgf.model.TreinoModel;
 import java.util.ArrayList;
@@ -32,7 +32,7 @@ public class TreinoAtividade extends javax.swing.JInternalFrame {
     private ArrayList<Grupo> listaGrupo;
     private ArrayList<br.com.usjt.sgf.entity.TreinoAtividade> listaTreino;
     private List<Grupo> listaGrupoDisponivel;
-    private ArrayList<Atividade> listaAtividade;
+    private ArrayList<Exercicio> listaAtividade;
 
     /** Creates new form TreinoAtividade */
     public TreinoAtividade() {
@@ -556,7 +556,7 @@ private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     }
 
     private void buscarAtividades() {
-          Atividade atv = new Atividade();
+          Exercicio atv = new Exercicio();
         
         if(txtPesquisa.getText()==null){
             txtPesquisa.setText("");
@@ -565,13 +565,13 @@ private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         atv.setNome(txtPesquisa.getText());
         
         
-        AtividadeModel atividade = new AtividadeModel(atv);
+        ExercicioModel atividade = new ExercicioModel(atv);
         this.listaAtividade = new ArrayList<>(atividade.listByName());
         
        
         Object obj[] = new Object[listaAtividade.size()];
         int i = 0;
-        for(Atividade temp : listaAtividade){
+        for(Exercicio temp : listaAtividade){
             obj[i] = temp.getNome();
             i++;
         }                
@@ -580,7 +580,7 @@ private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 
     private void adicionarAtividade() {
         int index = jListAtividade.getSelectedIndex();
-        Atividade atv= listaAtividade.get(index);
+        Exercicio atv= listaAtividade.get(index);
         
         
         int tempo = Integer.parseInt(JOptionPane.showInputDialog("Informe um tempo padrao:"));

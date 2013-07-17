@@ -4,10 +4,10 @@
  */
 package br.com.usjt.sgf.view;
 
-import br.com.usjt.sgf.entity.Atividade;
+import br.com.usjt.sgf.entity.Exercicio;
 import br.com.usjt.sgf.entity.Equipamento;
-import br.com.usjt.sgf.model.AtividadeModel;
-import br.com.usjt.sgf.model.RecursoModel;
+import br.com.usjt.sgf.model.ExercicioModel;
+import br.com.usjt.sgf.model.EquipamentoModel;
 import java.util.ArrayList;
 import java.util.Collections;
 import javax.swing.JOptionPane;
@@ -24,7 +24,7 @@ import javax.swing.table.TableRowSorter;
 public class RecursoAtividade extends javax.swing.JInternalFrame {
 
     private Equipamento recurso;
-    private ArrayList<Atividade> listaAtividade;
+    private ArrayList<Exercicio> listaAtividade;
     
 
     /**
@@ -309,20 +309,20 @@ public class RecursoAtividade extends javax.swing.JInternalFrame {
         DefaultTableModel mdl = (DefaultTableModel) jTable1.getModel();
         mdl.setNumRows(0);
 
-        for (Atividade atv : listaAtividade) {
+        for (Exercicio atv : listaAtividade) {
             mdl.addRow(new Object[]{true, atv.getId(), atv.getNome()});
 
         }
         
-        Atividade temp = new Atividade();
+        Exercicio temp = new Exercicio();
         temp.setNome("");
-        ArrayList<Atividade> listaNotAdd= new ArrayList<>(new AtividadeModel(temp).listByName());
+        ArrayList<Exercicio> listaNotAdd= new ArrayList<>(new ExercicioModel(temp).listByName());
         
         
         
         
         
-        for (Atividade atv : listaNotAdd) {
+        for (Exercicio atv : listaNotAdd) {
            
             if(!listaAtividade.contains(atv)){
                  mdl.addRow(new Object[]{false, atv.getId(), atv.getNome()});
@@ -358,7 +358,7 @@ public class RecursoAtividade extends javax.swing.JInternalFrame {
 
     private void associarRecursos() {
        
-     ArrayList<Atividade> listaTemp = new ArrayList<>();
+     ArrayList<Exercicio> listaTemp = new ArrayList<>();
         for(int i = 0 ; i <jTable1.getRowCount();i++){
                      
             boolean add=(boolean) jTable1.getValueAt(i, 0);
@@ -381,7 +381,7 @@ public class RecursoAtividade extends javax.swing.JInternalFrame {
         
         
         try{
-            new RecursoModel(recurso).update();
+            new EquipamentoModel(recurso).update();
         }catch(Exception ex){
             ex.printStackTrace();
         }

@@ -17,15 +17,15 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author dgsantos
  */
 @Entity
-@Table(name = "Atividade")
+@Table(name = "EXERCICIO")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Atividade.findAll", query = "SELECT a FROM Atividade a"),
-    @NamedQuery(name = "Atividade.findById", query = "SELECT a FROM Atividade a WHERE a.id = :id"),
-    @NamedQuery(name = "Atividade.findByDescr", query = "SELECT a FROM Atividade a WHERE a.descr = :descr"),
-    @NamedQuery(name = "Atividade.findByNome", query = "SELECT a FROM Atividade a WHERE a.nome like :nome"),
-    @NamedQuery(name = "Atividade.findByStatus", query = "SELECT a FROM Atividade a WHERE a.status = :status")})
-public class Atividade implements Serializable {
+    @NamedQuery(name = "EXERCICIO.findAll", query = "SELECT a FROM EXERCICIO a"),
+    @NamedQuery(name = "EXERCICIO.findById", query = "SELECT a FROM EXERCICIO a WHERE a.id = :id"),
+    @NamedQuery(name = "EXERCICIO.findByDescricao", query = "SELECT a FROM EXERCICIO a WHERE a.DESCRICAO = :DESCRICAO"),
+    @NamedQuery(name = "EXERCICIO.findByNome", query = "SELECT a FROM EXERCICIO a WHERE a.nome like :nome"),
+    @NamedQuery(name = "EXERCICIO.findByStatus", query = "SELECT a FROM EXERCICIO a WHERE a.status = :status")})
+public class Exercicio implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -56,10 +56,10 @@ public class Atividade implements Serializable {
     @Transient
     public int semaforo;
     
-    public Atividade() {
+    public Exercicio() {
     }
 
-    public Atividade(Integer id) {
+    public Exercicio(Integer id) {
         this.id = id;
     }
 
@@ -95,10 +95,6 @@ public class Atividade implements Serializable {
         this.status = status;
     }
 
-   
-
-  
-
     @XmlTransient
     public Collection<TreinoAtividade> getTreinoatvCollection() {
         return treinoatvCollection;
@@ -127,10 +123,10 @@ public class Atividade implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Atividade)) {
+        if (!(object instanceof Exercicio)) {
             return false;
         }
-        Atividade other = (Atividade) object;
+        Exercicio other = (Exercicio) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }

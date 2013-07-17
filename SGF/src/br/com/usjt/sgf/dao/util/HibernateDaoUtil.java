@@ -5,7 +5,7 @@
 package br.com.usjt.sgf.dao.util;
 
 
-import br.com.usjt.sgf.entity.Atividade;
+import br.com.usjt.sgf.entity.Exercicio;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;

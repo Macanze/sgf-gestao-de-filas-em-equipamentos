@@ -4,7 +4,7 @@
  */
 package br.com.usjt.sgf.model;
 
-import br.com.usjt.sgf.dao.AtividadeDao;
+import br.com.usjt.sgf.dao.ExercicioDao;
 import br.com.usjt.sgf.dao.GrupoDao;
 import br.com.usjt.sgf.entity.Grupo;
 import br.com.usjt.sgf.entity.GrupoAtividade;

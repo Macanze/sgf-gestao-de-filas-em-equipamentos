@@ -85,7 +85,6 @@ public class GrupoAtividadePK implements Serializable {
         }
         return true;
     }
-
     @Override
     public String toString() {
         return "br.com.usjt.sgf.entity.GrupoAtividadePK[ id=" + id + ", atividadeId=" + atividadeId + ", grupoId=" + grupoId + " ]";

@@ -5,10 +5,10 @@
 package br.com.usjt.sgf.view;
 
 
-import br.com.usjt.sgf.entity.Atividade;
+import br.com.usjt.sgf.entity.Exercicio;
 import br.com.usjt.sgf.entity.Grupo;
 
-import br.com.usjt.sgf.model.AtividadeModel;
+import br.com.usjt.sgf.model.ExercicioModel;
 import br.com.usjt.sgf.model.GrupoModel;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +28,7 @@ public class GrupoAtividade extends javax.swing.JInternalFrame {
     private Grupo grupo;
     private ArrayList<br.com.usjt.sgf.entity.GrupoAtividade> listaAtividade;
   
-    private ArrayList<Atividade> lista;
+    private ArrayList<Exercicio> lista;
 
     /**
      * Creates new form Recurso_ATIVIDADE
@@ -293,7 +293,7 @@ public class GrupoAtividade extends javax.swing.JInternalFrame {
 
     private void buscarAtividade() {
                  
-            Atividade atv = new Atividade();
+            Exercicio atv = new Exercicio();
            atv.setNome("");
            grupo.getGrupoatvCollection();
             listaAtividade = new ArrayList<>(grupo.getGrupoatvCollection());
@@ -306,12 +306,12 @@ public class GrupoAtividade extends javax.swing.JInternalFrame {
             mdl.setNumRows(0);
 
             /*      for(GrupoAtividade  grp :listaAtividade){
-                Atividade a = grp.getAtividadeId();
+                Exercicio a = grp.getAtividadeId();
                 mdl.addRow(new Object[]{true, a.getId(), grp.getTempo()});
             }*/
-            this.lista = new ArrayList<>(new AtividadeModel(atv).listByName());
+            this.lista = new ArrayList<>(new ExercicioModel(atv).listByName());
             for(int i = 0 ; i < lista.size();i++){
-            Atividade a = lista.get(i);
+            Exercicio a = lista.get(i);
                 
                 mdl.addRow(new Object[]{false, a.getNome(), ""});
             }
@@ -348,7 +348,7 @@ public class GrupoAtividade extends javax.swing.JInternalFrame {
             
             boolean addLinha = (boolean) jTable1.getValueAt(i, 0);
             if(addLinha){
-                Atividade atv = lista.get(i);
+                Exercicio atv = lista.get(i);
                 br.com.usjt.sgf.entity.GrupoAtividade grpAtv = new br.com.usjt.sgf.entity.GrupoAtividade();
                 
                 System.out.println("\n\n\n\nATIVIDADE:"+lista.get(i).getNome());
