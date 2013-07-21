@@ -18,12 +18,12 @@ import java.util.List;
  *
  * @author Douglas
  */
-public class AtividadesGerenciar extends javax.swing.JInternalFrame {
+public class AtividadesGerenciarView extends javax.swing.JInternalFrame {
     private List<Exercicio> listByName;
     private Exercicio atividadeSelecionada;
 
     /** Creates new form AtividadesGerenciar */
-    public AtividadesGerenciar() {
+    public AtividadesGerenciarView() {
         initComponents();
         buscarAtividades();
     }
@@ -123,34 +123,34 @@ public class AtividadesGerenciar extends javax.swing.JInternalFrame {
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0))));
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 11));
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel5.setText("Nome:");
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 11));
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel6.setText("Descrição:");
 
         txtDescricao.setColumns(20);
         txtDescricao.setRows(3);
         jScrollPane2.setViewportView(txtDescricao);
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 11));
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel7.setText("Status:");
 
         chkAtivo.setBackground(new java.awt.Color(255, 255, 255));
-        chkAtivo.setFont(new java.awt.Font("Tahoma", 1, 11));
+        chkAtivo.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         chkAtivo.setText("Ativo");
 
         chkInativo.setBackground(new java.awt.Color(255, 255, 255));
-        chkInativo.setFont(new java.awt.Font("Tahoma", 1, 11));
+        chkInativo.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         chkInativo.setText("Inativo");
 
         jButton5.setBackground(new java.awt.Color(255, 255, 255));
-        jButton5.setFont(new java.awt.Font("Tahoma", 1, 11));
+        jButton5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/usjt/sgf/view/images/exit16.png"))); // NOI18N
         jButton5.setText("Cancelar");
 
         jButton6.setBackground(new java.awt.Color(255, 255, 255));
-        jButton6.setFont(new java.awt.Font("Tahoma", 1, 11));
+        jButton6.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/usjt/sgf/view/images/confirm.jpg"))); // NOI18N
         jButton6.setText("Confirmar");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
@@ -293,7 +293,7 @@ excluirAtividade();
 }//GEN-LAST:event_jButton3ActionPerformed
 
 private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-Principal.adicionarFrames(new AtividadeCadastrar());
+PrincipalView.adicionarFrames(new AtividadeCadastrarView());
 }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -313,13 +313,13 @@ Principal.adicionarFrames(new AtividadeCadastrar());
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AtividadesGerenciar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AtividadesGerenciarView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AtividadesGerenciar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AtividadesGerenciarView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AtividadesGerenciar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AtividadesGerenciarView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AtividadesGerenciar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AtividadesGerenciarView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -327,7 +327,7 @@ Principal.adicionarFrames(new AtividadeCadastrar());
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                new AtividadesGerenciar().setVisible(true);
+                new AtividadesGerenciarView().setVisible(true);
             }
         });
     }

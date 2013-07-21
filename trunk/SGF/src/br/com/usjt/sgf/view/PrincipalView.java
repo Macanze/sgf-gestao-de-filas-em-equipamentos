@@ -17,10 +17,10 @@ import javax.swing.JInternalFrame;
  *
  * @author Douglas
  */
-public class Principal extends javax.swing.JFrame {
+public class PrincipalView extends javax.swing.JFrame {
 
     /** Creates new form Principal */
-    public Principal() {
+    public PrincipalView() {
         initComponents();
     }
 
@@ -131,19 +131,19 @@ public class Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
 private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        adicionarFrames(new AtividadesGerenciar());
+        adicionarFrames(new AtividadesGerenciarView());
 }//GEN-LAST:event_jMenuItem3ActionPerformed
 
 private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-adicionarFrames(new ManterEquipamento());
+adicionarFrames(new ManterEquipamentoView());
 }//GEN-LAST:event_jMenuItem4ActionPerformed
 
 private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-adicionarFrames(new GruposGerenciar());// TODO add your handling code here:
+adicionarFrames(new GruposGerenciarView());// TODO add your handling code here:
 }//GEN-LAST:event_jMenuItem5ActionPerformed
 
 private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
-adicionarFrames(new UsuarioGerenciar());
+adicionarFrames(new UsuarioGerenciarView());
   
 }//GEN-LAST:event_jMenuItem6ActionPerformed
 
@@ -164,13 +164,13 @@ adicionarFrames(new UsuarioGerenciar());
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PrincipalView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PrincipalView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PrincipalView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PrincipalView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -178,7 +178,7 @@ adicionarFrames(new UsuarioGerenciar());
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                new Principal().setVisible(true);
+                new PrincipalView().setVisible(true);
             }
         });
     }

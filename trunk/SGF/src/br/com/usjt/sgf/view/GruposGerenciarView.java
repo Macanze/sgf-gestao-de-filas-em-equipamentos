@@ -4,33 +4,36 @@
  */
 
 /*
- * RecursosGerenciar.java
+ * GruposGerenciar.java
  *
  * Created on 29/05/2013, 23:31:23
  */
 package br.com.usjt.sgf.view;
 
-import br.com.usjt.sgf.entity.Exercicio;
-import br.com.usjt.sgf.entity.Equipamento;
-import br.com.usjt.sgf.model.EquipamentoModel;
+import br.com.usjt.sgf.entity.Grupo;
+import br.com.usjt.sgf.entity.GrupoAtividade;
+import br.com.usjt.sgf.model.GrupoModel;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
+
 /**
  *
  * @author Douglas
  */
-public class ManterEquipamento extends javax.swing.JInternalFrame {
-    private List<Equipamento> listByName;
-    private Equipamento recursoSelecionado;
-    private ArrayList<Exercicio> listaAtividade;
+public class GruposGerenciarView extends javax.swing.JInternalFrame {
+    private List<Grupo> listByName;
+    private Grupo grupoSelecionado;
+    
+    private ArrayList<GrupoAtividade> listaAtividade;
+    private int index;
 
-    /** Creates new form RecursosGerenciar */
-    public ManterEquipamento() {
+    /** Creates new form GruposGerenciar */
+    public GruposGerenciarView() {
         initComponents();
-        buscarRecursos();
+        buscarGrupos();
     }
 
     /** This method is called from within the constructor to
@@ -83,20 +86,20 @@ public class ManterEquipamento extends javax.swing.JInternalFrame {
         setTitle("Atividade Gerenciar");
         setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/usjt/sgf/view/images/activty_16.png"))); // NOI18N
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
-            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
-                formInternalFrameActivated(evt);
-            }
-            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
-            }
             public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
             }
             public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
             }
-            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
-            }
             public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameActivated(evt);
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
             }
         });
 
@@ -106,7 +109,7 @@ public class ManterEquipamento extends javax.swing.JInternalFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0))));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel1.setText("Atividade");
+        jLabel1.setText("Grupos");
 
         jListRecurso.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -149,7 +152,7 @@ public class ManterEquipamento extends javax.swing.JInternalFrame {
                     .addComponent(jButton4, 0, 0, Short.MAX_VALUE)
                     .addComponent(txtPesquisa))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 334, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -313,7 +316,7 @@ public class ManterEquipamento extends javax.swing.JInternalFrame {
                     .addComponent(chkAtivo)
                     .addComponent(chkInativo)
                     .addComponent(jLabel7))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 187, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 199, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton5)
                     .addComponent(jButton6))
@@ -329,15 +332,23 @@ public class ManterEquipamento extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Atividade", "Descricao"
+                "Atividade", "Descricao", "Tempo Padrão"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane3.setViewportView(jTable1);
 
         jButton7.setBackground(new java.awt.Color(255, 255, 255));
         jButton7.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/usjt/sgf/view/images/add_16.png"))); // NOI18N
-        jButton7.setText("Incluir");
+        jButton7.setText("Associar");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton7ActionPerformed(evt);
@@ -373,7 +384,7 @@ public class ManterEquipamento extends javax.swing.JInternalFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton8)
                     .addComponent(jButton7))
@@ -398,7 +409,7 @@ public class ManterEquipamento extends javax.swing.JInternalFrame {
                 .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 409, Short.MAX_VALUE)
+                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 421, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
@@ -417,27 +428,27 @@ public class ManterEquipamento extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
 private void jListRecursoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jListRecursoMouseClicked
-    selecionarRecurso();
+    selecionarGrupo();
 }//GEN-LAST:event_jListRecursoMouseClicked
 
 private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-//    salvarAlteracoes();
+    salvarAlteracoes();
 }//GEN-LAST:event_jButton6ActionPerformed
 
 private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-buscarRecursos();
+buscarGrupos();
 }//GEN-LAST:event_jButton4ActionPerformed
 
 private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-excluirRecurso();
+excluirGrupo();
 }//GEN-LAST:event_jButton3ActionPerformed
 
 private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-Principal.adicionarFrames(new CadastrarEquipamento());
+PrincipalView.adicionarFrames(new GrupoCadastrarView());
 }//GEN-LAST:event_jButton1ActionPerformed
 
 private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-//            salvarAlteracoes();
+            salvarAlteracoes();
 }//GEN-LAST:event_jButton2ActionPerformed
 
 private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
@@ -445,7 +456,7 @@ private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 }//GEN-LAST:event_jButton9ActionPerformed
 
 private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-// TODO add your handling code here:
+removerGrupo();// TODO add your handling code here:
 }//GEN-LAST:event_jButton10ActionPerformed
 
 private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
@@ -456,9 +467,10 @@ private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 incluirAtividade();
 }//GEN-LAST:event_jButton7ActionPerformed
 
-    private void formInternalFrameActivated(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameActivated
-        buscarRecursos();
-    }//GEN-LAST:event_formInternalFrameActivated
+private void formInternalFrameActivated(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameActivated
+buscarGrupos();
+selecionarGrupo();
+}//GEN-LAST:event_formInternalFrameActivated
 
     /**
      * @param args the command line arguments
@@ -477,13 +489,13 @@ incluirAtividade();
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ManterEquipamento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GruposGerenciarView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ManterEquipamento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GruposGerenciarView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ManterEquipamento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GruposGerenciarView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ManterEquipamento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GruposGerenciarView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -491,7 +503,7 @@ incluirAtividade();
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                new ManterEquipamento().setVisible(true);
+                new GruposGerenciarView().setVisible(true);
             }
         });
     }
@@ -531,9 +543,9 @@ incluirAtividade();
     private javax.swing.JTextField txtPesquisa;
     // End of variables declaration//GEN-END:variables
 
-    private void buscarRecursos() {
+    private void buscarGrupos() {
         
-        Equipamento atv = new Equipamento();
+        Grupo atv = new Grupo();
         
         if(txtPesquisa.getText()==null){
             txtPesquisa.setText("");
@@ -542,13 +554,13 @@ incluirAtividade();
         atv.setNome(txtPesquisa.getText());
         
         
-        EquipamentoModel recurso = new EquipamentoModel(atv);
-        this.listByName = recurso.listAll();
+        GrupoModel recurso = new GrupoModel(atv);
+        this.listByName = recurso.listByNome();
         
        
         Object obj[] = new Object[listByName.size()];
         int i = 0;
-        for(Equipamento temp : listByName){
+        for(Grupo temp : listByName){
             obj[i] = temp.getNome();
             i++;
         }                
@@ -556,55 +568,83 @@ incluirAtividade();
         
     }
 
-    private void selecionarRecurso() {
-        int index = jListRecurso.getSelectedIndex();
-        recursoSelecionado = listByName.get(index);
+    private void selecionarGrupo() {
         
-        txtDescricao.setText(recursoSelecionado.getDescricao());
-        txtNome.setText(recursoSelecionado.getNome());
-        chkAtivo.setSelected(recursoSelecionado.getStatus());
-        if(!recursoSelecionado.getStatus()){
+     
+            this.index = jListRecurso.getSelectedIndex();
+       
+        
+        
+        this.grupoSelecionado = listByName.get(index);
+        txtDescricao.setText(grupoSelecionado.getDescricao());
+        txtNome.setText(grupoSelecionado.getNome());
+        if(grupoSelecionado.getStatus()){
+            chkAtivo.setSelected(true);
+        }else{
             chkInativo.setSelected(true);
-            
         }
-        this.listaAtividade = new ArrayList<>(recursoSelecionado.getAtividadeCollection());
+        this.listaAtividade = new ArrayList<>(grupoSelecionado.getGrupoatvCollection());
         
         
         DefaultTableModel mdl = (DefaultTableModel) jTable1.getModel();
         mdl.setNumRows(0);
-        for(Exercicio temp: listaAtividade){
-            mdl.addRow(new Object[]{temp.getNome(),temp.getDescr()});
+        for(GrupoAtividade grp : listaAtividade){
+           
+            mdl.addRow(new Object[]{grp.getAtividade().getNome(),
+                    grp.getAtividade().getDescr(),
+                    grp.getTempo()
+            });
+            
         }
+        
         
     }
 
- 
-
-    private void excluirRecurso() {
+    private void salvarAlteracoes() {
+        grupoSelecionado.setNome(txtNome.getText());
+        grupoSelecionado.setStatus(chkAtivo.isSelected());
+        grupoSelecionado.setDescricao(txtDescricao.getText());
+        grupoSelecionado.setGrupoatvCollection(listaAtividade);
         
-        new EquipamentoModel(recursoSelecionado).remove();
-        buscarRecursos();
+        new GrupoModel(grupoSelecionado).update();
+    
+        
+        
+    }
+
+    private void excluirGrupo() {
+        
+        new GrupoModel(grupoSelecionado).remove();
+        buscarGrupos();
         
         
     }
 
     private void removerAtividade() {
         
-        int index = jTable1.getSelectedRow();
-        Exercicio atividade = listaAtividade.get(index);
+        int indexAtv = jTable1.getSelectedRow();
+        GrupoAtividade get = this.listaAtividade.get(indexAtv);
         
-        int opc =JOptionPane.showConfirmDialog(null, "Deseja excluir "+atividade.getNome()+" das atividades relacionadas?");
+        int opc = JOptionPane.showConfirmDialog(null, "Deseja realmente excluir "
+                +get.getAtividade().getNome()+" do grupo "+grupoSelecionado.getNome()+"?");
         
-        if(opc == JOptionPane.YES_OPTION){
-            listaAtividade.remove(index);
-//            salvarAlteracoes();
+        if(opc==JOptionPane.YES_OPTION){
+            this.listaAtividade.remove(indexAtv);
+       salvarAlteracoes();
+       buscarGrupos();
+       selecionarGrupo();
         }
-        recursoSelecionado.setAtividadeCollection(listaAtividade);
-        new EquipamentoModel(recursoSelecionado).update();
+        
+     
         
     }
 
     private void incluirAtividade() {
-       Principal.adicionarFrames(new RecursoAtividade(recursoSelecionado));
+        PrincipalView.adicionarFrames(new GrupoAtividadeView(grupoSelecionado));
+    }
+
+    private void removerGrupo() {
+        new GrupoModel(grupoSelecionado).remove();
+        buscarGrupos();
     }
 }

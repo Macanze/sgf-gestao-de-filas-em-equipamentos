@@ -18,7 +18,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author dgsantos
  */
-public class Processar extends javax.swing.JFrame {
+public class ProcessarView extends javax.swing.JFrame {
     private ArrayList<Usuario> listByName;
     private Usuario usuarioSelecionado;
     private final Scheduler schd;
@@ -27,7 +27,7 @@ public class Processar extends javax.swing.JFrame {
     /**
      * Creates new form Processar
      */
-    public Processar() {
+    public ProcessarView() {
         initComponents();
         
         schd = new Scheduler();
@@ -218,13 +218,13 @@ public class Processar extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Processar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ProcessarView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Processar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ProcessarView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Processar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ProcessarView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Processar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ProcessarView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -234,7 +234,7 @@ public class Processar extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                new Processar().setVisible(true);
+                new ProcessarView().setVisible(true);
             }
         });
     }

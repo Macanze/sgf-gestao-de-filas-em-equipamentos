@@ -4,36 +4,40 @@
  */
 
 /*
- * GruposGerenciar.java
+ * RecursosGerenciar.java
  *
  * Created on 29/05/2013, 23:31:23
  */
 package br.com.usjt.sgf.view;
 
+import br.com.usjt.sgf.entity.Exercicio;
 import br.com.usjt.sgf.entity.Grupo;
-import br.com.usjt.sgf.entity.Grupoatv;
-import br.com.usjt.sgf.model.GrupoModel;
+import br.com.usjt.sgf.entity.Treino;
+import br.com.usjt.sgf.entity.TreinoAtividade;
+import br.com.usjt.sgf.entity.Usuario;
+import br.com.usjt.sgf.model.TreinoModel;
+import br.com.usjt.sgf.model.UsuarioModel;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-
 /**
  *
  * @author Douglas
  */
-public class GruposGerenciar extends javax.swing.JInternalFrame {
-    private List<Grupo> listByName;
-    private Grupo grupoSelecionado;
-    
-    private ArrayList<Grupoatv> listaAtividade;
+public class UsuarioGerenciarView extends javax.swing.JInternalFrame {
+    private List<Usuario> listByName;
+    private Usuario usuarioLelecionado;
+    private ArrayList<Exercicio> listaAtividade;
     private int index;
+    private ArrayList<Treino> listaTreino;
+    private Treino treinoSelecionado;
 
-    /** Creates new form GruposGerenciar */
-    public GruposGerenciar() {
+    /** Creates new form UsuariosGerenciar */
+    public UsuarioGerenciarView() {
         initComponents();
-        buscarGrupos();
+        buscarUsuarios();
     }
 
     /** This method is called from within the constructor to
@@ -75,9 +79,16 @@ public class GruposGerenciar extends javax.swing.JInternalFrame {
         jButton5 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblAtv = new javax.swing.JTable();
         jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jListTreino = new javax.swing.JList();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        tblGrupo = new javax.swing.JTable();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jButton11 = new javax.swing.JButton();
 
         radio.add(chkAtivo);
         radio.add(chkInativo);
@@ -85,31 +96,14 @@ public class GruposGerenciar extends javax.swing.JInternalFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Atividade Gerenciar");
         setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/usjt/sgf/view/images/activty_16.png"))); // NOI18N
-        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
-            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
-                formInternalFrameActivated(evt);
-            }
-            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
-            }
-        });
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0))));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12));
-        jLabel1.setText("Grupos");
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel1.setText("Usuário:");
 
         jListRecurso.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -133,7 +127,7 @@ public class GruposGerenciar extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 222, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jLabel1)
                         .addGroup(jPanel2Layout.createSequentialGroup()
@@ -152,7 +146,7 @@ public class GruposGerenciar extends javax.swing.JInternalFrame {
                     .addComponent(jButton4, 0, 0, Short.MAX_VALUE)
                     .addComponent(txtPesquisa))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 338, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -234,29 +228,29 @@ public class GruposGerenciar extends javax.swing.JInternalFrame {
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0))));
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 11));
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel5.setText("Nome:");
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 11));
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel6.setText("Descrição:");
 
         txtDescricao.setColumns(20);
         txtDescricao.setRows(3);
         jScrollPane2.setViewportView(txtDescricao);
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 11));
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel7.setText("Status:");
 
         chkAtivo.setBackground(new java.awt.Color(255, 255, 255));
-        chkAtivo.setFont(new java.awt.Font("Tahoma", 1, 11));
+        chkAtivo.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         chkAtivo.setText("Ativo");
 
         chkInativo.setBackground(new java.awt.Color(255, 255, 255));
-        chkInativo.setFont(new java.awt.Font("Tahoma", 1, 11));
+        chkInativo.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         chkInativo.setText("Inativo");
 
         jButton6.setBackground(new java.awt.Color(255, 255, 255));
-        jButton6.setFont(new java.awt.Font("Tahoma", 1, 11));
+        jButton6.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/usjt/sgf/view/images/confirm.jpg"))); // NOI18N
         jButton6.setText("Confirmar");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
@@ -266,7 +260,7 @@ public class GruposGerenciar extends javax.swing.JInternalFrame {
         });
 
         jButton5.setBackground(new java.awt.Color(255, 255, 255));
-        jButton5.setFont(new java.awt.Font("Tahoma", 1, 11));
+        jButton5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/usjt/sgf/view/images/exit16.png"))); // NOI18N
         jButton5.setText("Cancelar");
 
@@ -275,9 +269,14 @@ public class GruposGerenciar extends javax.swing.JInternalFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap(20, Short.MAX_VALUE)
+                .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(0, 256, Short.MAX_VALUE)
+                        .addComponent(jButton6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton5))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5)
                             .addComponent(jLabel6)
@@ -288,21 +287,15 @@ public class GruposGerenciar extends javax.swing.JInternalFrame {
                                 .addComponent(chkAtivo)
                                 .addGap(18, 18, 18)
                                 .addComponent(chkInativo)
-                                .addGap(141, 141, 141))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE)
-                                    .addComponent(txtNome, javax.swing.GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE))
-                                .addContainerGap())))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addComponent(jButton6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton5)
-                        .addContainerGap())))
+                                .addGap(131, 131, 131))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 370, Short.MAX_VALUE)
+                            .addComponent(txtNome))
+                        .addGap(0, 26, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
@@ -316,10 +309,10 @@ public class GruposGerenciar extends javax.swing.JInternalFrame {
                     .addComponent(chkAtivo)
                     .addComponent(chkInativo)
                     .addComponent(jLabel7))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 183, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 195, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton5)
-                    .addComponent(jButton6))
+                    .addComponent(jButton6)
+                    .addComponent(jButton5))
                 .addContainerGap())
         );
 
@@ -327,41 +320,59 @@ public class GruposGerenciar extends javax.swing.JInternalFrame {
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblAtv.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Atividade", "Descricao", "Tempo Padrão"
+                "Atividade", "Descricao", "Tempo"
             }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane3.setViewportView(jTable1);
+        ));
+        jScrollPane3.setViewportView(tblAtv);
 
         jButton7.setBackground(new java.awt.Color(255, 255, 255));
-        jButton7.setFont(new java.awt.Font("Tahoma", 1, 11));
-        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/usjt/sgf/view/images/add_16.png"))); // NOI18N
-        jButton7.setText("Associar");
+        jButton7.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/usjt/sgf/view/images/user_edit16.png"))); // NOI18N
+        jButton7.setText("Editar");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton7ActionPerformed(evt);
             }
         });
 
-        jButton8.setBackground(new java.awt.Color(255, 255, 255));
-        jButton8.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/usjt/sgf/view/images/del_16.png"))); // NOI18N
-        jButton8.setText("Remover");
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel2.setText("Treino:");
+
+        jListTreino.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jListTreinoMouseClicked(evt);
+            }
+        });
+        jScrollPane4.setViewportView(jListTreino);
+
+        tblGrupo.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Grupo", "Descricao"
+            }
+        ));
+        jScrollPane5.setViewportView(tblGrupo);
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel3.setText("Atividades");
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel4.setText("Grupos:");
+
+        jButton11.setBackground(new java.awt.Color(255, 255, 255));
+        jButton11.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/usjt/sgf/view/images/add_16.png"))); // NOI18N
+        jButton11.setText("Novo");
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
+                jButton11ActionPerformed(evt);
             }
         });
 
@@ -369,39 +380,62 @@ public class GruposGerenciar extends javax.swing.JInternalFrame {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 363, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                        .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton8)))
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4)
+                            .addComponent(jScrollPane5, 0, 0, Short.MAX_VALUE)
+                            .addComponent(jLabel3)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
+                        .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 305, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton8)
+                    .addComponent(jButton11)
                     .addComponent(jButton7))
                 .addContainerGap())
         );
 
-        jTabbedPane1.addTab("Atividades", jPanel4);
+        jTabbedPane1.addTab("Treino", jPanel4);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 394, Short.MAX_VALUE))
-            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 648, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jToolBar1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 509, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -409,8 +443,8 @@ public class GruposGerenciar extends javax.swing.JInternalFrame {
                 .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 405, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 417, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -428,7 +462,7 @@ public class GruposGerenciar extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
 private void jListRecursoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jListRecursoMouseClicked
-    selecionarGrupo();
+    selecionarUsuario();
 }//GEN-LAST:event_jListRecursoMouseClicked
 
 private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
@@ -436,15 +470,15 @@ private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 }//GEN-LAST:event_jButton6ActionPerformed
 
 private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-buscarGrupos();
+buscarUsuarios();
 }//GEN-LAST:event_jButton4ActionPerformed
 
 private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-excluirGrupo();
+excluirUsuario();
 }//GEN-LAST:event_jButton3ActionPerformed
 
 private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-Principal.adicionarFrames(new GrupoCadastrar());
+PrincipalView.adicionarFrames(new UsuarioCadastrarView());
 }//GEN-LAST:event_jButton1ActionPerformed
 
 private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -456,21 +490,20 @@ private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 }//GEN-LAST:event_jButton9ActionPerformed
 
 private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-removerGrupo();// TODO add your handling code here:
+// TODO add your handling code here:
 }//GEN-LAST:event_jButton10ActionPerformed
-
-private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-removerAtividade();// TODO add your handling code here:
-}//GEN-LAST:event_jButton8ActionPerformed
 
 private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
 incluirAtividade();
 }//GEN-LAST:event_jButton7ActionPerformed
 
-private void formInternalFrameActivated(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameActivated
-buscarGrupos();
-selecionarGrupo();
-}//GEN-LAST:event_formInternalFrameActivated
+private void jListTreinoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jListTreinoMouseClicked
+selecinarTreino();
+}//GEN-LAST:event_jListTreinoMouseClicked
+
+private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+PrincipalView.adicionarFrames(new TreinoCadastrarView(usuarioLelecionado));
+}//GEN-LAST:event_jButton11ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -489,13 +522,13 @@ selecionarGrupo();
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GruposGerenciar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UsuarioGerenciarView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GruposGerenciar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UsuarioGerenciarView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GruposGerenciar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UsuarioGerenciarView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GruposGerenciar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UsuarioGerenciarView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -503,7 +536,7 @@ selecionarGrupo();
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                new GruposGerenciar().setVisible(true);
+                new UsuarioGerenciarView().setVisible(true);
             }
         });
     }
@@ -512,19 +545,23 @@ selecionarGrupo();
     private javax.swing.JRadioButton chkInativo;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
+    private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JList jListRecurso;
+    private javax.swing.JList jListTreino;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -532,20 +569,23 @@ selecionarGrupo();
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JToolBar.Separator jSeparator1;
     private javax.swing.JToolBar.Separator jSeparator2;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.ButtonGroup radio;
+    private javax.swing.JTable tblAtv;
+    private javax.swing.JTable tblGrupo;
     private javax.swing.JTextArea txtDescricao;
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtPesquisa;
     // End of variables declaration//GEN-END:variables
 
-    private void buscarGrupos() {
+    private void buscarUsuarios() {
         
-        Grupo atv = new Grupo();
+        Usuario atv = new Usuario();
         
         if(txtPesquisa.getText()==null){
             txtPesquisa.setText("");
@@ -554,13 +594,13 @@ selecionarGrupo();
         atv.setNome(txtPesquisa.getText());
         
         
-        GrupoModel recurso = new GrupoModel(atv);
-        this.listByName = recurso.listByNome();
+        UsuarioModel recurso = new UsuarioModel(atv);
+        this.listByName = recurso.listByName();
         
        
         Object obj[] = new Object[listByName.size()];
         int i = 0;
-        for(Grupo temp : listByName){
+        for(Usuario temp : listByName){
             obj[i] = temp.getNome();
             i++;
         }                
@@ -568,83 +608,109 @@ selecionarGrupo();
         
     }
 
-    private void selecionarGrupo() {
+    private void selecionarUsuario() {
+        index = jListRecurso.getSelectedIndex();
+        usuarioLelecionado = listByName.get(index);
         
-     
-            this.index = jListRecurso.getSelectedIndex();
-       
-        
-        
-        this.grupoSelecionado = listByName.get(index);
-        txtDescricao.setText(grupoSelecionado.getDescricao());
-        txtNome.setText(grupoSelecionado.getNome());
-        if(grupoSelecionado.getStatus()){
+        txtNome.setText(usuarioLelecionado.getNome());
+        txtDescricao.setText(usuarioLelecionado.getDescricao());
+        if(usuarioLelecionado.getStatus()){
             chkAtivo.setSelected(true);
         }else{
             chkInativo.setSelected(true);
         }
-        this.listaAtividade = new ArrayList<>(grupoSelecionado.getGrupoatvCollection());
+        
+        Treino temp = new Treino();
+        temp.setUsuario(usuarioLelecionado);
+        this.listaTreino = new ArrayList<>(new TreinoModel(temp).findById());
         
         
-        DefaultTableModel mdl = (DefaultTableModel) jTable1.getModel();
-        mdl.setNumRows(0);
-        for(Grupoatv grp : listaAtividade){
-           
-            mdl.addRow(new Object[]{grp.getAtividade().getNome(),
-                    grp.getAtividade().getDescr(),
-                    grp.getTempo()
-            });
+        Object obj[] = new Object[listaTreino.size()];
+        for(int i = 0 ; i <listaTreino.size();i++){
+            Treino t = listaTreino.get(i);
+            obj[i] = (""+t.getTreinoPK().getIdtreino()+" - " +t.getDescricao());
             
         }
-        
+        jListTreino.setListData(obj);
         
     }
 
     private void salvarAlteracoes() {
-        grupoSelecionado.setNome(txtNome.getText());
-        grupoSelecionado.setStatus(chkAtivo.isSelected());
-        grupoSelecionado.setDescricao(txtDescricao.getText());
-        grupoSelecionado.setGrupoatvCollection(listaAtividade);
         
-        new GrupoModel(grupoSelecionado).update();
-    
+        
+   
+        
+        buscarUsuarios();
+        txtPesquisa.requestFocus();
+        txtPesquisa.selectAll();
+        
+        
         
         
     }
 
-    private void excluirGrupo() {
+    private void excluirUsuario() {
         
-        new GrupoModel(grupoSelecionado).remove();
-        buscarGrupos();
+        new UsuarioModel(usuarioLelecionado).remove();
+        buscarUsuarios();
         
         
     }
 
     private void removerAtividade() {
         
-        int indexAtv = jTable1.getSelectedRow();
-        Grupoatv get = this.listaAtividade.get(indexAtv);
         
-        int opc = JOptionPane.showConfirmDialog(null, "Deseja realmente excluir "
-                +get.getAtividade().getNome()+" do grupo "+grupoSelecionado.getNome()+"?");
         
-        if(opc==JOptionPane.YES_OPTION){
-            this.listaAtividade.remove(indexAtv);
-       salvarAlteracoes();
-       buscarGrupos();
-       selecionarGrupo();
+        index = tblAtv.getSelectedRow();
+        Exercicio atividade = listaAtividade.get(index);
+        
+        int opc =JOptionPane.showConfirmDialog(null, "Deseja excluir "+atividade.getNome()+" das atividades relacionadas?");
+        
+        if(opc == JOptionPane.YES_OPTION){
+            listaAtividade.remove(index);
+            salvarAlteracoes();
         }
         
-     
         
     }
 
     private void incluirAtividade() {
-        Principal.adicionarFrames(new GrupoAtividade(grupoSelecionado));
+     
+         PrincipalView.adicionarFrames(new TreinoAtividadeView(usuarioLelecionado, treinoSelecionado));
+        
+        
+        
+        
+        
     }
 
-    private void removerGrupo() {
-        new GrupoModel(grupoSelecionado).remove();
-        buscarGrupos();
+    private void selecinarTreino() {
+        int indexTreino = jListTreino.getSelectedIndex();
+        this.treinoSelecionado = listaTreino.get(indexTreino);
+        
+        
+        ArrayList<Grupo> listaGrupo = new ArrayList<>(treinoSelecionado.getGrupoCollection());
+        ArrayList<TreinoAtividade> listaAtv = new ArrayList<>(treinoSelecionado.getTreinoAtividadeCollection());
+        
+        
+        
+        DefaultTableModel mdl = (DefaultTableModel) tblGrupo.getModel();
+        mdl.setNumRows(0);
+        for(int i = 0 ; i <listaGrupo.size();i++){
+            Grupo grp = listaGrupo.get(i);
+            mdl.addRow(new Object[]{grp.getNome(),grp.getDescricao()});
+        }
+        
+        
+         mdl = (DefaultTableModel) tblAtv.getModel();
+         mdl.setNumRows(0);
+        for(int i = 0 ; i <listaAtv.size();i++){
+            TreinoAtividade grp = listaAtv.get(i);
+            mdl.addRow(new Object[]{grp.getAtividadeId().getNome(),grp.getAtividadeId().getDescr(),grp.getTempo()});
+        }
+        
+        
+        
+        
     }
 }

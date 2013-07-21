@@ -11,15 +11,18 @@
 package br.com.usjt.sgf.view;
 
 import br.com.usjt.sgf.entity.Exercicio;
+import br.com.usjt.sgf.entity.Usuario;
+import br.com.usjt.sgf.model.ExercicioModel;
+import br.com.usjt.sgf.model.UsuarioModel;
 
 /**
  *
  * @author Douglas
  */
-public class Cadastrar extends javax.swing.JFrame {
+public class UsuarioCadastrarView extends javax.swing.JInternalFrame {
 
     /** Creates new form AtividadeCadastrar */
-    public Cadastrar() {
+    public UsuarioCadastrarView() {
         initComponents();
     }
 
@@ -48,14 +51,17 @@ public class Cadastrar extends javax.swing.JFrame {
         radio.add(chkAtivo);
         radio.add(chkInativo);
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(true);
+        setTitle("Novo Usuário...");
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/usjt/sgf/view/images/activty_16.png"))); // NOI18N
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 11));
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel5.setText("Nome:");
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 11));
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel6.setText("Descrição:");
 
         txtDescricao.setColumns(20);
@@ -63,18 +69,19 @@ public class Cadastrar extends javax.swing.JFrame {
         jScrollPane1.setViewportView(txtDescricao);
 
         chkAtivo.setBackground(new java.awt.Color(255, 255, 255));
-        chkAtivo.setFont(new java.awt.Font("Tahoma", 1, 11));
+        chkAtivo.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         chkAtivo.setText("Ativo");
 
         chkInativo.setBackground(new java.awt.Color(255, 255, 255));
-        chkInativo.setFont(new java.awt.Font("Tahoma", 1, 11));
+        chkInativo.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         chkInativo.setText("Inativo");
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 11));
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel7.setText("Status:");
 
         jButton2.setBackground(new java.awt.Color(255, 255, 255));
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 11));
+        jButton2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/usjt/sgf/view/images/exit16.png"))); // NOI18N
         jButton2.setText("Cancelar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -83,7 +90,8 @@ public class Cadastrar extends javax.swing.JFrame {
         });
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 11));
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/usjt/sgf/view/images/confirm.jpg"))); // NOI18N
         jButton1.setText("Cadastrar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -112,10 +120,10 @@ public class Cadastrar extends javax.swing.JFrame {
                     .addComponent(txtNome, javax.swing.GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(182, Short.MAX_VALUE)
+                .addContainerGap(151, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButton2)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -138,7 +146,7 @@ public class Cadastrar extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -152,7 +160,7 @@ public class Cadastrar extends javax.swing.JFrame {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        pack();
+        setBounds(0, 0, 393, 227);
     }// </editor-fold>//GEN-END:initComponents
 
 private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -180,13 +188,13 @@ cadastrar();
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Cadastrar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UsuarioCadastrarView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Cadastrar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UsuarioCadastrarView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Cadastrar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UsuarioCadastrarView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Cadastrar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UsuarioCadastrarView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -194,7 +202,7 @@ cadastrar();
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                new Cadastrar().setVisible(true);
+                new UsuarioCadastrarView().setVisible(true);
             }
         });
     }
@@ -215,10 +223,15 @@ cadastrar();
 
     private void cadastrar() {
         
-    
+        Usuario atv = new Usuario();
+        atv.setDescricao(txtDescricao.getText());
+        atv.setNome(txtNome.getText());
+        atv.setStatus(chkAtivo.isSelected());
         
+        new UsuarioModel(atv).persist();
+        dispose();
         
-    }// 4 8 15 16 23 42
+    }
 
     private void cancelar() {
         
