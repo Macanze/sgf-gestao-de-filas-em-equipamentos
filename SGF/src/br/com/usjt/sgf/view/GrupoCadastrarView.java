@@ -4,23 +4,23 @@
  */
 
 /*
- * CadastrarEquipamento.java
+ * GrupoCadastrar.java
  *
  * Created on 30/05/2013, 17:07:12
  */
 package br.com.usjt.sgf.view;
 
-import br.com.usjt.sgf.entity.Equipamento;
-import br.com.usjt.sgf.model.EquipamentoModel;
+import br.com.usjt.sgf.entity.Grupo;
+import br.com.usjt.sgf.model.GrupoModel;
 
 /**
  *
  * @author Douglas
  */
-public class CadastrarEquipamento extends javax.swing.JInternalFrame {
+public class GrupoCadastrarView extends javax.swing.JInternalFrame {
 
-    /** Creates new form CadastrarEquipamento */
-    public CadastrarEquipamento() {
+    /** Creates new form GrupoCadastrar */
+    public GrupoCadastrarView() {
         initComponents();
     }
 
@@ -50,7 +50,7 @@ public class CadastrarEquipamento extends javax.swing.JInternalFrame {
         radio.add(chkInativo);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Novo Recurso...");
+        setTitle("Novo Grupo");
         setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/usjt/sgf/view/images/activty_16.png"))); // NOI18N
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -101,27 +101,26 @@ public class CadastrarEquipamento extends javax.swing.JInternalFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel7))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel7))
+                        .addComponent(chkAtivo)
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane1)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(chkAtivo)
-                                .addGap(18, 18, 18)
-                                .addComponent(chkInativo)
-                                .addGap(141, 141, 141))
-                            .addComponent(txtNome)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2)))
+                        .addComponent(chkInativo)
+                        .addGap(141, 141, 141))
+                    .addComponent(txtNome, javax.swing.GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE))
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(151, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton2)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -144,7 +143,7 @@ public class CadastrarEquipamento extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -186,13 +185,13 @@ cadastrar();
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CadastrarEquipamento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GrupoCadastrarView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CadastrarEquipamento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GrupoCadastrarView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CadastrarEquipamento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GrupoCadastrarView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CadastrarEquipamento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GrupoCadastrarView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -200,7 +199,7 @@ cadastrar();
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                new CadastrarEquipamento().setVisible(true);
+                new GrupoCadastrarView().setVisible(true);
             }
         });
     }
@@ -221,12 +220,12 @@ cadastrar();
 
     private void cadastrar() {
         
-        Equipamento atv = new Equipamento();
-        atv.setDescricao(txtDescricao.getText());
-        atv.setNome(txtNome.getText());
-        atv.setStatus(chkAtivo.isSelected());
+        Grupo grp = new Grupo();
+        grp.setDescricao(txtDescricao.getText());
+        grp.setNome(txtNome.getText());
+        grp.setStatus(chkAtivo.isSelected());
         
-        new EquipamentoModel(atv).persist();
+        new GrupoModel(grp).persist();
         dispose();
         
     }

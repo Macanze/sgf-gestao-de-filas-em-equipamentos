@@ -20,11 +20,11 @@ import java.util.logging.Logger;
  *
  * @author Douglas
  */
-public class Configuracoes extends javax.swing.JFrame {
+public class ConfiguracoesView extends javax.swing.JFrame {
     private Configuracao configuracao;
 
     /** Creates new form Configuracoes */
-    public Configuracoes() {
+    public ConfiguracoesView() {
         initComponents();
         lerConfiguracoes();
        
@@ -249,13 +249,13 @@ private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Configuracoes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConfiguracoesView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Configuracoes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConfiguracoesView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Configuracoes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConfiguracoesView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Configuracoes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConfiguracoesView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -263,7 +263,7 @@ private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                new Configuracoes().setVisible(true);
+                new ConfiguracoesView().setVisible(true);
             }
         });
     }
@@ -312,7 +312,7 @@ private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             
             new ConfiguracoesFileDao().salvar(configuracao);
         } catch (IOException ex) {
-            Logger.getLogger(Configuracoes.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ConfiguracoesView.class.getName()).log(Level.SEVERE, null, ex);
         }     
     }
     
@@ -330,9 +330,9 @@ private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             
             
         } catch (IOException ex) {
-            Logger.getLogger(Configuracoes.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ConfiguracoesView.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Configuracoes.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ConfiguracoesView.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         

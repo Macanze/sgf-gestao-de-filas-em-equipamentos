@@ -21,7 +21,7 @@ import javax.swing.table.TableRowSorter;
  *
  * @author dgsantos
  */
-public class RecursoAtividade extends javax.swing.JInternalFrame {
+public class RecursoAtividadeView extends javax.swing.JInternalFrame {
 
     private Equipamento recurso;
     private ArrayList<Exercicio> listaAtividade;
@@ -30,12 +30,12 @@ public class RecursoAtividade extends javax.swing.JInternalFrame {
     /**
      * Creates new form RecursoAtividade
      */
-    public RecursoAtividade() {
+    public RecursoAtividadeView() {
         initComponents();
         setup();
     }
 
-    public RecursoAtividade(Equipamento rec) {
+    public RecursoAtividadeView(Equipamento rec) {
         initComponents();
         this.recurso = rec;
         setup();
@@ -265,7 +265,7 @@ public class RecursoAtividade extends javax.swing.JInternalFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                new RecursoAtividade().setVisible(true);
+                new RecursoAtividadeView().setVisible(true);
             }
         });
     }

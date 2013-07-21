@@ -19,17 +19,17 @@ import br.com.usjt.sgf.model.TreinoModel;
  *
  * @author Douglas
  */
-public class TreinoCadastrar extends javax.swing.JInternalFrame {
+public class TreinoCadastrarView extends javax.swing.JInternalFrame {
     private  Usuario usuario;
 
     /** Creates new form AtividadeCadastrar */
-    public TreinoCadastrar() {
+    public TreinoCadastrarView() {
         initComponents();
     }
     
     
     
-    public TreinoCadastrar(Usuario usuario){
+    public TreinoCadastrarView(Usuario usuario){
         
         initComponents();
         this.usuario = usuario;
@@ -67,7 +67,7 @@ public class TreinoCadastrar extends javax.swing.JInternalFrame {
 
         txtUsuario.setEditable(false);
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 11));
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel6.setText("Descrição:");
 
         txtDescricao.setColumns(20);
@@ -75,7 +75,7 @@ public class TreinoCadastrar extends javax.swing.JInternalFrame {
         jScrollPane1.setViewportView(txtDescricao);
 
         jButton2.setBackground(new java.awt.Color(255, 255, 255));
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 11));
+        jButton2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/usjt/sgf/view/images/exit16.png"))); // NOI18N
         jButton2.setText("Cancelar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -85,7 +85,7 @@ public class TreinoCadastrar extends javax.swing.JInternalFrame {
         });
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 11));
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/usjt/sgf/view/images/confirm.jpg"))); // NOI18N
         jButton1.setText("Cadastrar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -144,8 +144,7 @@ public class TreinoCadastrar extends javax.swing.JInternalFrame {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-        setBounds((screenSize.width-393)/2, (screenSize.height-227)/2, 393, 227);
+        setBounds(0, 0, 393, 227);
     }// </editor-fold>//GEN-END:initComponents
 
 private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -173,13 +172,13 @@ cadastrar();
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TreinoCadastrar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TreinoCadastrarView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TreinoCadastrar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TreinoCadastrarView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TreinoCadastrar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TreinoCadastrarView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TreinoCadastrar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TreinoCadastrarView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -187,7 +186,7 @@ cadastrar();
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                new TreinoCadastrar().setVisible(true);
+                new TreinoCadastrarView().setVisible(true);
             }
         });
     }

@@ -23,7 +23,7 @@ import javax.swing.table.TableRowSorter;
  *
  * @author dgsantos
  */
-public class GrupoAtividade extends javax.swing.JInternalFrame {
+public class GrupoAtividadeView extends javax.swing.JInternalFrame {
 
     private Grupo grupo;
     private ArrayList<br.com.usjt.sgf.entity.GrupoAtividade> listaAtividade;
@@ -33,12 +33,12 @@ public class GrupoAtividade extends javax.swing.JInternalFrame {
     /**
      * Creates new form Recurso_ATIVIDADE
      */
-    public GrupoAtividade() {
+    public GrupoAtividadeView() {
         initComponents();
         setup();
     }
 
-    public GrupoAtividade(Grupo rec) {
+    public GrupoAtividadeView(Grupo rec) {
         initComponents();
         this.grupo = rec;
         setup();
@@ -243,13 +243,13 @@ public class GrupoAtividade extends javax.swing.JInternalFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GrupoAtividade.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GrupoAtividadeView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GrupoAtividade.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GrupoAtividadeView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GrupoAtividade.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GrupoAtividadeView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GrupoAtividade.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GrupoAtividadeView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -259,7 +259,7 @@ public class GrupoAtividade extends javax.swing.JInternalFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                new GrupoAtividade().setVisible(true);
+                new GrupoAtividadeView().setVisible(true);
             }
         });
     }

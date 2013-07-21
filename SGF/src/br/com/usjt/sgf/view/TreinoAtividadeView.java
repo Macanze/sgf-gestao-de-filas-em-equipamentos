@@ -26,7 +26,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Douglas
  */
-public class TreinoAtividade extends javax.swing.JInternalFrame {
+public class TreinoAtividadeView extends javax.swing.JInternalFrame {
     private  Usuario usuario;
     private  Treino treino;
     private ArrayList<Grupo> listaGrupo;
@@ -35,11 +35,11 @@ public class TreinoAtividade extends javax.swing.JInternalFrame {
     private ArrayList<Exercicio> listaAtividade;
 
     /** Creates new form TreinoAtividade */
-    public TreinoAtividade() {
+    public TreinoAtividadeView() {
         initComponents();
     }
     
-    public TreinoAtividade(Usuario usuario, Treino treino){
+    public TreinoAtividadeView(Usuario usuario, Treino treino){
         
         initComponents();
            this.usuario = usuario;
@@ -412,13 +412,13 @@ private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TreinoAtividade.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TreinoAtividadeView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TreinoAtividade.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TreinoAtividadeView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TreinoAtividade.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TreinoAtividadeView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TreinoAtividade.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TreinoAtividadeView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -426,7 +426,7 @@ private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                new TreinoAtividade().setVisible(true);
+                new TreinoAtividadeView().setVisible(true);
             }
         });
     }
@@ -466,7 +466,7 @@ private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         txtUsuario.setText(usuario.getNome());
         txtDescrTreino.setText(treino.toString());
            listaGrupo = new ArrayList<>(treino.getGrupoCollection());
-           this.listaTreino = new ArrayList<>(treino.getTreinoatvCollection());
+           this.listaTreino = new ArrayList<>(treino.getTreinoAtividadeCollection());
              listaGrupoDisponivel = new GrupoModel().listAll();
          for(int i = 0; i <listaGrupoDisponivel.size();i++){
             Grupo get = listaGrupoDisponivel.get(i);
@@ -530,7 +530,7 @@ private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         
         
         treino.setGrupoCollection(listaGrupo);
-        treino.setTreinoatvCollection(listaTreino);
+        treino.setTreinoAtividadeCollection(listaTreino);
         new TreinoModel(treino).update();
         dispose();
         

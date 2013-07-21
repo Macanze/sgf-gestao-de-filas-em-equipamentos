@@ -11,12 +11,8 @@
 package br.com.usjt.sgf.view;
 
 import br.com.usjt.sgf.entity.Exercicio;
-import br.com.usjt.sgf.entity.Grupo;
-import br.com.usjt.sgf.entity.Treino;
-import br.com.usjt.sgf.entity.TreinoAtividade;
-import br.com.usjt.sgf.entity.Usuario;
-import br.com.usjt.sgf.model.TreinoModel;
-import br.com.usjt.sgf.model.UsuarioModel;
+import br.com.usjt.sgf.entity.Equipamento;
+import br.com.usjt.sgf.model.EquipamentoModel;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -26,18 +22,15 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Douglas
  */
-public class UsuarioGerenciar extends javax.swing.JInternalFrame {
-    private List<Usuario> listByName;
-    private Usuario usuarioLelecionado;
+public class ManterEquipamentoView extends javax.swing.JInternalFrame {
+    private List<Equipamento> listByName;
+    private Equipamento recursoSelecionado;
     private ArrayList<Exercicio> listaAtividade;
-    private int index;
-    private ArrayList<Treino> listaTreino;
-    private Treino treinoSelecionado;
 
-    /** Creates new form UsuariosGerenciar */
-    public UsuarioGerenciar() {
+    /** Creates new form RecursosGerenciar */
+    public ManterEquipamentoView() {
         initComponents();
-        buscarUsuarios();
+        buscarRecursos();
     }
 
     /** This method is called from within the constructor to
@@ -79,16 +72,9 @@ public class UsuarioGerenciar extends javax.swing.JInternalFrame {
         jButton5 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        tblAtv = new javax.swing.JTable();
+        jTable1 = new javax.swing.JTable();
         jButton7 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        jListTreino = new javax.swing.JList();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        tblGrupo = new javax.swing.JTable();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jButton11 = new javax.swing.JButton();
+        jButton8 = new javax.swing.JButton();
 
         radio.add(chkAtivo);
         radio.add(chkInativo);
@@ -96,14 +82,31 @@ public class UsuarioGerenciar extends javax.swing.JInternalFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Atividade Gerenciar");
         setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/usjt/sgf/view/images/activty_16.png"))); // NOI18N
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameActivated(evt);
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0))));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12));
-        jLabel1.setText("Usuário:");
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel1.setText("Atividade");
 
         jListRecurso.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -127,7 +130,7 @@ public class UsuarioGerenciar extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 222, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jLabel1)
                         .addGroup(jPanel2Layout.createSequentialGroup()
@@ -146,7 +149,7 @@ public class UsuarioGerenciar extends javax.swing.JInternalFrame {
                     .addComponent(jButton4, 0, 0, Short.MAX_VALUE)
                     .addComponent(txtPesquisa))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 338, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -228,29 +231,29 @@ public class UsuarioGerenciar extends javax.swing.JInternalFrame {
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0))));
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 11));
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel5.setText("Nome:");
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 11));
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel6.setText("Descrição:");
 
         txtDescricao.setColumns(20);
         txtDescricao.setRows(3);
         jScrollPane2.setViewportView(txtDescricao);
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 11));
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel7.setText("Status:");
 
         chkAtivo.setBackground(new java.awt.Color(255, 255, 255));
-        chkAtivo.setFont(new java.awt.Font("Tahoma", 1, 11));
+        chkAtivo.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         chkAtivo.setText("Ativo");
 
         chkInativo.setBackground(new java.awt.Color(255, 255, 255));
-        chkInativo.setFont(new java.awt.Font("Tahoma", 1, 11));
+        chkInativo.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         chkInativo.setText("Inativo");
 
         jButton6.setBackground(new java.awt.Color(255, 255, 255));
-        jButton6.setFont(new java.awt.Font("Tahoma", 1, 11));
+        jButton6.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/usjt/sgf/view/images/confirm.jpg"))); // NOI18N
         jButton6.setText("Confirmar");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
@@ -260,7 +263,7 @@ public class UsuarioGerenciar extends javax.swing.JInternalFrame {
         });
 
         jButton5.setBackground(new java.awt.Color(255, 255, 255));
-        jButton5.setFont(new java.awt.Font("Tahoma", 1, 11));
+        jButton5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/usjt/sgf/view/images/exit16.png"))); // NOI18N
         jButton5.setText("Cancelar");
 
@@ -269,31 +272,34 @@ public class UsuarioGerenciar extends javax.swing.JInternalFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap(266, Short.MAX_VALUE)
-                .addComponent(jButton6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton5)
-                .addContainerGap())
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(20, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel7))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(chkAtivo)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel7))
                         .addGap(18, 18, 18)
-                        .addComponent(chkInativo)
-                        .addGap(131, 131, 131))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 370, Short.MAX_VALUE)
-                    .addComponent(txtNome))
-                .addContainerGap(36, Short.MAX_VALUE))
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(chkAtivo)
+                                .addGap(18, 18, 18)
+                                .addComponent(chkInativo)
+                                .addGap(141, 141, 141))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtNome))
+                                .addContainerGap())))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addComponent(jButton6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton5)
+                        .addContainerGap())))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+            .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
@@ -307,10 +313,10 @@ public class UsuarioGerenciar extends javax.swing.JInternalFrame {
                     .addComponent(chkAtivo)
                     .addComponent(chkInativo)
                     .addComponent(jLabel7))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 191, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 187, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton6)
-                    .addComponent(jButton5))
+                    .addComponent(jButton5)
+                    .addComponent(jButton6))
                 .addContainerGap())
         );
 
@@ -318,59 +324,33 @@ public class UsuarioGerenciar extends javax.swing.JInternalFrame {
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
 
-        tblAtv.setModel(new javax.swing.table.DefaultTableModel(
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Atividade", "Descricao", "Tempo"
+                "Atividade", "Descricao"
             }
         ));
-        jScrollPane3.setViewportView(tblAtv);
+        jScrollPane3.setViewportView(jTable1);
 
         jButton7.setBackground(new java.awt.Color(255, 255, 255));
         jButton7.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/usjt/sgf/view/images/user_edit16.png"))); // NOI18N
-        jButton7.setText("Editar");
+        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/usjt/sgf/view/images/add_16.png"))); // NOI18N
+        jButton7.setText("Incluir");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton7ActionPerformed(evt);
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel2.setText("Treino:");
-
-        jListTreino.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jListTreinoMouseClicked(evt);
-            }
-        });
-        jScrollPane4.setViewportView(jListTreino);
-
-        tblGrupo.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Grupo", "Descricao"
-            }
-        ));
-        jScrollPane5.setViewportView(tblGrupo);
-
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12));
-        jLabel3.setText("Atividades");
-
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12));
-        jLabel4.setText("Grupos:");
-
-        jButton11.setBackground(new java.awt.Color(255, 255, 255));
-        jButton11.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/usjt/sgf/view/images/add_16.png"))); // NOI18N
-        jButton11.setText("Novo");
-        jButton11.addActionListener(new java.awt.event.ActionListener() {
+        jButton8.setBackground(new java.awt.Color(255, 255, 255));
+        jButton8.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/usjt/sgf/view/images/del_16.png"))); // NOI18N
+        jButton8.setText("Remover");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton11ActionPerformed(evt);
+                jButton8ActionPerformed(evt);
             }
         });
 
@@ -378,62 +358,39 @@ public class UsuarioGerenciar extends javax.swing.JInternalFrame {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+            .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 363, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4)
-                            .addComponent(jScrollPane5, 0, 0, Short.MAX_VALUE)
-                            .addComponent(jLabel3)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
-                        .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 264, Short.MAX_VALUE)
-                        .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jButton8)))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 305, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton11)
+                    .addComponent(jButton8)
                     .addComponent(jButton7))
                 .addContainerGap())
         );
 
-        jTabbedPane1.addTab("Treino", jPanel4);
+        jTabbedPane1.addTab("Atividades", jPanel4);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jToolBar1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 509, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTabbedPane1))
+            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -441,8 +398,8 @@ public class UsuarioGerenciar extends javax.swing.JInternalFrame {
                 .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 413, Short.MAX_VALUE)))
+                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 409, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -460,27 +417,27 @@ public class UsuarioGerenciar extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
 private void jListRecursoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jListRecursoMouseClicked
-    selecionarUsuario();
+    selecionarRecurso();
 }//GEN-LAST:event_jListRecursoMouseClicked
 
 private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-    salvarAlteracoes();
+//    salvarAlteracoes();
 }//GEN-LAST:event_jButton6ActionPerformed
 
 private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-buscarUsuarios();
+buscarRecursos();
 }//GEN-LAST:event_jButton4ActionPerformed
 
 private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-excluirUsuario();
+excluirRecurso();
 }//GEN-LAST:event_jButton3ActionPerformed
 
 private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-Principal.adicionarFrames(new UsuarioCadastrar());
+PrincipalView.adicionarFrames(new CadastrarEquipamentoView());
 }//GEN-LAST:event_jButton1ActionPerformed
 
 private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-            salvarAlteracoes();
+//            salvarAlteracoes();
 }//GEN-LAST:event_jButton2ActionPerformed
 
 private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
@@ -491,17 +448,17 @@ private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
 // TODO add your handling code here:
 }//GEN-LAST:event_jButton10ActionPerformed
 
+private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+removerAtividade();// TODO add your handling code here:
+}//GEN-LAST:event_jButton8ActionPerformed
+
 private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
 incluirAtividade();
 }//GEN-LAST:event_jButton7ActionPerformed
 
-private void jListTreinoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jListTreinoMouseClicked
-selecinarTreino();
-}//GEN-LAST:event_jListTreinoMouseClicked
-
-private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
-Principal.adicionarFrames(new TreinoCadastrar(usuarioLelecionado));
-}//GEN-LAST:event_jButton11ActionPerformed
+    private void formInternalFrameActivated(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameActivated
+        buscarRecursos();
+    }//GEN-LAST:event_formInternalFrameActivated
 
     /**
      * @param args the command line arguments
@@ -520,13 +477,13 @@ Principal.adicionarFrames(new TreinoCadastrar(usuarioLelecionado));
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(UsuarioGerenciar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManterEquipamentoView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(UsuarioGerenciar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManterEquipamentoView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(UsuarioGerenciar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManterEquipamentoView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(UsuarioGerenciar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManterEquipamentoView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -534,7 +491,7 @@ Principal.adicionarFrames(new TreinoCadastrar(usuarioLelecionado));
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                new UsuarioGerenciar().setVisible(true);
+                new ManterEquipamentoView().setVisible(true);
             }
         });
     }
@@ -543,23 +500,19 @@ Principal.adicionarFrames(new TreinoCadastrar(usuarioLelecionado));
     private javax.swing.JRadioButton chkInativo;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JList jListRecurso;
-    private javax.swing.JList jListTreino;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -567,23 +520,20 @@ Principal.adicionarFrames(new TreinoCadastrar(usuarioLelecionado));
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JToolBar.Separator jSeparator1;
     private javax.swing.JToolBar.Separator jSeparator2;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTable jTable1;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.ButtonGroup radio;
-    private javax.swing.JTable tblAtv;
-    private javax.swing.JTable tblGrupo;
     private javax.swing.JTextArea txtDescricao;
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtPesquisa;
     // End of variables declaration//GEN-END:variables
 
-    private void buscarUsuarios() {
+    private void buscarRecursos() {
         
-        Usuario atv = new Usuario();
+        Equipamento atv = new Equipamento();
         
         if(txtPesquisa.getText()==null){
             txtPesquisa.setText("");
@@ -592,13 +542,13 @@ Principal.adicionarFrames(new TreinoCadastrar(usuarioLelecionado));
         atv.setNome(txtPesquisa.getText());
         
         
-        UsuarioModel recurso = new UsuarioModel(atv);
-        this.listByName = recurso.listByName();
+        EquipamentoModel recurso = new EquipamentoModel(atv);
+        this.listByName = recurso.listAll();
         
        
         Object obj[] = new Object[listByName.size()];
         int i = 0;
-        for(Usuario temp : listByName){
+        for(Equipamento temp : listByName){
             obj[i] = temp.getNome();
             i++;
         }                
@@ -606,109 +556,55 @@ Principal.adicionarFrames(new TreinoCadastrar(usuarioLelecionado));
         
     }
 
-    private void selecionarUsuario() {
-        index = jListRecurso.getSelectedIndex();
-        usuarioLelecionado = listByName.get(index);
+    private void selecionarRecurso() {
+        int index = jListRecurso.getSelectedIndex();
+        recursoSelecionado = listByName.get(index);
         
-        txtNome.setText(usuarioLelecionado.getNome());
-        txtDescricao.setText(usuarioLelecionado.getDescricao());
-        if(usuarioLelecionado.getStatus()){
-            chkAtivo.setSelected(true);
-        }else{
+        txtDescricao.setText(recursoSelecionado.getDescricao());
+        txtNome.setText(recursoSelecionado.getNome());
+        chkAtivo.setSelected(recursoSelecionado.getStatus());
+        if(!recursoSelecionado.getStatus()){
             chkInativo.setSelected(true);
-        }
-        
-        Treino temp = new Treino();
-        temp.setUsuario(usuarioLelecionado);
-        this.listaTreino = new ArrayList<>(new TreinoModel(temp).findById());
-        
-        
-        Object obj[] = new Object[listaTreino.size()];
-        for(int i = 0 ; i <listaTreino.size();i++){
-            Treino t = listaTreino.get(i);
-            obj[i] = (""+t.getTreinoPK().getIdtreino()+" - " +t.getDescricao());
             
         }
-        jListTreino.setListData(obj);
+        this.listaAtividade = new ArrayList<>(recursoSelecionado.getAtividadeCollection());
+        
+        
+        DefaultTableModel mdl = (DefaultTableModel) jTable1.getModel();
+        mdl.setNumRows(0);
+        for(Exercicio temp: listaAtividade){
+            mdl.addRow(new Object[]{temp.getNome(),temp.getDescr()});
+        }
         
     }
 
-    private void salvarAlteracoes() {
-        
-        
-   
-        
-        buscarUsuarios();
-        txtPesquisa.requestFocus();
-        txtPesquisa.selectAll();
-        
-        
-        
-        
-    }
+ 
 
-    private void excluirUsuario() {
+    private void excluirRecurso() {
         
-        new UsuarioModel(usuarioLelecionado).remove();
-        buscarUsuarios();
+        new EquipamentoModel(recursoSelecionado).remove();
+        buscarRecursos();
         
         
     }
 
     private void removerAtividade() {
         
-        
-        
-        index = tblAtv.getSelectedRow();
+        int index = jTable1.getSelectedRow();
         Exercicio atividade = listaAtividade.get(index);
         
         int opc =JOptionPane.showConfirmDialog(null, "Deseja excluir "+atividade.getNome()+" das atividades relacionadas?");
         
         if(opc == JOptionPane.YES_OPTION){
             listaAtividade.remove(index);
-            salvarAlteracoes();
+//            salvarAlteracoes();
         }
-        
+        recursoSelecionado.setAtividadeCollection(listaAtividade);
+        new EquipamentoModel(recursoSelecionado).update();
         
     }
 
     private void incluirAtividade() {
-     
-         Principal.adicionarFrames(new TreinoAtividade(usuarioLelecionado, treinoSelecionado));
-        
-        
-        
-        
-        
-    }
-
-    private void selecinarTreino() {
-        int indexTreino = jListTreino.getSelectedIndex();
-        this.treinoSelecionado = listaTreino.get(indexTreino);
-        
-        
-        ArrayList<Grupo> listaGrupo = new ArrayList<>(treinoSelecionado.getGrupoCollection());
-        ArrayList<TreinoAtividade> listaAtv = new ArrayList<>(treinoSelecionado.getTreinoatvCollection());
-        
-        
-        
-        DefaultTableModel mdl = (DefaultTableModel) tblGrupo.getModel();
-        mdl.setNumRows(0);
-        for(int i = 0 ; i <listaGrupo.size();i++){
-            Grupo grp = listaGrupo.get(i);
-            mdl.addRow(new Object[]{grp.getNome(),grp.getDescricao()});
-        }
-        
-        
-         mdl = (DefaultTableModel) tblAtv.getModel();
-         mdl.setNumRows(0);
-        for(int i = 0 ; i <listaAtv.size();i++){
-            TreinoAtividade grp = listaAtv.get(i);
-            mdl.addRow(new Object[]{grp.getAtividadeId().getNome(),grp.getAtividadeId().getDescr(),grp.getTempo()});
-        }
-        
-        
-        
-        
+       PrincipalView.adicionarFrames(new RecursoAtividadeView(recursoSelecionado));
     }
 }
