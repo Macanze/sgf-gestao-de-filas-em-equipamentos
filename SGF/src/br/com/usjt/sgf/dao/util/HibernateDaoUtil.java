@@ -15,9 +15,6 @@ import javax.persistence.Query;
  * @author Douglas
  */
 public class HibernateDaoUtil {
-
-
-    
       private  EntityManager manager;
 
     public HibernateDaoUtil() {
