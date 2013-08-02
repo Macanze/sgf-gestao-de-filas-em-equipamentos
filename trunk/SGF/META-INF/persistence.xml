@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+  <persistence-unit name="SGFPU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>br.com.usjt.sgf.entity.Atividade</class>
+    <class>br.com.usjt.sgf.entity.Grupo</class>
+    <class>br.com.usjt.sgf.entity.Grupoatv</class>
+    <class>br.com.usjt.sgf.entity.Recurso</class>
+    <class>br.com.usjt.sgf.entity.Treino</class>
+    <class>br.com.usjt.sgf.entity.Usuario</class>
+    <class>br.com.usjt.sgf.entity.Treinoatv</class>
+    <class>br.com.usjt.sgf.entity.Grupo_1</class>
+    <class>br.com.usjt.sgf.entity.TreinoGrupo</class>
+    <class>br.com.usjt.sgf.entity.Atividade_1</class>
+    <class>br.com.usjt.sgf.entity.Usuario_1</class>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:sqlserver://localhost:1433;databaseName=SGFPU"/>
+      <property name="javax.persistence.jdbc.password" value="root"/>
+      <property name="javax.persistence.jdbc.driver" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
+      <property name="javax.persistence.jdbc.user" value="sa"/>
+      <property name="eclipselink.ddl-generation" value="create-tables"/>
+    </properties>
+  </persistence-unit>
+</persistence>
